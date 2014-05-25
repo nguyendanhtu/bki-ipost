@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BKI_FBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="BKI_FBModelStoreContainer">
+    <EntitySet Name="CM_DM_TU_DIEN" EntityType="BKI_FBModel.Store.CM_DM_TU_DIEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DM_CM_LOAI_TD" EntityType="BKI_FBModel.Store.DM_CM_LOAI_TD" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DM_POST" EntityType="BKI_FBModel.Store.DM_POST" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DM_USER" EntityType="BKI_FBModel.Store.DM_USER" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GD_CHI_TIET_POSTS" EntityType="BKI_FBModel.Store.GD_CHI_TIET_POSTS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="BKI_FBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD" Association="BKI_FBModel.Store.FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD">
+      <End Role="DM_CM_LOAI_TD" EntitySet="DM_CM_LOAI_TD" />
+      <End Role="CM_DM_TU_DIEN" EntitySet="CM_DM_TU_DIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DM_POST_DM_USER" Association="BKI_FBModel.Store.FK_DM_POST_DM_USER">
+      <End Role="DM_USER" EntitySet="DM_USER" />
+      <End Role="DM_POST" EntitySet="DM_POST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN" Association="BKI_FBModel.Store.FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN">
+      <End Role="CM_DM_TU_DIEN" EntitySet="CM_DM_TU_DIEN" />
+      <End Role="GD_CHI_TIET_POSTS" EntitySet="GD_CHI_TIET_POSTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GD_CHI_TIET_POSTS_DM_POST" Association="BKI_FBModel.Store.FK_GD_CHI_TIET_POSTS_DM_POST">
+      <End Role="DM_POST" EntitySet="DM_POST" />
+      <End Role="GD_CHI_TIET_POSTS" EntitySet="GD_CHI_TIET_POSTS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CM_DM_TU_DIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ID_LOAI_TU_DIEN" Type="int" Nullable="false" />
+    <Property Name="TEN_TU_DIEN" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DM_CM_LOAI_TD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LOAI_TU_DIEN" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DM_POST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USER" Type="int" Nullable="false" />
+    <Property Name="ID_POSTS" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="TITLE" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="LIKE_COUNT" Type="int" />
+    <Property Name="COMMENT_COUNT" Type="int" />
+  </EntityType>
+  <EntityType Name="DM_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ACCESS_TOKEN" Type="ntext" Nullable="false" />
+    <Property Name="ACCESS_TOKEN_API" Type="ntext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GD_CHI_TIET_POSTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ID_POST" Type="int" Nullable="false" />
+    <Property Name="ID_USER" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="ID_TYPE" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="ntext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD">
+    <End Role="DM_CM_LOAI_TD" Type="BKI_FBModel.Store.DM_CM_LOAI_TD" Multiplicity="1" />
+    <End Role="CM_DM_TU_DIEN" Type="BKI_FBModel.Store.CM_DM_TU_DIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_CM_LOAI_TD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CM_DM_TU_DIEN">
+        <PropertyRef Name="ID_LOAI_TU_DIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DM_POST_DM_USER">
+    <End Role="DM_USER" Type="BKI_FBModel.Store.DM_USER" Multiplicity="1" />
+    <End Role="DM_POST" Type="BKI_FBModel.Store.DM_POST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DM_POST">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN">
+    <End Role="CM_DM_TU_DIEN" Type="BKI_FBModel.Store.CM_DM_TU_DIEN" Multiplicity="1" />
+    <End Role="GD_CHI_TIET_POSTS" Type="BKI_FBModel.Store.GD_CHI_TIET_POSTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CM_DM_TU_DIEN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GD_CHI_TIET_POSTS">
+        <PropertyRef Name="ID_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GD_CHI_TIET_POSTS_DM_POST">
+    <End Role="DM_POST" Type="BKI_FBModel.Store.DM_POST" Multiplicity="1" />
+    <End Role="GD_CHI_TIET_POSTS" Type="BKI_FBModel.Store.GD_CHI_TIET_POSTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_POST">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GD_CHI_TIET_POSTS">
+        <PropertyRef Name="ID_POST" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

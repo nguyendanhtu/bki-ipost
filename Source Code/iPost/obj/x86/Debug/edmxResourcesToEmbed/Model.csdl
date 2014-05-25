@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BKI_FBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="BKI_FBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CM_DM_TU_DIEN" EntityType="BKI_FBModel.CM_DM_TU_DIEN" />
+    <EntitySet Name="DM_CM_LOAI_TD" EntityType="BKI_FBModel.DM_CM_LOAI_TD" />
+    <EntitySet Name="DM_POST" EntityType="BKI_FBModel.DM_POST" />
+    <EntitySet Name="DM_USER" EntityType="BKI_FBModel.DM_USER" />
+    <EntitySet Name="GD_CHI_TIET_POSTS" EntityType="BKI_FBModel.GD_CHI_TIET_POSTS" />
+    <EntitySet Name="sysdiagrams" EntityType="BKI_FBModel.sysdiagram" />
+    <AssociationSet Name="FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD" Association="BKI_FBModel.FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD">
+      <End Role="DM_CM_LOAI_TD" EntitySet="DM_CM_LOAI_TD" />
+      <End Role="CM_DM_TU_DIEN" EntitySet="CM_DM_TU_DIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN" Association="BKI_FBModel.FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN">
+      <End Role="CM_DM_TU_DIEN" EntitySet="CM_DM_TU_DIEN" />
+      <End Role="GD_CHI_TIET_POSTS" EntitySet="GD_CHI_TIET_POSTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DM_POST_DM_USER" Association="BKI_FBModel.FK_DM_POST_DM_USER">
+      <End Role="DM_USER" EntitySet="DM_USER" />
+      <End Role="DM_POST" EntitySet="DM_POST" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GD_CHI_TIET_POSTS_DM_POST" Association="BKI_FBModel.FK_GD_CHI_TIET_POSTS_DM_POST">
+      <End Role="DM_POST" EntitySet="DM_POST" />
+      <End Role="GD_CHI_TIET_POSTS" EntitySet="GD_CHI_TIET_POSTS" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CM_DM_TU_DIEN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_LOAI_TU_DIEN" Type="Int32" Nullable="false" />
+    <Property Name="TEN_TU_DIEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DM_CM_LOAI_TD" Relationship="BKI_FBModel.FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD" FromRole="CM_DM_TU_DIEN" ToRole="DM_CM_LOAI_TD" />
+    <NavigationProperty Name="GD_CHI_TIET_POSTS" Relationship="BKI_FBModel.FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN" FromRole="CM_DM_TU_DIEN" ToRole="GD_CHI_TIET_POSTS" />
+  </EntityType>
+  <EntityType Name="DM_CM_LOAI_TD">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LOAI_TU_DIEN" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CM_DM_TU_DIEN" Relationship="BKI_FBModel.FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD" FromRole="DM_CM_LOAI_TD" ToRole="CM_DM_TU_DIEN" />
+  </EntityType>
+  <EntityType Name="DM_POST">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USER" Type="Int32" Nullable="false" />
+    <Property Name="ID_POSTS" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="TITLE" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="LIKE_COUNT" Type="Int32" />
+    <Property Name="COMMENT_COUNT" Type="Int32" />
+    <NavigationProperty Name="DM_USER" Relationship="BKI_FBModel.FK_DM_POST_DM_USER" FromRole="DM_POST" ToRole="DM_USER" />
+    <NavigationProperty Name="GD_CHI_TIET_POSTS" Relationship="BKI_FBModel.FK_GD_CHI_TIET_POSTS_DM_POST" FromRole="DM_POST" ToRole="GD_CHI_TIET_POSTS" />
+  </EntityType>
+  <EntityType Name="DM_USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ACCESS_TOKEN" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="DM_POST" Relationship="BKI_FBModel.FK_DM_POST_DM_USER" FromRole="DM_USER" ToRole="DM_POST" />
+    <Property Type="String" Name="ACCESS_TOKEN_API" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GD_CHI_TIET_POSTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_POST" Type="Int32" Nullable="false" />
+    <Property Name="ID_USER" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="ID_TYPE" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CM_DM_TU_DIEN" Relationship="BKI_FBModel.FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN" FromRole="GD_CHI_TIET_POSTS" ToRole="CM_DM_TU_DIEN" />
+    <NavigationProperty Name="DM_POST" Relationship="BKI_FBModel.FK_GD_CHI_TIET_POSTS_DM_POST" FromRole="GD_CHI_TIET_POSTS" ToRole="DM_POST" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_CM_DM_TU_DIEN_DM_CM_LOAI_TD">
+    <End Role="DM_CM_LOAI_TD" Type="BKI_FBModel.DM_CM_LOAI_TD" Multiplicity="1" />
+    <End Role="CM_DM_TU_DIEN" Type="BKI_FBModel.CM_DM_TU_DIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_CM_LOAI_TD">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CM_DM_TU_DIEN">
+        <PropertyRef Name="ID_LOAI_TU_DIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GD_CHI_TIET_POSTS_CM_DM_TU_DIEN">
+    <End Role="CM_DM_TU_DIEN" Type="BKI_FBModel.CM_DM_TU_DIEN" Multiplicity="1" />
+    <End Role="GD_CHI_TIET_POSTS" Type="BKI_FBModel.GD_CHI_TIET_POSTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CM_DM_TU_DIEN">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GD_CHI_TIET_POSTS">
+        <PropertyRef Name="ID_TYPE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DM_POST_DM_USER">
+    <End Role="DM_USER" Type="BKI_FBModel.DM_USER" Multiplicity="1" />
+    <End Role="DM_POST" Type="BKI_FBModel.DM_POST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DM_POST">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GD_CHI_TIET_POSTS_DM_POST">
+    <End Role="DM_POST" Type="BKI_FBModel.DM_POST" Multiplicity="1" />
+    <End Role="GD_CHI_TIET_POSTS" Type="BKI_FBModel.GD_CHI_TIET_POSTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DM_POST">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GD_CHI_TIET_POSTS">
+        <PropertyRef Name="ID_POST" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

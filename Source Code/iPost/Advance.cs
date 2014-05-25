@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace test
+{
+    public partial class Advance : Form
+    {
+        public Advance()
+        {
+            InitializeComponent();
+        }
+
+        f104_post v_f = new f104_post();
+
+        private void m_cmd_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        public void Display(f104_post form1)
+        {
+            v_f = form1;
+            this.ShowDialog();
+        }
+
+        private void m_cmd_save_Click(object sender, EventArgs e)
+        {
+            v_f.Updating(m_txt_link.Text,m_txt_caption.Text,m_txt_description.Text);
+            this.Close();
+        }
+    }
+}
