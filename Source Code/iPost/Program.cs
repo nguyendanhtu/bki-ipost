@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace test
 {
@@ -15,7 +16,22 @@ namespace test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            var license = new TienX.License.LicenseManager();
+            if (File.Exists("C://iPostLicense.lic")) {
+                bool verify = license.verifyLicenseFile("C://iPostLicense.lic");
+                if (verify)
+                {
+                    Application.Run(new LoginFacebook());
+                }
+                else
+                {
+                    Application.Run(new Login());
+                }
+            }
+            else
+            {
+                Application.Run(new Login());
+            }            
         }
     }
 }
