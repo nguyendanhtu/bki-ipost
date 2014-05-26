@@ -31,20 +31,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.m_lbl_user = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.email = new System.Windows.Forms.TextBox();
+            this.key = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(100, 133);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "Đăng nhập";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -66,19 +66,19 @@
             this.m_lbl_user.TabIndex = 3;
             this.m_lbl_user.Text = "Username";
             // 
-            // textBox1
+            // email
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 20);
-            this.textBox1.TabIndex = 4;
+            this.email.Location = new System.Drawing.Point(106, 29);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(172, 20);
+            this.email.TabIndex = 4;
             // 
-            // textBox2
+            // key
             // 
-            this.textBox2.Location = new System.Drawing.Point(106, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 20);
-            this.textBox2.TabIndex = 6;
+            this.key.Location = new System.Drawing.Point(106, 65);
+            this.key.Name = "key";
+            this.key.Size = new System.Drawing.Size(172, 20);
+            this.key.TabIndex = 6;
             // 
             // label2
             // 
@@ -94,9 +94,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 192);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.key);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.m_lbl_user);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -118,8 +118,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label m_lbl_user;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox email;
+        private System.Windows.Forms.TextBox key;
         private System.Windows.Forms.Label label2;
     }
 }

@@ -109,5 +109,29 @@ namespace test
                 this.Close();
             }            
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var v_str_user_email = email.Text;
+            var v_str_key = key.Text;
+            var mn = new TienX.License.LicenseManager();
+            if (string.IsNullOrEmpty(v_str_key)||string.IsNullOrEmpty(v_str_user_email))
+            {
+                MessageBox.Show("Chưa nhập key hoặc email");
+                return;
+            }
+            else
+            {
+                var license = mn.requestLicenseAndSaveFile(v_str_key, v_str_user_email,"C://test.lic");
+                if (mn.verifyLicense(license))
+                {
+                    MessageBox.Show("true");
+                }
+                else
+                {
+                    MessageBox.Show("false");
+                }
+            }
+        }
     }
 }
