@@ -28,54 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.m_cmd_reg = new System.Windows.Forms.Button();
             this.m_lbl_user = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.TextBox();
             this.key = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.m_cmd_exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // m_cmd_reg
             // 
-            this.button1.Location = new System.Drawing.Point(100, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Đăng nhập";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(210, 133);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Dùng thử";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.m_cmd_reg.Location = new System.Drawing.Point(101, 136);
+            this.m_cmd_reg.Name = "m_cmd_reg";
+            this.m_cmd_reg.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_reg.TabIndex = 1;
+            this.m_cmd_reg.Text = "Đăng nhập";
+            this.m_cmd_reg.UseVisualStyleBackColor = true;
+            this.m_cmd_reg.Click += new System.EventHandler(this.m_cmd_reg_Click);
             // 
             // m_lbl_user
             // 
             this.m_lbl_user.AutoSize = true;
-            this.m_lbl_user.Location = new System.Drawing.Point(33, 36);
+            this.m_lbl_user.Location = new System.Drawing.Point(46, 60);
             this.m_lbl_user.Name = "m_lbl_user";
-            this.m_lbl_user.Size = new System.Drawing.Size(55, 13);
+            this.m_lbl_user.Size = new System.Drawing.Size(32, 13);
             this.m_lbl_user.TabIndex = 3;
-            this.m_lbl_user.Text = "Username";
+            this.m_lbl_user.Text = "Email";
             // 
             // email
             // 
-            this.email.Location = new System.Drawing.Point(106, 29);
+            this.email.Location = new System.Drawing.Point(106, 53);
             this.email.Name = "email";
             this.email.Size = new System.Drawing.Size(172, 20);
             this.email.TabIndex = 4;
             // 
             // key
             // 
-            this.key.Location = new System.Drawing.Point(106, 65);
+            this.key.Location = new System.Drawing.Point(106, 89);
             this.key.Name = "key";
             this.key.Size = new System.Drawing.Size(172, 20);
             this.key.TabIndex = 6;
@@ -83,30 +72,39 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 72);
+            this.label2.Location = new System.Drawing.Point(46, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(25, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Password";
+            this.label2.Text = "Key";
+            // 
+            // m_cmd_exit
+            // 
+            this.m_cmd_exit.Location = new System.Drawing.Point(209, 136);
+            this.m_cmd_exit.Name = "m_cmd_exit";
+            this.m_cmd_exit.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_exit.TabIndex = 7;
+            this.m_cmd_exit.Text = "Thoát";
+            this.m_cmd_exit.UseVisualStyleBackColor = true;
+            this.m_cmd_exit.Click += new System.EventHandler(this.m_cmd_exit_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 192);
+            this.Controls.Add(this.m_cmd_exit);
             this.Controls.Add(this.key);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.email);
             this.Controls.Add(this.m_lbl_user);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.m_cmd_reg);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(400, 230);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 230);
             this.Name = "Login";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,11 +113,11 @@
         #endregion
 
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button m_cmd_reg;
         private System.Windows.Forms.Label m_lbl_user;
         private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.TextBox key;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button m_cmd_exit;
     }
 }
