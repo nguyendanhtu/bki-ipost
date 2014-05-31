@@ -50,9 +50,17 @@
             this.m_txt_url_image = new System.Windows.Forms.TextBox();
             this.m_lbl_message = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_cmd_post
@@ -74,21 +82,23 @@
             this.m_cbl_group.CheckOnClick = true;
             this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.m_cbl_group.FormattingEnabled = true;
-            this.m_cbl_group.Location = new System.Drawing.Point(0, 63);
+            this.m_cbl_group.Location = new System.Drawing.Point(0, 68);
             this.m_cbl_group.Name = "m_cbl_group";
-            this.m_cbl_group.Size = new System.Drawing.Size(200, 379);
+            this.m_cbl_group.Size = new System.Drawing.Size(200, 364);
             this.m_cbl_group.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.m_cbl_group, "Check vào nhóm bạn muốn đăng bài nhé");
+            this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
+                    "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.m_chk_all);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_cbl_group);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 442);
+            this.panel1.Size = new System.Drawing.Size(200, 432);
             this.panel1.TabIndex = 4;
             // 
             // m_chk_all
@@ -106,26 +116,30 @@
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 24);
+            this.label1.Size = new System.Drawing.Size(200, 34);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Nhóm muốn đăng bài";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Text = "Chọn nhóm muốn đăng bài";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.m_cmd_post);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(200, 397);
+            this.panel2.Location = new System.Drawing.Point(200, 435);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(608, 45);
             this.panel2.TabIndex = 5;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.m_txt_message);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
@@ -141,9 +155,9 @@
             this.panel3.Controls.Add(this.m_lbl_message);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
-            this.panel3.Location = new System.Drawing.Point(200, 0);
+            this.panel3.Location = new System.Drawing.Point(200, 48);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(608, 397);
+            this.panel3.Size = new System.Drawing.Size(608, 387);
             this.panel3.TabIndex = 6;
             // 
             // m_txt_message
@@ -153,7 +167,9 @@
             this.m_txt_message.Name = "m_txt_message";
             this.m_txt_message.Size = new System.Drawing.Size(474, 262);
             this.m_txt_message.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.m_txt_message, "Bạn nên học kỹ thuật AIDA để bài viết được nhiều người quan tâm");
+            this.toolTip1.SetToolTip(this.m_txt_message, "1. Yêu bạn hàng của bạn. Hãy đăng bài để đem giúp họ có được sản phẩm cũng như ch" +
+                    "ất lượng tốt hơn\r\n2. Bạn nên học kỹ thuật AIDA để bài viết được nhiều người quan" +
+                    " tâm");
             // 
             // label6
             // 
@@ -197,7 +213,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(232, 21);
+            this.label3.Location = new System.Drawing.Point(254, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(12, 13);
             this.label3.TabIndex = 10;
@@ -205,27 +221,27 @@
             // 
             // m_txt_time
             // 
-            this.m_txt_time.Location = new System.Drawing.Point(188, 18);
+            this.m_txt_time.Location = new System.Drawing.Point(222, 18);
             this.m_txt_time.Name = "m_txt_time";
             this.m_txt_time.Size = new System.Drawing.Size(75, 20);
             this.m_txt_time.TabIndex = 9;
             this.m_txt_time.Text = "30";
-            this.toolTip1.SetToolTip(this.m_txt_time, "Nên để thời gian vừa Để tránh bị khóa tài khoản bạn ạ");
+            this.toolTip1.SetToolTip(this.m_txt_time, "Nên để thời gian vừa phải để TRÁNH bị khóa tài khoản bạn ạ");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 25);
+            this.label2.Location = new System.Drawing.Point(45, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(145, 13);
+            this.label2.Size = new System.Drawing.Size(171, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Thời gian giữa 2 lần đăng bài";
+            this.label2.Text = "Chỉnh thời gian giữa 2 lần đăng bài";
             // 
             // progressBar1
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(5, 367);
+            this.progressBar1.Location = new System.Drawing.Point(5, 357);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(598, 24);
             this.progressBar1.Step = 1;
@@ -258,27 +274,112 @@
             this.m_txt_url_image.Name = "m_txt_url_image";
             this.m_txt_url_image.Size = new System.Drawing.Size(394, 20);
             this.m_txt_url_image.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.m_txt_url_image, "Trăm nghe không bằng một thấy! \r\nBạn NÊN biên soạn ảnh cẩn thận để thu hút bạn hà" +
+                    "ng. ");
             // 
             // m_lbl_message
             // 
             this.m_lbl_message.AutoSize = true;
-            this.m_lbl_message.Location = new System.Drawing.Point(26, 63);
+            this.m_lbl_message.Location = new System.Drawing.Point(0, 63);
             this.m_lbl_message.Name = "m_lbl_message";
-            this.m_lbl_message.Size = new System.Drawing.Size(95, 13);
+            this.m_lbl_message.Size = new System.Drawing.Size(121, 13);
             this.m_lbl_message.TabIndex = 0;
-            this.m_lbl_message.Text = "Nội dung bài đăng";
+            this.m_lbl_message.Text = "Soạn nội dung bài đăng";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.toolTip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip1.ToolTipTitle = "Gợi ý";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(0, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(21, 24);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "1";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(18, -1);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(21, 24);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "2";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(6, 3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(21, 24);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "5";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(18, 39);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(21, 24);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "3";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label11);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(808, 48);
+            this.panel4.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
+            this.label11.Location = new System.Drawing.Point(0, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(808, 34);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "5 BƯỚC ĐƠN GIẢN ĐỂ SẢN PHẨM CỦA BẠN ĐƯỢC HÀNG NGHÌN NGƯỜI BIẾT ĐẾN";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(18, 326);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(21, 24);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "4";
             // 
             // f104_post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 442);
+            this.ClientSize = new System.Drawing.Size(808, 480);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(824, 480);
-            this.MinimumSize = new System.Drawing.Size(824, 480);
             this.Name = "f104_post";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F104 - Đăng bài";
@@ -286,8 +387,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -315,6 +418,13 @@
         private System.Windows.Forms.CheckBox m_chk_all;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }
 
