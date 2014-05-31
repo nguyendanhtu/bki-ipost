@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.m_txt_message = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@
             this.m_chk_has_image = new System.Windows.Forms.CheckBox();
             this.m_lbl_image_url = new System.Windows.Forms.Label();
             this.m_txt_url_image = new System.Windows.Forms.TextBox();
-            this.m_txt_message = new System.Windows.Forms.TextBox();
             this.m_lbl_message = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
@@ -65,7 +65,7 @@
             this.m_cmd_post.Name = "m_cmd_post";
             this.m_cmd_post.Size = new System.Drawing.Size(608, 45);
             this.m_cmd_post.TabIndex = 1;
-            this.m_cmd_post.Text = "Đăng bài";
+            this.m_cmd_post.Text = "Đăng bài nào";
             this.m_cmd_post.UseVisualStyleBackColor = false;
             this.m_cmd_post.Click += new System.EventHandler(this.m_cmd_post_Click);
             // 
@@ -78,6 +78,7 @@
             this.m_cbl_group.Name = "m_cbl_group";
             this.m_cbl_group.Size = new System.Drawing.Size(200, 379);
             this.m_cbl_group.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.m_cbl_group, "Check vào nhóm bạn muốn đăng bài nhé");
             // 
             // panel1
             // 
@@ -111,7 +112,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 8;
-            this.label1.Text = "DANH SÁCH NHÓM";
+            this.label1.Text = "Nhóm muốn đăng bài";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -144,6 +145,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(608, 397);
             this.panel3.TabIndex = 6;
+            // 
+            // m_txt_message
+            // 
+            this.m_txt_message.Location = new System.Drawing.Point(122, 63);
+            this.m_txt_message.Multiline = true;
+            this.m_txt_message.Name = "m_txt_message";
+            this.m_txt_message.Size = new System.Drawing.Size(474, 262);
+            this.m_txt_message.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.m_txt_message, "Bạn nên học kỹ thuật AIDA để bài viết được nhiều người quan tâm");
             // 
             // label6
             // 
@@ -200,6 +210,7 @@
             this.m_txt_time.Size = new System.Drawing.Size(75, 20);
             this.m_txt_time.TabIndex = 9;
             this.m_txt_time.Text = "30";
+            this.toolTip1.SetToolTip(this.m_txt_time, "Nên để thời gian vừa Để tránh bị khóa tài khoản bạn ạ");
             // 
             // label2
             // 
@@ -248,23 +259,14 @@
             this.m_txt_url_image.Size = new System.Drawing.Size(394, 20);
             this.m_txt_url_image.TabIndex = 2;
             // 
-            // m_txt_message
-            // 
-            this.m_txt_message.Location = new System.Drawing.Point(122, 63);
-            this.m_txt_message.Multiline = true;
-            this.m_txt_message.Name = "m_txt_message";
-            this.m_txt_message.Size = new System.Drawing.Size(474, 262);
-            this.m_txt_message.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.m_txt_message, "Bạn nên học kỹ thuật AIDA để bài viết được nhiều người quan tâm");
-            // 
             // m_lbl_message
             // 
             this.m_lbl_message.AutoSize = true;
             this.m_lbl_message.Location = new System.Drawing.Point(26, 63);
             this.m_lbl_message.Name = "m_lbl_message";
-            this.m_lbl_message.Size = new System.Drawing.Size(90, 13);
+            this.m_lbl_message.Size = new System.Drawing.Size(95, 13);
             this.m_lbl_message.TabIndex = 0;
-            this.m_lbl_message.Text = "Nội dung bài post";
+            this.m_lbl_message.Text = "Nội dung bài đăng";
             // 
             // f104_post
             // 

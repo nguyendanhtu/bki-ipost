@@ -42,6 +42,7 @@
             // m_cmd_post
             // 
             this.m_cmd_post.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_post.ImageIndex = 3;
             this.m_cmd_post.ImageList = this.ImageList;
             this.m_cmd_post.Location = new System.Drawing.Point(15, 9);
             this.m_cmd_post.Name = "m_cmd_post";
@@ -54,7 +55,7 @@
             // m_cmd_exit
             // 
             this.m_cmd_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.m_cmd_exit.ImageIndex = 17;
+            this.m_cmd_exit.ImageIndex = 12;
             this.m_cmd_exit.ImageList = this.ImageList;
             this.m_cmd_exit.Location = new System.Drawing.Point(16, 169);
             this.m_cmd_exit.Name = "m_cmd_exit";
@@ -67,6 +68,7 @@
             // m_cmd_follow
             // 
             this.m_cmd_follow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_follow.ImageIndex = 18;
             this.m_cmd_follow.ImageList = this.ImageList;
             this.m_cmd_follow.Location = new System.Drawing.Point(15, 51);
             this.m_cmd_follow.Name = "m_cmd_follow";
@@ -89,6 +91,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.ImageIndex = 19;
             this.button2.ImageList = this.ImageList;
             this.button2.Location = new System.Drawing.Point(16, 130);
             this.button2.Name = "button2";
@@ -101,12 +104,13 @@
             // 
             this.m_cmd_ql_group.Enabled = false;
             this.m_cmd_ql_group.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_ql_group.ImageIndex = 21;
             this.m_cmd_ql_group.ImageList = this.ImageList;
             this.m_cmd_ql_group.Location = new System.Drawing.Point(15, 91);
             this.m_cmd_ql_group.Name = "m_cmd_ql_group";
             this.m_cmd_ql_group.Size = new System.Drawing.Size(233, 37);
             this.m_cmd_ql_group.TabIndex = 6;
-            this.m_cmd_ql_group.Text = "Quản lý Group";
+            this.m_cmd_ql_group.Text = "Quản lý các nhóm facebook";
             this.m_cmd_ql_group.UseVisualStyleBackColor = true;
             this.m_cmd_ql_group.Click += new System.EventHandler(this.m_cmd_ql_group_Click);
             // 

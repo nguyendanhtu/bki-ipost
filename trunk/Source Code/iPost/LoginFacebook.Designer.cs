@@ -51,7 +51,7 @@
             this.MaximumSize = new System.Drawing.Size(824, 480);
             this.MinimumSize = new System.Drawing.Size(824, 480);
             this.Name = "LoginFacebook";
-            this.Text = "Đăng nhập Facebook";
+            this.Text = "iPost 3.0 - Đăng nhập Facebook";
             this.ResumeLayout(false);
 
         }
