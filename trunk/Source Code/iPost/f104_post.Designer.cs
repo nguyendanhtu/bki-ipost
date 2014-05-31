@@ -92,20 +92,23 @@
             this.m_chk_all.AutoSize = true;
             this.m_chk_all.Location = new System.Drawing.Point(3, 40);
             this.m_chk_all.Name = "m_chk_all";
-            this.m_chk_all.Size = new System.Drawing.Size(57, 17);
+            this.m_chk_all.Size = new System.Drawing.Size(107, 17);
             this.m_chk_all.TabIndex = 14;
-            this.m_chk_all.Text = "Tất cả";
+            this.m_chk_all.Text = "Tất cả các nhóm";
             this.m_chk_all.UseVisualStyleBackColor = true;
             this.m_chk_all.CheckedChanged += new System.EventHandler(this.m_chk_all_CheckedChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.Size = new System.Drawing.Size(200, 24);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Danh sách Group";
+            this.label1.Text = "DANH SÁCH NHÓM";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -245,7 +248,7 @@
             this.m_lbl_message.TabIndex = 0;
             this.m_lbl_message.Text = "Nội dung";
             // 
-            // Form1
+            // f104_post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -256,8 +259,8 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(824, 480);
             this.MinimumSize = new System.Drawing.Size(824, 480);
-            this.Name = "Form1";
-            this.Text = "Đăng bài";
+            this.Name = "f104_post";
+            this.Text = "F104 - Đăng bài";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
