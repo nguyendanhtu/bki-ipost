@@ -87,6 +87,7 @@
             // 
             // m_cmd_ql_group
             // 
+            this.m_cmd_ql_group.Enabled = false;
             this.m_cmd_ql_group.Location = new System.Drawing.Point(15, 91);
             this.m_cmd_ql_group.Name = "m_cmd_ql_group";
             this.m_cmd_ql_group.Size = new System.Drawing.Size(233, 34);

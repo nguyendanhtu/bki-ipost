@@ -42,7 +42,7 @@
             this.m_cmd_reg.Name = "m_cmd_reg";
             this.m_cmd_reg.Size = new System.Drawing.Size(75, 23);
             this.m_cmd_reg.TabIndex = 1;
-            this.m_cmd_reg.Text = "Đăng nhập";
+            this.m_cmd_reg.Text = "Xác nhận";
             this.m_cmd_reg.UseVisualStyleBackColor = true;
             this.m_cmd_reg.Click += new System.EventHandler(this.m_cmd_reg_Click);
             // 
