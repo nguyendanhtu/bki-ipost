@@ -92,43 +92,13 @@ namespace test
                 string url1 = m_wb.Url.AbsoluteUri;
                 string url2 = url1.Substring(url1.IndexOf("access_token") + 13);
                 access_token = url2.Substring(0, url2.IndexOf("&"));
-
-
-                FacebookClient fb = new FacebookClient(access_token);
-                dynamic data = fb.Get("/me?fields=name");
-                get_access_token = true;
-                m_wb.Navigate("https://facebook.com");
-            }
-
-            if (get_access_token)
-            {
-                HtmlDocument v_doc = m_wb.Document;
-                HtmlElement v_e = v_doc.GetElementsByTagName("input")["fb_dtsg"];
-                if (v_e != null)
-                {
-                    trang_thai++;
-                    if (trang_thai == 1)
-                    {
-                        dtsg = v_e.GetAttribute("value").ToString();
-                        System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\BKIndex\AutoPostToGroup\at.txt");
-                        file.WriteLine(access_token.Trim());
-                        file.WriteLine(dtsg.Trim());
-                        file.Close();
-                    }
-                }
-            }
-
-
-            if (dtsg != "")
-            {
-                if (trang_thai == 1)
-                {
-                    this.Hide();
-                    this.Controls.Remove(m_wb);
-                    f103_Main v_f = new f103_Main();
-                    v_f.ShowDialog();
-                    this.Close();
-                }
+                System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\BKIndex\AutoPostToGroup\at.txt");
+                file.WriteLine(access_token.Trim());
+                file.Close();
+                this.Hide();
+                f103_Main v_f = new f103_Main();
+                v_f.ShowDialog();
+                this.Close();
             }
         }
         #endregion      
