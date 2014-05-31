@@ -28,25 +28,54 @@ namespace test
         #region Event
         private void m_cmd_post_Click(object sender, EventArgs e)
         {
-            f104_post v_f = new f104_post();
-            v_f.ShowDialog();            
+            try {
+                f104_post v_f = new f104_post();
+                v_f.ShowDialog();     
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+                
         }
 
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try {
+                MessageBox.Show("Cảm ơn bạn đã sử dụng sản phẩm iPost");
+                this.Close();
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+            
         }
 
         private void m_cmd_follow_Click(object sender, EventArgs e)
         {
-            f107_PostFollow v_f = new f107_PostFollow();
-            v_f.ShowDialog();
+            try {
+                f107_PostFollow v_f = new f107_PostFollow();
+                v_f.ShowDialog();
+            }
+            catch (Exception v_e) {
+                
+                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+          
         }
 
         private void m_cmd_ql_group_Click(object sender, EventArgs e)
         {
-            f108_QLGroup v_f = new f108_QLGroup();
-            v_f.ShowDialog();
+            try {
+                f108_QLGroup v_f = new f108_QLGroup();
+                v_f.ShowDialog();
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
         }
         #endregion
     }

@@ -149,6 +149,7 @@
             this.Controls.Add(this.m_txt_tu_khoa);
             this.Controls.Add(this.label1);
             this.Name = "f108_QLGroup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F108 - Quản lý các group facebook";
             this.Load += new System.EventHandler(this.f108_QLGroup_Load);
             this.ResumeLayout(false);

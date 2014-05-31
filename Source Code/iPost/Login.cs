@@ -52,6 +52,7 @@ namespace test
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
             try {
+                MessageBox.Show("Cảm ơn bạn đã sử dụng sản phẩm iPost");
                 this.Close();
             }
             catch (Exception v_e) {
