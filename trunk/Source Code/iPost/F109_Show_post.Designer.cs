@@ -47,6 +47,7 @@
             this.ClientSize = new System.Drawing.Size(863, 462);
             this.Controls.Add(this.m_wb);
             this.Name = "F109_Show_post";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook.com.vn";
             this.ResumeLayout(false);
 

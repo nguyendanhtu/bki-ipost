@@ -41,6 +41,7 @@
             this.Panel2 = new System.Windows.Forms.Panel();
             this.Label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.Panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,6 +111,7 @@
             this.key.Name = "key";
             this.key.Size = new System.Drawing.Size(199, 20);
             this.key.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.key, "Bạn liên hệ với chúng tôi để lấy KEY nhá");
             // 
             // label2
             // 
@@ -159,7 +161,7 @@
             // Label3
             // 
             this.Label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.ForeColor = System.Drawing.Color.Blue;
+            this.Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.Label3.Location = new System.Drawing.Point(3, 11);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(378, 20);
@@ -169,6 +171,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.groupBox1.Controls.Add(this.email);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.m_lbl_user);
@@ -219,5 +222,6 @@
         internal System.Windows.Forms.Panel Panel2;
         internal System.Windows.Forms.Label Label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

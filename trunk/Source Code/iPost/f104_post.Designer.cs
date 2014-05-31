@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.m_cmd_post = new System.Windows.Forms.Button();
             this.m_cbl_group = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -35,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.m_cmd_advance = new System.Windows.Forms.Button();
@@ -47,6 +49,7 @@
             this.m_txt_url_image = new System.Windows.Forms.TextBox();
             this.m_txt_message = new System.Windows.Forms.TextBox();
             this.m_lbl_message = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -90,6 +93,7 @@
             // m_chk_all
             // 
             this.m_chk_all.AutoSize = true;
+            this.m_chk_all.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.m_chk_all.Location = new System.Drawing.Point(3, 40);
             this.m_chk_all.Name = "m_chk_all";
             this.m_chk_all.Size = new System.Drawing.Size(107, 17);
@@ -102,7 +106,7 @@
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 24);
@@ -121,6 +125,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.m_txt_message);
+            this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.m_cmd_advance);
@@ -131,31 +137,41 @@
             this.panel3.Controls.Add(this.m_chk_has_image);
             this.panel3.Controls.Add(this.m_lbl_image_url);
             this.panel3.Controls.Add(this.m_txt_url_image);
-            this.panel3.Controls.Add(this.m_txt_message);
             this.panel3.Controls.Add(this.m_lbl_message);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.panel3.Location = new System.Drawing.Point(200, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(608, 397);
             this.panel3.TabIndex = 6;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(439, 44);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(157, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Để tránh bị khóa tài khoản nhé!";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(407, 24);
+            this.label5.Location = new System.Drawing.Point(436, 24);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "-  Tối thiểu: 10s";
+            this.label5.Text = "-  Ít nhất là: 10s";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(338, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Đề xuất: 40s";
+            this.label4.Text = "Mình đề xuất: 40s";
             // 
             // m_cmd_advance
             // 
@@ -207,18 +223,19 @@
             // m_chk_has_image
             // 
             this.m_chk_has_image.AutoSize = true;
-            this.m_chk_has_image.Location = new System.Drawing.Point(16, 308);
+            this.m_chk_has_image.Location = new System.Drawing.Point(4, 308);
             this.m_chk_has_image.Name = "m_chk_has_image";
-            this.m_chk_has_image.Size = new System.Drawing.Size(93, 17);
+            this.m_chk_has_image.Size = new System.Drawing.Size(121, 17);
             this.m_chk_has_image.TabIndex = 6;
-            this.m_chk_has_image.Text = "Không có ảnh";
+            this.m_chk_has_image.Text = "Chưa đính kèm ảnh";
+            this.toolTip1.SetToolTip(this.m_chk_has_image, "Bạn nên có ảnh để bài viết được quan tâm nhiều hơn");
             this.m_chk_has_image.UseVisualStyleBackColor = true;
             this.m_chk_has_image.CheckedChanged += new System.EventHandler(this.m_chk_has_image_CheckedChanged);
             // 
             // m_lbl_image_url
             // 
             this.m_lbl_image_url.AutoSize = true;
-            this.m_lbl_image_url.Location = new System.Drawing.Point(13, 338);
+            this.m_lbl_image_url.Location = new System.Drawing.Point(40, 334);
             this.m_lbl_image_url.Name = "m_lbl_image_url";
             this.m_lbl_image_url.Size = new System.Drawing.Size(76, 13);
             this.m_lbl_image_url.TabIndex = 3;
@@ -238,15 +255,16 @@
             this.m_txt_message.Name = "m_txt_message";
             this.m_txt_message.Size = new System.Drawing.Size(474, 262);
             this.m_txt_message.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.m_txt_message, "Bạn nên học kỹ thuật AIDA để bài viết được nhiều người quan tâm");
             // 
             // m_lbl_message
             // 
             this.m_lbl_message.AutoSize = true;
-            this.m_lbl_message.Location = new System.Drawing.Point(13, 63);
+            this.m_lbl_message.Location = new System.Drawing.Point(26, 63);
             this.m_lbl_message.Name = "m_lbl_message";
-            this.m_lbl_message.Size = new System.Drawing.Size(50, 13);
+            this.m_lbl_message.Size = new System.Drawing.Size(90, 13);
             this.m_lbl_message.TabIndex = 0;
-            this.m_lbl_message.Text = "Nội dung";
+            this.m_lbl_message.Text = "Nội dung bài post";
             // 
             // f104_post
             // 
@@ -260,6 +278,7 @@
             this.MaximumSize = new System.Drawing.Size(824, 480);
             this.MinimumSize = new System.Drawing.Size(824, 480);
             this.Name = "f104_post";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F104 - Đăng bài";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
@@ -292,6 +311,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox m_chk_all;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
