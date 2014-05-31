@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f107_PostFollow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.m_cmd_show_post = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.GROUP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TITLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.count_comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImageList = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -59,22 +61,32 @@
             // 
             // m_cmd_show_post
             // 
-            this.m_cmd_show_post.Location = new System.Drawing.Point(168, 8);
+            this.m_cmd_show_post.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
+            this.m_cmd_show_post.ForeColor = System.Drawing.Color.White;
+            this.m_cmd_show_post.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_show_post.ImageIndex = 18;
+            this.m_cmd_show_post.ImageList = this.ImageList;
+            this.m_cmd_show_post.Location = new System.Drawing.Point(168, 0);
             this.m_cmd_show_post.Name = "m_cmd_show_post";
-            this.m_cmd_show_post.Size = new System.Drawing.Size(123, 23);
+            this.m_cmd_show_post.Size = new System.Drawing.Size(122, 38);
             this.m_cmd_show_post.TabIndex = 1;
             this.m_cmd_show_post.Text = "Xem bài đăng";
-            this.m_cmd_show_post.UseVisualStyleBackColor = true;
+            this.m_cmd_show_post.UseVisualStyleBackColor = false;
             this.m_cmd_show_post.Click += new System.EventHandler(this.m_cmd_show_post_Click);
             // 
             // m_cmd_exit
             // 
-            this.m_cmd_exit.Location = new System.Drawing.Point(790, 8);
+            this.m_cmd_exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
+            this.m_cmd_exit.ForeColor = System.Drawing.Color.White;
+            this.m_cmd_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_exit.ImageIndex = 11;
+            this.m_cmd_exit.ImageList = this.ImageList;
+            this.m_cmd_exit.Location = new System.Drawing.Point(754, 0);
             this.m_cmd_exit.Name = "m_cmd_exit";
-            this.m_cmd_exit.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_exit.Size = new System.Drawing.Size(110, 38);
             this.m_cmd_exit.TabIndex = 0;
-            this.m_cmd_exit.Text = "Thoát";
-            this.m_cmd_exit.UseVisualStyleBackColor = true;
+            this.m_cmd_exit.Text = "Quay lại";
+            this.m_cmd_exit.UseVisualStyleBackColor = false;
             this.m_cmd_exit.Click += new System.EventHandler(this.m_cmd_exit_Click);
             // 
             // panel2
@@ -165,6 +177,33 @@
             this.count_comment.Name = "count_comment";
             this.count_comment.ReadOnly = true;
             // 
+            // ImageList
+            // 
+            this.ImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList.ImageStream")));
+            this.ImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList.Images.SetKeyName(0, "");
+            this.ImageList.Images.SetKeyName(1, "");
+            this.ImageList.Images.SetKeyName(2, "");
+            this.ImageList.Images.SetKeyName(3, "");
+            this.ImageList.Images.SetKeyName(4, "");
+            this.ImageList.Images.SetKeyName(5, "");
+            this.ImageList.Images.SetKeyName(6, "");
+            this.ImageList.Images.SetKeyName(7, "");
+            this.ImageList.Images.SetKeyName(8, "");
+            this.ImageList.Images.SetKeyName(9, "");
+            this.ImageList.Images.SetKeyName(10, "");
+            this.ImageList.Images.SetKeyName(11, "");
+            this.ImageList.Images.SetKeyName(12, "");
+            this.ImageList.Images.SetKeyName(13, "");
+            this.ImageList.Images.SetKeyName(14, "");
+            this.ImageList.Images.SetKeyName(15, "");
+            this.ImageList.Images.SetKeyName(16, "");
+            this.ImageList.Images.SetKeyName(17, "");
+            this.ImageList.Images.SetKeyName(18, "");
+            this.ImageList.Images.SetKeyName(19, "");
+            this.ImageList.Images.SetKeyName(20, "");
+            this.ImageList.Images.SetKeyName(21, "");
+            // 
             // f107_PostFollow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,6 +245,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GROUP;
         private System.Windows.Forms.DataGridViewTextBoxColumn TITLE;
         private System.Windows.Forms.DataGridViewTextBoxColumn count_comment;
+        internal System.Windows.Forms.ImageList ImageList;
 
     }
 }
