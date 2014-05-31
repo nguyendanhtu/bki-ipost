@@ -145,77 +145,120 @@ namespace test
 
         private void m_chk_has_image_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_chk_has_image.Checked)
-            {
-                m_cmd_advance.Enabled = false;
-                m_b_has_image = true;
-                m_chk_has_image.Text = "Có ảnh";
-                m_lbl_image_url.Text = "Ảnh đính kèm";
+            try {
+                if (m_chk_has_image.Checked) {
+                    m_cmd_advance.Enabled = false;
+                    m_b_has_image = true;
+                    m_chk_has_image.Text = "Có ảnh";
+                    m_lbl_image_url.Text = "Ảnh đính kèm";
+                }
+                else {
+                    m_cmd_advance.Enabled = true;
+                    m_b_has_image = false;
+                    m_chk_has_image.Text = "Không có ảnh";
+                    m_lbl_image_url.Text = "Link đính kèm";
+                }
             }
-            else
-            {
-                m_cmd_advance.Enabled = true;
-                m_b_has_image = false;
-                m_chk_has_image.Text = "Không có ảnh";
-                m_lbl_image_url.Text = "Link đính kèm";
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
+          
         }        
 
         public void Display_post(string access_token)
         {
-            FacebookClient fb = new FacebookClient(access_token);
-            var roles = new List<groups>();
-            dynamic data = fb.Get("/me/groups");
-            
-            foreach (var friend in (JsonArray)data["data"])
-            {
-                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                roles.Add(group);
+            try {
+                FacebookClient fb = new FacebookClient(access_token);
+                var roles = new List<groups>();
+                dynamic data = fb.Get("/me/groups");
+
+                foreach (var friend in (JsonArray)data["data"]) {
+                    groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                    roles.Add(group);
+                }
+                List<groups> SortedList = roles.OrderBy(o => o.Name).ToList(); ;
+                m_cbl_group.DataSource = SortedList;
+                m_cbl_group.DisplayMember = "Name";
+                m_cbl_group.ValueMember = "Id";
             }
-            m_cbl_group.DataSource = roles;
-            m_cbl_group.DisplayMember = "Name";
-            m_cbl_group.ValueMember = "Id";
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+          
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
-            m_access_token = lines[0];
-            FacebookClient fb = new FacebookClient(m_access_token);
-            dynamic data = fb.Get("/me?fields=name");
-            m_uid = data["id"];
-            Display_post(m_access_token);
+            try {
+                string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
+                m_access_token = lines[0];
+                FacebookClient fb = new FacebookClient(m_access_token);
+                dynamic data = fb.Get("/me?fields=name");
+                m_uid = data["id"];
+                Display_post(m_access_token);
+            }
+            catch (Exception v_e) {
+                
+               
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
         }
 
         private void m_cmd_advance_Click(object sender, EventArgs e)
         {
-            Advance v_f = new Advance();
-            v_f.Display(this);
+            try {
+                Advance v_f = new Advance();
+                v_f.Display(this);
+            }
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+         
         }
 
         internal void Updating(string p, string p_2, string p_3)
         {
-            link = p;
-            caption = p_2;
-            description = p_3;
+            try {
+                link = p;
+                caption = p_2;
+                description = p_3;
+            }
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+          
         }
 
         private void m_chk_all_CheckedChanged(object sender, EventArgs e)
         {
-            if (m_chk_all.Checked)
-            {
-                for (int i = 0; i < m_cbl_group.Items.Count; i++)
-                {
-                    m_cbl_group.SetItemChecked(i, true);
+            try {
+                if (m_chk_all.Checked) {
+                    for (int i = 0; i < m_cbl_group.Items.Count; i++) {
+                        m_cbl_group.SetItemChecked(i, true);
+                    }
+                }
+                else {
+                    for (int i = 0; i < m_cbl_group.Items.Count; i++) {
+                        m_cbl_group.SetItemChecked(i, false);
+                    }
                 }
             }
-            else
-            {
-                for (int i = 0; i < m_cbl_group.Items.Count; i++)
-                {
-                    m_cbl_group.SetItemChecked(i, false);
-                }
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
+           
         }
     }
 }
