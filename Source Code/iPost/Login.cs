@@ -20,35 +20,45 @@ namespace test
 
         private void m_cmd_reg_Click(object sender, EventArgs e)
         {
-            var v_str_user_email = email.Text;
-            var v_str_key = key.Text;
-            var mn = new TienX.License.LicenseManager();
-            if (string.IsNullOrEmpty(v_str_key) || string.IsNullOrEmpty(v_str_user_email))
-            {
-                MessageBox.Show("Chưa nhập key hoặc email");
-                return;
-            }
-            else
-            {
-                var license = mn.requestLicenseAndSaveFile(v_str_key, v_str_user_email, "C://iPostLicense.lic");
-                if (mn.verifyLicense(license))
-                {
-                    MessageBox.Show("Bạn đã xác thực thành công");
-                    this.Hide();
-                    LoginFacebook v_f = new LoginFacebook();
-                    v_f.ShowDialog();
-                    this.Close();
+            try {
+                var v_str_user_email = email.Text;
+                var v_str_key = key.Text;
+                var mn = new TienX.License.LicenseManager();
+                if (string.IsNullOrEmpty(v_str_key) || string.IsNullOrEmpty(v_str_user_email)) {
+                    MessageBox.Show("Bạn nhập key hoặc email nhé!");
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Email hoặc key chưa chính xác");
+                else {
+                    var license = mn.requestLicenseAndSaveFile(v_str_key, v_str_user_email, "C://iPostLicense.lic");
+                    if (mn.verifyLicense(license)) {
+                        MessageBox.Show("Bạn đã xác thực thành công. Kiếm tiền nào!");
+                        this.Hide();
+                        LoginFacebook v_f = new LoginFacebook();
+                        v_f.ShowDialog();
+                        this.Close();
+                    }
+                    else {
+                        MessageBox.Show("Bạn điền giúp Email và key chuẩn nhé!");
+                    }
                 }
             }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
         }
 
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try {
+                this.Close();
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!"+v_e.ToString());
+            }
+           
         }
     }
 }

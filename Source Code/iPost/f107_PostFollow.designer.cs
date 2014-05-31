@@ -180,7 +180,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 504);
             this.Name = "f107_PostFollow";
             this.ShowInTaskbar = false;
-            this.Text = "PostFollow";
+            this.Text = "F107 - Theo dõi bài viết";
             this.Load += new System.EventHandler(this.f107_PostFollow_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
