@@ -104,8 +104,7 @@ namespace test
         {
             InitializeComponent();
             this.CenterToScreen();
-            string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
-            access_token = lines[0];            
+            access_token = globalInfo.access_token;
         }
         #endregion
 
