@@ -249,7 +249,6 @@ namespace test
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
-           
         }
     }
 }

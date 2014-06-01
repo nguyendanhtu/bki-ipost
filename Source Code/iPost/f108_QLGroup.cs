@@ -147,9 +147,76 @@ namespace test
                 groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
                 roles.Add(group);
             }
+            roles = roles.OrderBy(o => o.Name).ToList();
             m_lb_friend_list.DataSource = roles;
             m_lb_friend_list.DisplayMember = "Name";
             m_lb_friend_list.ValueMember = "Id";
+        }
+
+        private void m_lb_friend_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FacebookClient fb = new FacebookClient(access_token);
+            var roles = new List<groups>();
+            string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
+            dynamic data = fb.Get("/" + pid + "/groups");
+            foreach (var friend in (JsonArray)data["data"])
+            {
+                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                roles.Add(group);
+            }
+            roles = roles.OrderBy(o => o.Name).ToList();
+            m_lb_group_list.DataSource = roles;
+            m_lb_group_list.DisplayMember = "Name";
+            m_lb_group_list.ValueMember = "Id";
+            m_chk_all_group.Text = "Tất cả "+m_lb_group_list.Items.Count.ToString()+" group";
+        }
+
+        private void m_chk_all_group_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_chk_all.Checked)
+                {
+                    for (int i = 0; i < m_lb_group_list.Items.Count; i++)
+                    {
+                        m_lb_group_list.SetItemChecked(i, true);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < m_lb_group_list.Items.Count; i++)
+                    {
+                        m_lb_group_list.SetItemChecked(i, false);
+                    }
+                }
+            }
+            catch (Exception v_e)
+            {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
+
+        private void m_cmd_get_info_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FacebookClient fb = new FacebookClient(access_token);
+                string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
+                dynamic data = fb.Get("/" + pid + "?fields=name,link");
+                var friend = (JsonObject)data;
+                dynamic pic = fb.Get("/" + pid + "/picture?width=160&redirect=false");
+                var picture = (JsonObject)pic;
+                f105_Info_Friend v_f = new f105_Info_Friend();
+                v_f.display(friend, picture);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
     }
 }

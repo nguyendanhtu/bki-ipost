@@ -78,6 +78,12 @@
     <Compile Include="f103_Main.designer.cs">
       <DependentUpon>f103_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="f105_Info_Friend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="f105_Info_Friend.Designer.cs">
+      <DependentUpon>f105_Info_Friend.cs</DependentUpon>
+    </Compile>
     <Compile Include="f107_PostFollow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="f103_Main.resx">
       <DependentUpon>f103_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="f105_Info_Friend.resx">
+      <DependentUpon>f105_Info_Friend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="f107_PostFollow.resx">
       <DependentUpon>f107_PostFollow.cs</DependentUpon>
