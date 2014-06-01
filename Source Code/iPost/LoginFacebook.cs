@@ -92,9 +92,7 @@ namespace test
                 string url1 = m_wb.Url.AbsoluteUri;
                 string url2 = url1.Substring(url1.IndexOf("access_token") + 13);
                 access_token = url2.Substring(0, url2.IndexOf("&"));
-                System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\BKIndex\AutoPostToGroup\at.txt");
-                file.WriteLine(access_token.Trim());
-                file.Close();
+                globalInfo.access_token = access_token;
                 this.Hide();
                 f103_Main v_f = new f103_Main();
                 v_f.ShowDialog();

@@ -194,20 +194,11 @@ namespace test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try {
-                string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
-                m_access_token = lines[0];
-                FacebookClient fb = new FacebookClient(m_access_token);
-                dynamic data = fb.Get("/me?fields=name");
-                m_uid = data["id"];
-                Display_post(m_access_token);
-            }
-            catch (Exception v_e) {
-                
-               
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-           
+            m_access_token = globalInfo.access_token;
+            FacebookClient fb = new FacebookClient(m_access_token);
+            dynamic data = fb.Get("/me?fields=name");
+            m_uid = data["id"];
+            Display_post(m_access_token);
         }
 
         private void m_cmd_advance_Click(object sender, EventArgs e)

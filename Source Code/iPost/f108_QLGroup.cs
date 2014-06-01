@@ -53,12 +53,11 @@ namespace test
 
         private void f108_QLGroup_Load(object sender, EventArgs e)
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
-            access_token = lines[0];
-            m_dtdg = lines[1].Trim();
+            access_token = globalInfo.access_token;
             FacebookClient fb = new FacebookClient(access_token);
             dynamic data = fb.Get("/me?fields=name");
             m_uid = data["id"];
+            load_friend_list();
         }
         private void m_cmd_join_Click(object sender, EventArgs e)
         {
@@ -136,6 +135,21 @@ namespace test
                     m_clb_ket_qua.SetItemChecked(i, false);
                 }
             }
+        }
+
+        private void load_friend_list() {
+            FacebookClient fb = new FacebookClient(access_token);
+            var roles = new List<groups>();
+            dynamic data = fb.Get("/me/friends");
+
+            foreach (var friend in (JsonArray)data["data"])
+            {
+                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                roles.Add(group);
+            }
+            m_lb_friend_list.DataSource = roles;
+            m_lb_friend_list.DisplayMember = "Name";
+            m_lb_friend_list.ValueMember = "Id";
         }
     }
 }

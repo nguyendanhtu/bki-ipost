@@ -102,6 +102,7 @@
     <Compile Include="F109_Show_post.Designer.cs">
       <DependentUpon>F109_Show_post.cs</DependentUpon>
     </Compile>
+    <Compile Include="globalInfo.cs" />
     <Compile Include="groups.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
