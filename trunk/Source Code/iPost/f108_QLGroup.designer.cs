@@ -42,12 +42,12 @@
             this.m_tabpage_group = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.m_tabpage_friend = new System.Windows.Forms.TabPage();
+            this.m_lb_friend_list = new System.Windows.Forms.ListBox();
+            this.m_cmd_get_info = new System.Windows.Forms.Button();
             this.m_cmd_join_group = new System.Windows.Forms.Button();
             this.m_prb_friends = new System.Windows.Forms.ProgressBar();
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
-            this.m_lb_friend_list = new System.Windows.Forms.CheckedListBox();
-            this.m_chk_all_friends = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.m_tabpage_group.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -60,7 +60,7 @@
             this.m_cmd_join.Name = "m_cmd_join";
             this.m_cmd_join.Size = new System.Drawing.Size(75, 23);
             this.m_cmd_join.TabIndex = 7;
-            this.m_cmd_join.Text = "Join Group";
+            this.m_cmd_join.Text = "Xin gia nhập";
             this.m_cmd_join.UseVisualStyleBackColor = true;
             this.m_cmd_join.Click += new System.EventHandler(this.m_cmd_join_Click);
             // 
@@ -189,12 +189,12 @@
             // 
             // m_tabpage_friend
             // 
+            this.m_tabpage_friend.Controls.Add(this.m_lb_friend_list);
+            this.m_tabpage_friend.Controls.Add(this.m_cmd_get_info);
             this.m_tabpage_friend.Controls.Add(this.m_cmd_join_group);
             this.m_tabpage_friend.Controls.Add(this.m_prb_friends);
             this.m_tabpage_friend.Controls.Add(this.m_lb_group_list);
             this.m_tabpage_friend.Controls.Add(this.m_chk_all_group);
-            this.m_tabpage_friend.Controls.Add(this.m_lb_friend_list);
-            this.m_tabpage_friend.Controls.Add(this.m_chk_all_friends);
             this.m_tabpage_friend.Location = new System.Drawing.Point(4, 22);
             this.m_tabpage_friend.Name = "m_tabpage_friend";
             this.m_tabpage_friend.Padding = new System.Windows.Forms.Padding(3);
@@ -203,13 +203,32 @@
             this.m_tabpage_friend.Text = "Tìm kiếm Group theo bạn bè";
             this.m_tabpage_friend.UseVisualStyleBackColor = true;
             // 
+            // m_lb_friend_list
+            // 
+            this.m_lb_friend_list.FormattingEnabled = true;
+            this.m_lb_friend_list.Location = new System.Drawing.Point(24, 47);
+            this.m_lb_friend_list.Name = "m_lb_friend_list";
+            this.m_lb_friend_list.Size = new System.Drawing.Size(165, 407);
+            this.m_lb_friend_list.TabIndex = 25;
+            this.m_lb_friend_list.SelectedIndexChanged += new System.EventHandler(this.m_lb_friend_list_SelectedIndexChanged);
+            // 
+            // m_cmd_get_info
+            // 
+            this.m_cmd_get_info.Location = new System.Drawing.Point(24, 20);
+            this.m_cmd_get_info.Name = "m_cmd_get_info";
+            this.m_cmd_get_info.Size = new System.Drawing.Size(165, 23);
+            this.m_cmd_get_info.TabIndex = 23;
+            this.m_cmd_get_info.Text = "Xem thông tin bạn bè";
+            this.m_cmd_get_info.UseVisualStyleBackColor = true;
+            this.m_cmd_get_info.Click += new System.EventHandler(this.m_cmd_get_info_Click);
+            // 
             // m_cmd_join_group
             // 
             this.m_cmd_join_group.Location = new System.Drawing.Point(231, 509);
             this.m_cmd_join_group.Name = "m_cmd_join_group";
             this.m_cmd_join_group.Size = new System.Drawing.Size(75, 23);
             this.m_cmd_join_group.TabIndex = 22;
-            this.m_cmd_join_group.Text = "Join Group";
+            this.m_cmd_join_group.Text = "Xin gia nhập";
             this.m_cmd_join_group.UseVisualStyleBackColor = true;
             // 
             // m_prb_friends
@@ -223,39 +242,21 @@
             // 
             this.m_lb_group_list.CheckOnClick = true;
             this.m_lb_group_list.FormattingEnabled = true;
-            this.m_lb_group_list.Location = new System.Drawing.Point(198, 47);
+            this.m_lb_group_list.Location = new System.Drawing.Point(225, 45);
             this.m_lb_group_list.Name = "m_lb_group_list";
-            this.m_lb_group_list.Size = new System.Drawing.Size(319, 409);
+            this.m_lb_group_list.Size = new System.Drawing.Size(292, 409);
             this.m_lb_group_list.TabIndex = 19;
             // 
             // m_chk_all_group
             // 
             this.m_chk_all_group.AutoSize = true;
-            this.m_chk_all_group.Location = new System.Drawing.Point(201, 24);
+            this.m_chk_all_group.Location = new System.Drawing.Point(228, 24);
             this.m_chk_all_group.Name = "m_chk_all_group";
             this.m_chk_all_group.Size = new System.Drawing.Size(57, 17);
             this.m_chk_all_group.TabIndex = 20;
             this.m_chk_all_group.Text = "Tất cả";
             this.m_chk_all_group.UseVisualStyleBackColor = true;
-            // 
-            // m_lb_friend_list
-            // 
-            this.m_lb_friend_list.CheckOnClick = true;
-            this.m_lb_friend_list.FormattingEnabled = true;
-            this.m_lb_friend_list.Location = new System.Drawing.Point(24, 47);
-            this.m_lb_friend_list.Name = "m_lb_friend_list";
-            this.m_lb_friend_list.Size = new System.Drawing.Size(153, 409);
-            this.m_lb_friend_list.TabIndex = 17;
-            // 
-            // m_chk_all_friends
-            // 
-            this.m_chk_all_friends.AutoSize = true;
-            this.m_chk_all_friends.Location = new System.Drawing.Point(27, 24);
-            this.m_chk_all_friends.Name = "m_chk_all_friends";
-            this.m_chk_all_friends.Size = new System.Drawing.Size(57, 17);
-            this.m_chk_all_friends.TabIndex = 18;
-            this.m_chk_all_friends.Text = "Tất cả";
-            this.m_chk_all_friends.UseVisualStyleBackColor = true;
+            this.m_chk_all_group.CheckedChanged += new System.EventHandler(this.m_chk_all_group_CheckedChanged);
             // 
             // f108_QLGroup
             // 
@@ -295,9 +296,9 @@
         private System.Windows.Forms.TabPage m_tabpage_friend;
         private System.Windows.Forms.CheckedListBox m_lb_group_list;
         private System.Windows.Forms.CheckBox m_chk_all_group;
-        private System.Windows.Forms.CheckedListBox m_lb_friend_list;
-        private System.Windows.Forms.CheckBox m_chk_all_friends;
         private System.Windows.Forms.Button m_cmd_join_group;
         private System.Windows.Forms.ProgressBar m_prb_friends;
+        private System.Windows.Forms.Button m_cmd_get_info;
+        private System.Windows.Forms.ListBox m_lb_friend_list;
     }
 }
