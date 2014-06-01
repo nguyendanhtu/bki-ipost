@@ -17,38 +17,24 @@ namespace test
         {
             InitializeComponent();
             this.CenterToScreen();
-            backgroundWorker1 = new BackgroundWorker();
-            backgroundWorker1.WorkerReportsProgress = true;
-            backgroundWorker1.WorkerSupportsCancellation = true;
+            m_wb.Navigate("https://facebook.com");
+            v_bgw = new BackgroundWorker();
+            v_bgw.WorkerReportsProgress = true;
+            v_bgw.WorkerSupportsCancellation = true;
 
-            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
-            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            v_bgw.DoWork += v_bgw_DoWork;
+            v_bgw.ProgressChanged += v_bgw_ProgressChanged;
+            v_bgw.RunWorkerCompleted += v_bgw_RunWorkerCompleted;
         }
 
+        BackgroundWorker v_bgw;
         string access_token = "";
         string m_uid = "";
-        string m_dtdg = "";
-        BackgroundWorker backgroundWorker1;
+        string m_dtsg = "";
 
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void m_cmd_tim_kiem_Click(object sender, EventArgs e)
-        {
-            var roles = new List<groups>();
-            FacebookClient fb = new FacebookClient(access_token);
-            dynamic data = fb.Get("/search?q="+m_txt_tu_khoa.Text.Trim()+"&type=group");
-            foreach (var g in (JsonArray)data["data"])
-            {
-                groups group = new groups() { Id = (string)(((JsonObject)g)["id"]), Name = (string)(((JsonObject)g)["name"]) };
-                roles.Add(group);
-            }
-            m_clb_ket_qua.DataSource = roles;
-            m_clb_ket_qua.DisplayMember = "Name";
-            m_clb_ket_qua.ValueMember = "Id";
         }
 
         private void f108_QLGroup_Load(object sender, EventArgs e)
@@ -58,83 +44,6 @@ namespace test
             dynamic data = fb.Get("/me?fields=name");
             m_uid = data["id"];
             load_friend_list();
-        }
-        private void m_cmd_join_Click(object sender, EventArgs e)
-        {
-            if (backgroundWorker1.IsBusy)
-            {
-                backgroundWorker1.CancelAsync();
-                m_cmd_join.Text = "Join Group";
-            }
-            else
-            {
-                progressBar1.Value = progressBar1.Minimum;
-                m_cmd_join.Text = "Stop";
-                backgroundWorker1.RunWorkerAsync();
-            }            
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int length = m_clb_ket_qua.CheckedItems.Count;
-            progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
-            for (int i = 0; i < m_clb_ket_qua.CheckedItems.Count; i++)
-            {
-                try
-                {
-                    request v_r = new request();
-                    groups v_g = (groups)m_clb_ket_qua.CheckedItems[i];
-                    v_r.group_id = v_g.Id;
-                    v_r.user_id = m_uid;
-                    v_r.dtsg = m_dtdg;
-                    v_r.request_2_fb("https://www.facebook.com/ajax/groups/membership/r2j.php", "POST");
-                    //m_lbl_group.Text = "Đã xin gia nhập nhóm " + v_g.Name;
-                }
-                catch (Exception)
-                {
-                }
-                
-                backgroundWorker1.ReportProgress((int)(i / length * 100));
-                if (i + 1 != m_clb_ket_qua.CheckedItems.Count)
-                {
-                    int time = 10000;
-                    Thread.Sleep(time);
-                }
-            }
-            backgroundWorker1.ReportProgress(100);
-            MessageBox.Show("Đã gửi yêu cầu gia nhập đến " + m_clb_ket_qua.CheckedItems.Count.ToString() + " nhóm");
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (!backgroundWorker1.CancellationPending)
-            {
-                m_lbl_group.Text = e.ProgressPercentage + "%";
-                progressBar1.PerformStep();
-            }
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            m_cmd_join.Text = "Join Group";
-        }
-
-        private void m_chk_all_CheckedChanged(object sender, EventArgs e)
-        {
-            if (m_chk_all.Checked)
-            {
-                for (int i = 0; i < m_clb_ket_qua.Items.Count; i++)
-                {
-                    m_clb_ket_qua.SetItemChecked(i, true);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < m_clb_ket_qua.Items.Count; i++)
-                {
-                    m_clb_ket_qua.SetItemChecked(i, false);
-                }
-            }
         }
 
         private void load_friend_list() {
@@ -156,14 +65,27 @@ namespace test
         private void m_lb_friend_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             FacebookClient fb = new FacebookClient(access_token);
-            var roles = new List<groups>();
-            string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
-            dynamic data = fb.Get("/" + pid + "/groups");
+            var me_groups = new List<groups>();
+            dynamic data = fb.Get("/me/groups");
             foreach (var friend in (JsonArray)data["data"])
             {
                 groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                roles.Add(group);
+                me_groups.Add(group);
             }
+
+            var roles = new List<groups>();
+            string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
+            data = fb.Get("/" + pid + "/groups");
+            foreach (var friend in (JsonArray)data["data"])
+            {
+                groups gr = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                var s = (from a in me_groups where a.Id == gr.Id select a).ToList();
+                if (s.Count == 0)
+                {
+                    roles.Add(gr);   
+                }
+            }
+
             roles = roles.OrderBy(o => o.Name).ToList();
             m_lb_group_list.DataSource = roles;
             m_lb_group_list.DisplayMember = "Name";
@@ -175,7 +97,7 @@ namespace test
         {
             try
             {
-                if (m_chk_all.Checked)
+                if (m_chk_all_group.Checked)
                 {
                     for (int i = 0; i < m_lb_group_list.Items.Count; i++)
                     {
@@ -215,8 +137,93 @@ namespace test
             catch (Exception)
             {
                 throw;
+            }            
+        }
+
+        private void m_cmd_join_group_Click(object sender, EventArgs e)
+        {
+            if (m_dtsg == "")
+            {
+                MessageBox.Show("Quá trình chuẩn bị chưa hoàn thành");
+                m_wb.Navigate("https://facebook.com");
             }
-            
+            else
+            {
+                this.Controls.Remove(m_wb);
+                int second = m_lb_group_list.CheckedItems.Count / 3 * 90 + m_lb_group_list.CheckedItems.Count % 3 * 15;
+                string v_mess = "Thời gian ước tính hoàn thành khoảng "+ (second/60)+ " phút "+ (second % 60)+ " giây";
+                MessageBox.Show(v_mess);
+                if (v_bgw.IsBusy)
+                {
+                    v_bgw.CancelAsync();
+                }
+                else
+                {
+                    m_prb_friends.Value = 0;
+                    m_cmd_join_group.Text = "Stop";
+                    v_bgw.RunWorkerAsync();
+                }
+            }
+        }
+
+        private void m_wb_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (m_dtsg == "")
+            {
+                HtmlDocument v_doc = m_wb.Document;
+                HtmlElement v_e = v_doc.GetElementsByTagName("input")["fb_dtsg"];
+                if (v_e != null)
+                {
+                    m_dtsg = v_e.GetAttribute("value").ToString();
+                }   
+            }
+        }
+
+        private void v_bgw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            float length = m_lb_group_list.CheckedItems.Count;
+            m_prb_friends.Invoke((Action)(() => m_prb_friends.Maximum = m_lb_group_list.CheckedItems.Count));
+            for (int i = 0; i < length; i++)
+            {
+                v_bgw.ReportProgress(i+1);
+                try
+                {
+                    request v_r = new request();
+                    groups v_g = (groups)m_lb_group_list.CheckedItems[i];
+                    v_r.group_id = v_g.Id;
+                    v_r.user_id = m_uid;
+                    v_r.dtsg = m_dtsg;
+                    v_r.request_2_fb("https://www.facebook.com/ajax/groups/membership/r2j.php", "POST");
+                    if (i+1 < m_lb_group_list.CheckedItems.Count)
+                    {
+                        Thread.Sleep(20000);   
+                    }                    
+                }
+                catch (Exception)
+                {
+                }
+            }
+            v_bgw.ReportProgress(100);
+        }
+
+        private void v_bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (!v_bgw.CancellationPending)
+            {
+                if (e.ProgressPercentage == 100)
+                {
+                    m_prb_friends.PerformStep();
+                }
+                else
+                {
+                    m_prb_friends.Value = e.ProgressPercentage;
+                }                
+            }
+        }
+
+        private void v_bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            m_cmd_join_group.Text = "Xin gia nhập";
         }
     }
 }
