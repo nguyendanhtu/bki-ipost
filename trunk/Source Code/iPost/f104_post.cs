@@ -27,40 +27,9 @@ namespace test
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int length = m_cbl_group.CheckedItems.Count;
-            progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
-            for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++)
-            {
-                post_2_facebook((groups)m_cbl_group.CheckedItems[i]);
-                backgroundWorker1.ReportProgress((int)(i / length * 100));
-                if (i + 1 != m_cbl_group.CheckedItems.Count)
-                {
-                    int time = Convert.ToInt32(m_txt_time.Text) * 1000;
-                    Thread.Sleep(time);
-                }
-            }
-            backgroundWorker1.ReportProgress(100);
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            //Thay đổi trạng thái làm việc
-            if (!backgroundWorker1.CancellationPending)
-            {
-                progressBar1.PerformStep();
-            }
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            m_cmd_post.Text = "Đăng bài";
-        }
 
         #region Members
-        class groups
-        {
+        class groups {
             public string Id { get; set; }
             public string Name { get; set; }
         }
@@ -71,43 +40,25 @@ namespace test
         string caption = "";
         string description = "";
         BackgroundWorker backgroundWorker1;
+
+        List<groups> m_SortedList;
+
         #endregion        
 
-        private void m_cmd_post_Click(object sender, EventArgs e)
-        {
-            if ((m_txt_time.Text == "")||(Convert.ToInt32(m_txt_time.Text) < 10))
-            {
-                MessageBox.Show("Nhập lại thời gian");
-                return;
-            }
-            if (backgroundWorker1.IsBusy)
-            {
-                backgroundWorker1.CancelAsync();
-                m_cmd_post.Text = "Đăng bài";
-            }
-            else
-            {
-                progressBar1.Value = progressBar1.Minimum;
-                m_cmd_post.Text = "Stop";
-                backgroundWorker1.RunWorkerAsync();
-            }  
-        }
 
-        private void post_2_facebook(groups item)
-        {
+        #region Private Method
+
+        private void post_2_facebook(groups item) {
             dynamic result;
-            try
-            {
-                if (m_b_has_image)
-                {
+            try {
+                if (m_b_has_image) {
                     FacebookClient fb = new FacebookClient(m_access_token);
                     dynamic parameters = new ExpandoObject();
                     parameters.url = m_txt_url_image.Text;
                     parameters.message = m_txt_message.Text;
                     result = fb.Post(item.Id + "/photos", parameters);
                 }
-                else
-                {
+                else {
                     FacebookClient fb = new FacebookClient(m_access_token);
                     dynamic parameters = new ExpandoObject();
                     parameters.message = m_txt_message.Text;
@@ -121,21 +72,138 @@ namespace test
                 System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\BKIndex\AutoPostToGroup\postId.txt", true);
                 file.WriteLine(m_uid + "_" + p_id);
                 file.WriteLine(item.Name);
-                if (m_txt_message.Text.Length > 30)
-                {
-                    file.WriteLine(m_txt_message.Text.Substring(0,30));
+                if (m_txt_message.Text.Length > 30) {
+                    file.WriteLine(m_txt_message.Text.Substring(0, 30));
                 }
-                else
-	            {
+                else {
                     file.WriteLine(m_txt_message.Text.Trim());
-	            }                
+                }
                 file.Close();
             }
-            catch (Exception v_e)
-            {                
-                
+            catch (Exception v_e) {
+
             }
         }
+
+        public void Display_post(string access_token) {
+            try {
+                FacebookClient fb = new FacebookClient(access_token);
+                var roles = new List<groups>();
+                dynamic data = fb.Get("/me/groups");
+
+                foreach (var friend in (JsonArray)data["data"]) {
+                    groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                    roles.Add(group);
+                }
+                m_SortedList = roles.OrderBy(o => o.Name).ToList(); ;
+                m_cbl_group.DataSource = m_SortedList;
+                m_cbl_group.DisplayMember = "Name";
+                m_cbl_group.ValueMember = "Id";
+            }
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+
+        }
+
+        internal void Updating(string p, string p_2, string p_3) {
+            try {
+                link = p;
+                caption = p_2;
+                description = p_3;
+            }
+            catch (Exception v_e) {
+
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+
+        }
+
+        #endregion
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            try {
+                int length = m_cbl_group.CheckedItems.Count;
+                progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
+                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++) {
+                    post_2_facebook((groups)m_cbl_group.CheckedItems[i]);
+                    backgroundWorker1.ReportProgress((int)(i / length * 100));
+                    if (i + 1 != m_cbl_group.CheckedItems.Count) {
+                        int time = Convert.ToInt32(m_txt_time.Text) * 1000;
+                        Thread.Sleep(time);
+                    }
+                }
+                backgroundWorker1.ReportProgress(100);
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            try {
+                //Thay đổi trạng thái làm việc
+                if (!backgroundWorker1.CancellationPending) {
+                    progressBar1.PerformStep();
+                }
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            try {
+                m_cmd_post.Text = "Đăng bài";
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+          
+        }
+
+        
+
+        private void m_cmd_post_Click(object sender, EventArgs e)
+        {
+            try {
+                if ((m_txt_time.Text == "") || (Convert.ToInt32(m_txt_time.Text) < 10)) {
+                    MessageBox.Show("Nhập lại thời gian");
+                    return;
+                }
+                if (backgroundWorker1.IsBusy) {
+                    backgroundWorker1.CancelAsync();
+                    m_cmd_post.Text = "Đăng bài";
+                }
+                else {
+                    progressBar1.Value = progressBar1.Minimum;
+                    m_cmd_post.Text = "Stop";
+                    backgroundWorker1.RunWorkerAsync();
+                } 
+            }
+            catch (Exception v_e) {
+                
+                  MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+
+            
+        }
+
+        
 
         //public void Display(string access_token)
         //{
@@ -167,38 +235,22 @@ namespace test
           
         }        
 
-        public void Display_post(string access_token)
-        {
-            try {
-                FacebookClient fb = new FacebookClient(access_token);
-                var roles = new List<groups>();
-                dynamic data = fb.Get("/me/groups");
-
-                foreach (var friend in (JsonArray)data["data"]) {
-                    groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                    roles.Add(group);
-                }
-                List<groups> SortedList = roles.OrderBy(o => o.Name).ToList(); ;
-                m_cbl_group.DataSource = SortedList;
-                m_cbl_group.DisplayMember = "Name";
-                m_cbl_group.ValueMember = "Id";
-            }
-            catch (Exception v_e) {
-
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-          
-        }
-
+      
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            m_access_token = globalInfo.access_token;
-            FacebookClient fb = new FacebookClient(m_access_token);
-            dynamic data = fb.Get("/me?fields=name");
-            m_uid = data["id"];
-            Display_post(m_access_token);
+            try {
+                m_access_token = globalInfo.access_token;
+                FacebookClient fb = new FacebookClient(m_access_token);
+                dynamic data = fb.Get("/me?fields=name");
+                m_uid = data["id"];
+                Display_post(m_access_token);
+            }
+            catch (Exception v_e) {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+           
         }
 
         private void m_cmd_advance_Click(object sender, EventArgs e)
@@ -215,20 +267,6 @@ namespace test
          
         }
 
-        internal void Updating(string p, string p_2, string p_3)
-        {
-            try {
-                link = p;
-                caption = p_2;
-                description = p_3;
-            }
-            catch (Exception v_e) {
-
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-          
-        }
 
         private void m_chk_all_CheckedChanged(object sender, EventArgs e)
         {
@@ -237,15 +275,68 @@ namespace test
                     for (int i = 0; i < m_cbl_group.Items.Count; i++) {
                         m_cbl_group.SetItemChecked(i, true);
                     }
+                    m_chk_all.Text = "Bỏ đánh dấu để hủy chọn tất cả nhóm ở dưới";
                 }
                 else {
                     for (int i = 0; i < m_cbl_group.Items.Count; i++) {
                         m_cbl_group.SetItemChecked(i, false);
                     }
+                    m_chk_all.Text = "Đánh dấu để chọn tất cả nhóm ở dưới";
                 }
             }
             catch (Exception v_e) {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
 
+        private void m_txt_search_TextChanged(object sender, EventArgs e) {
+            try {
+               
+
+                List<groups> v_filterList = new List<groups>();
+                List<groups> v_checkedlist = new List<groups>();
+
+                //1. Lấy danh sách các group đã chọn
+                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++) {
+                    v_checkedlist.Add((groups)m_cbl_group.CheckedItems[i]);
+                    v_filterList.Add((groups)m_cbl_group.CheckedItems[i]);
+                }
+
+              //2. Lấy danh sách các group thỏa mãn tìm kiếm
+                foreach (groups v_froup in m_SortedList) {
+                    if (v_froup.Name.ToLower().IndexOf(m_txt_search.Text.ToLower()) >= 0) {
+                        int index = v_filterList.FindIndex(item => item.Id == v_froup.Id);
+                        if (index < 0) {
+                            v_filterList.Add(v_froup);  
+                        }
+                        
+                    }
+                        
+                }
+                //3. Đưa danh sách lên LIST
+                if (m_txt_search.Text.Trim().Length == 0) {
+                    m_cbl_group.DataSource = m_SortedList;                  
+                }
+                else {
+
+                    m_cbl_group.DataSource = v_filterList;
+                }
+                m_cbl_group.DisplayMember = "Name";
+                m_cbl_group.ValueMember = "Id";
+                //4. Đánh dấu các Group đã chọn.
+                for (int i = 0; i < m_cbl_group.Items.Count; i++) {
+                    m_cbl_group.SetItemChecked(i, false);
+                }
+                for (int i = 0; i < m_cbl_group.Items.Count; i++) {
+                    groups v_group = (groups)m_cbl_group.Items[i];
+                    
+                    if (v_checkedlist.FindIndex(item => item.Id ==v_group.Id)>=0){
+                    m_cbl_group.SetItemChecked(i, true);
+                    }
+                }
+
+            }
+            catch (Exception v_e) {
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
