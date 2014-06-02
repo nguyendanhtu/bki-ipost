@@ -71,7 +71,7 @@
     <Compile Include="Advance.Designer.cs">
       <DependentUpon>Advance.cs</DependentUpon>
     </Compile>
-    <Compile Include="cl_post.cs" />
+    <Compile Include="class\cl_post.cs" />
     <Compile Include="f103_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +83,12 @@
     </Compile>
     <Compile Include="f105_Info_Friend.Designer.cs">
       <DependentUpon>f105_Info_Friend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="f106_Phan_tich_group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="f106_Phan_tich_group.Designer.cs">
+      <DependentUpon>f106_Phan_tich_group.cs</DependentUpon>
     </Compile>
     <Compile Include="f107_PostFollow.cs">
       <SubType>Form</SubType>
@@ -108,8 +114,8 @@
     <Compile Include="F109_Show_post.Designer.cs">
       <DependentUpon>F109_Show_post.cs</DependentUpon>
     </Compile>
-    <Compile Include="globalInfo.cs" />
-    <Compile Include="groups.cs" />
+    <Compile Include="class\globalInfo.cs" />
+    <Compile Include="class\groups.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,7 +130,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="request.cs" />
+    <Compile Include="class\request.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="f105_Info_Friend.resx">
       <DependentUpon>f105_Info_Friend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="f106_Phan_tich_group.resx">
+      <DependentUpon>f106_Phan_tich_group.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="f107_PostFollow.resx">
       <DependentUpon>f107_PostFollow.cs</DependentUpon>

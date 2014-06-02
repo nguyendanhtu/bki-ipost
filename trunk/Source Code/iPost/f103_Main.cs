@@ -77,5 +77,11 @@ namespace test
             }
         }
         #endregion
+
+        private void m_cmd_thong_ke_Click(object sender, EventArgs e)
+        {
+            f106_Phan_tich_group v_f = new f106_Phan_tich_group();
+            v_f.displayMyGroup();
+        }
     }
 }
