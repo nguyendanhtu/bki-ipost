@@ -5,7 +5,7 @@ using System.Text;
 
 namespace test
 {
-    class groups
+    public class groups
     {
         public string Id { get; set; }
         public string Name { get; set; }

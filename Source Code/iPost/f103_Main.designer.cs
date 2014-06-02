@@ -35,7 +35,7 @@
             this.m_cmd_exit = new System.Windows.Forms.Button();
             this.m_cmd_follow = new System.Windows.Forms.Button();
             this.m_lbl_message = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.m_cmd_thong_ke = new System.Windows.Forms.Button();
             this.m_cmd_ql_group = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -114,18 +114,18 @@
             this.m_lbl_message.Size = new System.Drawing.Size(0, 13);
             this.m_lbl_message.TabIndex = 3;
             // 
-            // button2
+            // m_cmd_thong_ke
             // 
-            this.button2.Enabled = false;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.ImageIndex = 19;
-            this.button2.ImageList = this.ImageList;
-            this.button2.Location = new System.Drawing.Point(16, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(232, 37);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Thống kê - Phân tích";
-            this.button2.UseVisualStyleBackColor = true;
+            this.m_cmd_thong_ke.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_thong_ke.ImageIndex = 19;
+            this.m_cmd_thong_ke.ImageList = this.ImageList;
+            this.m_cmd_thong_ke.Location = new System.Drawing.Point(16, 130);
+            this.m_cmd_thong_ke.Name = "m_cmd_thong_ke";
+            this.m_cmd_thong_ke.Size = new System.Drawing.Size(232, 37);
+            this.m_cmd_thong_ke.TabIndex = 5;
+            this.m_cmd_thong_ke.Text = "Thống kê - Phân tích";
+            this.m_cmd_thong_ke.UseVisualStyleBackColor = true;
+            this.m_cmd_thong_ke.Click += new System.EventHandler(this.m_cmd_thong_ke_Click);
             // 
             // m_cmd_ql_group
             // 
@@ -147,7 +147,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.ClientSize = new System.Drawing.Size(263, 213);
             this.Controls.Add(this.m_cmd_ql_group);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.m_cmd_thong_ke);
             this.Controls.Add(this.m_lbl_message);
             this.Controls.Add(this.m_cmd_follow);
             this.Controls.Add(this.m_cmd_exit);
@@ -171,7 +171,7 @@
         private System.Windows.Forms.Button m_cmd_exit;
         private System.Windows.Forms.Button m_cmd_follow;
         private System.Windows.Forms.Label m_lbl_message;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button m_cmd_thong_ke;
         private System.Windows.Forms.Button m_cmd_ql_group;
         internal System.Windows.Forms.ImageList ImageList;
     }

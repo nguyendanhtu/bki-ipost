@@ -225,5 +225,16 @@ namespace test
         {
             m_cmd_join_group.Text = "Xin gia nhập";
         }
+
+        public void m_cmd_phan_tich_Click(object sender, EventArgs e)
+        {
+            f106_Phan_tich_group v_f = new f106_Phan_tich_group();
+            List<groups> group_list = new List<groups>();
+            foreach (var item in m_lb_group_list.CheckedItems)
+            {
+                group_list.Add((groups)item);
+            }
+            v_f.display(group_list);
+        }
     }
 }

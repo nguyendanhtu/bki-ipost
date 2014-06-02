@@ -11,5 +11,6 @@ namespace test
         public string fgid { get; set; }
         public string fpid { get; set; }
         public string content { get; set; }
+        public DateTime create_time { get; set; }
     }
 }

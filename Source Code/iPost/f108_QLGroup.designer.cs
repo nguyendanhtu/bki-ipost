@@ -37,12 +37,14 @@
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.m_cmd_phan_tich = new System.Windows.Forms.Button();
             this.m_tabpage_friend.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_tabpage_friend
             // 
+            this.m_tabpage_friend.Controls.Add(this.m_cmd_phan_tich);
             this.m_tabpage_friend.Controls.Add(this.m_wb);
             this.m_tabpage_friend.Controls.Add(this.m_lb_friend_list);
             this.m_tabpage_friend.Controls.Add(this.m_cmd_get_info);
@@ -134,6 +136,16 @@
             this.tabControl1.Size = new System.Drawing.Size(547, 568);
             this.tabControl1.TabIndex = 17;
             // 
+            // m_cmd_phan_tich
+            // 
+            this.m_cmd_phan_tich.Location = new System.Drawing.Point(352, 16);
+            this.m_cmd_phan_tich.Name = "m_cmd_phan_tich";
+            this.m_cmd_phan_tich.Size = new System.Drawing.Size(165, 23);
+            this.m_cmd_phan_tich.TabIndex = 27;
+            this.m_cmd_phan_tich.Text = "Phân tích group";
+            this.m_cmd_phan_tich.UseVisualStyleBackColor = true;
+            this.m_cmd_phan_tich.Click += new System.EventHandler(this.m_cmd_phan_tich_Click);
+            // 
             // f108_QLGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,6 +174,7 @@
         private System.Windows.Forms.CheckedListBox m_lb_group_list;
         private System.Windows.Forms.CheckBox m_chk_all_group;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button m_cmd_phan_tich;
 
     }
 }
