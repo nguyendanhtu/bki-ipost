@@ -12,5 +12,7 @@ namespace test
         public string fpid { get; set; }
         public string content { get; set; }
         public DateTime create_time { get; set; }
+        public decimal like_count { get; set; }
+        public decimal comment_count { get; set; }
     }
 }
