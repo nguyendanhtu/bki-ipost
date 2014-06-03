@@ -39,7 +39,7 @@
             this.m_lbl_post_per_day = new System.Windows.Forms.Label();
             this.m_lbl_like_per_post = new System.Windows.Forms.Label();
             this.m_lbl_comment_per_post = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.m_lbl_gold_hour = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -142,14 +142,14 @@
             this.m_lbl_comment_per_post.TabIndex = 10;
             this.m_lbl_comment_per_post.Text = "comment per post";
             // 
-            // label11
+            // m_lbl_gold_hour
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(577, 199);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "label11";
+            this.m_lbl_gold_hour.AutoSize = true;
+            this.m_lbl_gold_hour.Location = new System.Drawing.Point(577, 199);
+            this.m_lbl_gold_hour.Name = "m_lbl_gold_hour";
+            this.m_lbl_gold_hour.Size = new System.Drawing.Size(51, 13);
+            this.m_lbl_gold_hour.TabIndex = 11;
+            this.m_lbl_gold_hour.Text = "gold hour";
             // 
             // label12
             // 
@@ -166,7 +166,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 440);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.m_lbl_gold_hour);
             this.Controls.Add(this.m_lbl_comment_per_post);
             this.Controls.Add(this.m_lbl_like_per_post);
             this.Controls.Add(this.m_lbl_post_per_day);
@@ -198,7 +198,7 @@
         private System.Windows.Forms.Label m_lbl_post_per_day;
         private System.Windows.Forms.Label m_lbl_like_per_post;
         private System.Windows.Forms.Label m_lbl_comment_per_post;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label m_lbl_gold_hour;
         private System.Windows.Forms.Label label12;
     }
 }
