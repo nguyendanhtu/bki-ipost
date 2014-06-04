@@ -8,5 +8,6 @@ namespace test
     public static class globalInfo
     {
         public static string access_token = "";
+        public static string name = "";
     }
 }

@@ -154,7 +154,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "f108_QLGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F108 - Quản lý các group facebook";
+            this.Text = "F108 - Bạn đang sử dụng tài khoản " + globalInfo.name;
             this.Load += new System.EventHandler(this.f108_QLGroup_Load);
             this.m_tabpage_friend.ResumeLayout(false);
             this.m_tabpage_friend.PerformLayout();

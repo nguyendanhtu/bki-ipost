@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Facebook;
 using System.Dynamic;
 using System.Threading;
+using System.IO;
 
 namespace test
 {
@@ -50,6 +51,7 @@ namespace test
 
         private void post_2_facebook(groups item) {
             dynamic result;
+            string v_path = Directory.GetCurrentDirectory();
             try {
                 if (m_b_has_image) {
                     FacebookClient fb = new FacebookClient(m_access_token);
@@ -69,7 +71,7 @@ namespace test
                     result = fb.Post(item.Id + "/feed", parameters);
                 }
                 string p_id = result["id"];
-                System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\BKIndex\AutoPostToGroup\postId.txt", true);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(v_path +"\\postId.txt", true);
                 file.WriteLine(m_uid + "_" + p_id);
                 file.WriteLine(item.Name);
                 if (m_txt_message.Text.Length > 30) {
@@ -203,14 +205,6 @@ namespace test
             
         }
 
-        
-
-        //public void Display(string access_token)
-        //{
-        //    m_access_token = access_token;
-        //    this.ShowDialog();
-        //}
-
         private void m_chk_has_image_CheckedChanged(object sender, EventArgs e)
         {
             try {
@@ -233,9 +227,7 @@ namespace test
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
           
-        }        
-
-      
+        }             
 
         private void Form1_Load(object sender, EventArgs e)
         {
