@@ -17,8 +17,10 @@ namespace test
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var license = new TienX.License.LicenseManager();
-            if (File.Exists("C://iPostLicense.lic")) {
-                bool verify = license.verifyLicenseFile("C://iPostLicense.lic");
+            string v_path = Directory.GetCurrentDirectory();
+            v_path = v_path + "\\iPostLicense.lic";
+            if (File.Exists(v_path)) {
+                bool verify = license.verifyLicenseFile(v_path);
                 if (verify)
                 {
                     Application.Run(new LoginFacebook());
