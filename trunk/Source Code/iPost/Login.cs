@@ -29,7 +29,9 @@ namespace test
                     return;
                 }
                 else {
-                    var license = mn.requestLicenseAndSaveFile(v_str_key, v_str_user_email, "C://iPostLicense.lic");
+                    string v_past = Directory.GetCurrentDirectory();
+                    v_past = v_past + "\\iPostLicense.lic";
+                    var license = mn.requestLicenseAndSaveFile(v_str_key, v_str_user_email, v_past);
                     if (mn.verifyLicense(license)) {
                         MessageBox.Show("Bạn đã xác thực thành công. Kiếm tiền nào!");
                         this.Hide();

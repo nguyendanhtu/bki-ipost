@@ -67,11 +67,13 @@ namespace test
 
         private void m_cmd_ql_group_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 f108_QLGroup v_f = new f108_QLGroup();
                 v_f.ShowDialog();
             }
-            catch (Exception v_e) {
+            catch (Exception v_e)
+            {
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
@@ -80,8 +82,15 @@ namespace test
 
         private void m_cmd_thong_ke_Click(object sender, EventArgs e)
         {
-            f106_Phan_tich_group v_f = new f106_Phan_tich_group();
-            v_f.displayMyGroup();
+            try
+            {
+                f106_Phan_tich_group v_f = new f106_Phan_tich_group();
+                v_f.displayMyGroup();
+            }
+            catch (Exception v_e)
+            {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }            
         }
     }
 }

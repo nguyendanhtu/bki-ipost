@@ -65,9 +65,7 @@ namespace test
 
         private void comment_this_post(string p)
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\at.txt");
-            string access_token = lines[0];
-            FacebookClient fb = new FacebookClient(access_token);
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
             dynamic parameters = new ExpandoObject();
             parameters.message = p;
             dynamic result = fb.Post(p_id + "/comments", parameters);

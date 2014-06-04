@@ -32,30 +32,35 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.m_lbl_post_per_day = new System.Windows.Forms.Label();
             this.m_lbl_like_per_post = new System.Windows.Forms.Label();
             this.m_lbl_comment_per_post = new System.Windows.Forms.Label();
             this.m_lbl_gold_hour = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.m_lbl_gold_hour_action = new System.Windows.Forms.Label();
+            this.m_cmd_phan_tich_group = new System.Windows.Forms.Button();
+            this.m_lbl_silver = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.m_groupbox = new System.Windows.Forms.GroupBox();
+            this.m_rdb_30 = new System.Windows.Forms.RadioButton();
+            this.m_rdb_50 = new System.Windows.Forms.RadioButton();
+            this.m_rdb_100 = new System.Windows.Forms.RadioButton();
+            this.m_groupbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_lb_groups
             // 
             this.m_lb_groups.FormattingEnabled = true;
-            this.m_lb_groups.Location = new System.Drawing.Point(12, 34);
+            this.m_lb_groups.Location = new System.Drawing.Point(12, 47);
             this.m_lb_groups.Name = "m_lb_groups";
-            this.m_lb_groups.Size = new System.Drawing.Size(203, 394);
+            this.m_lb_groups.Size = new System.Drawing.Size(203, 381);
             this.m_lb_groups.TabIndex = 0;
-            this.m_lb_groups.SelectedIndexChanged += new System.EventHandler(this.m_lb_groups_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(295, 72);
+            this.label1.Location = new System.Drawing.Point(28, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 13);
             this.label1.TabIndex = 1;
@@ -64,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(295, 112);
+            this.label2.Location = new System.Drawing.Point(28, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 13);
             this.label2.TabIndex = 2;
@@ -73,25 +78,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(295, 154);
+            this.label3.Location = new System.Drawing.Point(28, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(187, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Lượng bình luận trung bình 1 bài đăng";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(295, 34);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Tổng số thành viên";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(295, 199);
+            this.label5.Location = new System.Drawing.Point(28, 158);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(153, 13);
             this.label5.TabIndex = 5;
@@ -100,86 +96,154 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(295, 245);
+            this.label6.Location = new System.Drawing.Point(28, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(205, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Khung giờ nhiều lượt thích, bình luận nhất";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(577, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "label7";
-            // 
             // m_lbl_post_per_day
             // 
             this.m_lbl_post_per_day.AutoSize = true;
-            this.m_lbl_post_per_day.Location = new System.Drawing.Point(577, 72);
+            this.m_lbl_post_per_day.Location = new System.Drawing.Point(313, 50);
             this.m_lbl_post_per_day.Name = "m_lbl_post_per_day";
-            this.m_lbl_post_per_day.Size = new System.Drawing.Size(65, 13);
+            this.m_lbl_post_per_day.Size = new System.Drawing.Size(0, 13);
             this.m_lbl_post_per_day.TabIndex = 8;
-            this.m_lbl_post_per_day.Text = "post per day";
             // 
             // m_lbl_like_per_post
             // 
             this.m_lbl_like_per_post.AutoSize = true;
-            this.m_lbl_like_per_post.Location = new System.Drawing.Point(577, 112);
+            this.m_lbl_like_per_post.Location = new System.Drawing.Point(313, 86);
             this.m_lbl_like_per_post.Name = "m_lbl_like_per_post";
-            this.m_lbl_like_per_post.Size = new System.Drawing.Size(64, 13);
+            this.m_lbl_like_per_post.Size = new System.Drawing.Size(0, 13);
             this.m_lbl_like_per_post.TabIndex = 9;
-            this.m_lbl_like_per_post.Text = "like per post";
             // 
             // m_lbl_comment_per_post
             // 
             this.m_lbl_comment_per_post.AutoSize = true;
-            this.m_lbl_comment_per_post.Location = new System.Drawing.Point(577, 154);
+            this.m_lbl_comment_per_post.Location = new System.Drawing.Point(313, 122);
             this.m_lbl_comment_per_post.Name = "m_lbl_comment_per_post";
-            this.m_lbl_comment_per_post.Size = new System.Drawing.Size(91, 13);
+            this.m_lbl_comment_per_post.Size = new System.Drawing.Size(0, 13);
             this.m_lbl_comment_per_post.TabIndex = 10;
-            this.m_lbl_comment_per_post.Text = "comment per post";
             // 
             // m_lbl_gold_hour
             // 
             this.m_lbl_gold_hour.AutoSize = true;
-            this.m_lbl_gold_hour.Location = new System.Drawing.Point(577, 199);
+            this.m_lbl_gold_hour.Location = new System.Drawing.Point(313, 158);
             this.m_lbl_gold_hour.Name = "m_lbl_gold_hour";
-            this.m_lbl_gold_hour.Size = new System.Drawing.Size(51, 13);
+            this.m_lbl_gold_hour.Size = new System.Drawing.Size(0, 13);
             this.m_lbl_gold_hour.TabIndex = 11;
-            this.m_lbl_gold_hour.Text = "gold hour";
             // 
-            // label12
+            // m_lbl_gold_hour_action
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(577, 245);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "label12";
+            this.m_lbl_gold_hour_action.AutoSize = true;
+            this.m_lbl_gold_hour_action.Location = new System.Drawing.Point(313, 230);
+            this.m_lbl_gold_hour_action.Name = "m_lbl_gold_hour_action";
+            this.m_lbl_gold_hour_action.Size = new System.Drawing.Size(0, 13);
+            this.m_lbl_gold_hour_action.TabIndex = 12;
+            // 
+            // m_cmd_phan_tich_group
+            // 
+            this.m_cmd_phan_tich_group.Location = new System.Drawing.Point(12, 18);
+            this.m_cmd_phan_tich_group.Name = "m_cmd_phan_tich_group";
+            this.m_cmd_phan_tich_group.Size = new System.Drawing.Size(203, 23);
+            this.m_cmd_phan_tich_group.TabIndex = 14;
+            this.m_cmd_phan_tich_group.Text = "Phân tích group";
+            this.m_cmd_phan_tich_group.UseVisualStyleBackColor = true;
+            this.m_cmd_phan_tich_group.Click += new System.EventHandler(this.m_cmd_phan_tich_group_Click);
+            // 
+            // m_lbl_silver
+            // 
+            this.m_lbl_silver.AutoSize = true;
+            this.m_lbl_silver.Location = new System.Drawing.Point(313, 194);
+            this.m_lbl_silver.Name = "m_lbl_silver";
+            this.m_lbl_silver.Size = new System.Drawing.Size(0, 13);
+            this.m_lbl_silver.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(28, 194);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Khung giờ đăng bài ít nhất";
+            // 
+            // m_groupbox
+            // 
+            this.m_groupbox.Controls.Add(this.label6);
+            this.m_groupbox.Controls.Add(this.m_lbl_silver);
+            this.m_groupbox.Controls.Add(this.label1);
+            this.m_groupbox.Controls.Add(this.label8);
+            this.m_groupbox.Controls.Add(this.label2);
+            this.m_groupbox.Controls.Add(this.label3);
+            this.m_groupbox.Controls.Add(this.m_lbl_gold_hour_action);
+            this.m_groupbox.Controls.Add(this.label5);
+            this.m_groupbox.Controls.Add(this.m_lbl_gold_hour);
+            this.m_groupbox.Controls.Add(this.m_lbl_post_per_day);
+            this.m_groupbox.Controls.Add(this.m_lbl_comment_per_post);
+            this.m_groupbox.Controls.Add(this.m_lbl_like_per_post);
+            this.m_groupbox.Location = new System.Drawing.Point(239, 95);
+            this.m_groupbox.Name = "m_groupbox";
+            this.m_groupbox.Size = new System.Drawing.Size(518, 333);
+            this.m_groupbox.TabIndex = 17;
+            this.m_groupbox.TabStop = false;
+            this.m_groupbox.Text = "Kết quả phân tích";
+            this.m_groupbox.Visible = false;
+            // 
+            // m_rdb_30
+            // 
+            this.m_rdb_30.AutoSize = true;
+            this.m_rdb_30.Checked = true;
+            this.m_rdb_30.Location = new System.Drawing.Point(239, 47);
+            this.m_rdb_30.Name = "m_rdb_30";
+            this.m_rdb_30.Size = new System.Drawing.Size(108, 17);
+            this.m_rdb_30.TabIndex = 18;
+            this.m_rdb_30.TabStop = true;
+            this.m_rdb_30.Text = "Vài ngày gần đây";
+            this.m_rdb_30.UseVisualStyleBackColor = true;
+            // 
+            // m_rdb_50
+            // 
+            this.m_rdb_50.AutoSize = true;
+            this.m_rdb_50.Location = new System.Drawing.Point(390, 47);
+            this.m_rdb_50.Name = "m_rdb_50";
+            this.m_rdb_50.Size = new System.Drawing.Size(106, 17);
+            this.m_rdb_50.TabIndex = 19;
+            this.m_rdb_50.TabStop = true;
+            this.m_rdb_50.Text = "Vài tuần gần đây";
+            this.m_rdb_50.UseVisualStyleBackColor = true;
+            // 
+            // m_rdb_100
+            // 
+            this.m_rdb_100.AutoSize = true;
+            this.m_rdb_100.Location = new System.Drawing.Point(534, 47);
+            this.m_rdb_100.Name = "m_rdb_100";
+            this.m_rdb_100.Size = new System.Drawing.Size(112, 17);
+            this.m_rdb_100.TabIndex = 20;
+            this.m_rdb_100.TabStop = true;
+            this.m_rdb_100.Text = "Vài tháng gần đây";
+            this.m_rdb_100.UseVisualStyleBackColor = true;
             // 
             // f106_Phan_tich_group
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 440);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.m_lbl_gold_hour);
-            this.Controls.Add(this.m_lbl_comment_per_post);
-            this.Controls.Add(this.m_lbl_like_per_post);
-            this.Controls.Add(this.m_lbl_post_per_day);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(784, 442);
+            this.Controls.Add(this.m_rdb_100);
+            this.Controls.Add(this.m_rdb_50);
+            this.Controls.Add(this.m_rdb_30);
+            this.Controls.Add(this.m_groupbox);
+            this.Controls.Add(this.m_cmd_phan_tich_group);
             this.Controls.Add(this.m_lb_groups);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 480);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 480);
             this.Name = "f106_Phan_tich_group";
-            this.Text = "f106_Phan_tich_group";
+            this.Text = "F106 Phân tích group";
+            this.m_groupbox.ResumeLayout(false);
+            this.m_groupbox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,14 +255,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label m_lbl_post_per_day;
         private System.Windows.Forms.Label m_lbl_like_per_post;
         private System.Windows.Forms.Label m_lbl_comment_per_post;
         private System.Windows.Forms.Label m_lbl_gold_hour;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label m_lbl_gold_hour_action;
+        private System.Windows.Forms.Button m_cmd_phan_tich_group;
+        private System.Windows.Forms.Label m_lbl_silver;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox m_groupbox;
+        private System.Windows.Forms.RadioButton m_rdb_30;
+        private System.Windows.Forms.RadioButton m_rdb_50;
+        private System.Windows.Forms.RadioButton m_rdb_100;
     }
 }
