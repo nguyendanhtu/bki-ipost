@@ -393,7 +393,7 @@
             this.MaximizeBox = false;
             this.Name = "f104_post";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F104 - Đăng bài";
+            this.Text = "F104 - Bạn đăng bài với tên " + globalInfo.name;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

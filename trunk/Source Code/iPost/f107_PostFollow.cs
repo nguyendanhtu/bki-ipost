@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Facebook;
 using System.Dynamic;
+using System.IO;
 
 namespace test
 {
@@ -74,10 +75,11 @@ namespace test
 
         private void load_data_2_grv()
         {
+            string v_path = Directory.GetCurrentDirectory();
             FacebookClient fb = new FacebookClient(access_token);
             m_grv.AutoGenerateColumns = false;
             var roles = new List<cl_post>();
-            string[] lines = System.IO.File.ReadAllLines(@"C:\BKIndex\AutoPostToGroup\postId.txt");
+            string[] lines = System.IO.File.ReadAllLines(v_path+"\\postId.txt");
             for (int i = 0; i < lines.Count(); i++)
             {
                 string post = lines[i].Trim();

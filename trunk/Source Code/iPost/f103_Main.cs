@@ -21,6 +21,11 @@ namespace test
         {
             InitializeComponent();
             this.CenterToScreen();
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
+            dynamic data = fb.Get("/me?fields=name");
+            var v_name = ((JsonObject)data)["name"].ToString();
+            globalInfo.name = v_name;
+            this.Text = globalInfo.name + " đang sử dụng iPost";
         }
 
         #endregion
@@ -29,8 +34,10 @@ namespace test
         private void m_cmd_post_Click(object sender, EventArgs e)
         {
             try {
+                this.Hide();
                 f104_post v_f = new f104_post();
-                v_f.ShowDialog();     
+                v_f.ShowDialog();
+                this.Show();
             }
             catch (Exception v_e) {
 
@@ -55,8 +62,10 @@ namespace test
         private void m_cmd_follow_Click(object sender, EventArgs e)
         {
             try {
+                this.Hide();
                 f107_PostFollow v_f = new f107_PostFollow();
                 v_f.ShowDialog();
+                this.Show();
             }
             catch (Exception v_e) {
                 
@@ -69,28 +78,32 @@ namespace test
         {
             try
             {
+                this.Hide();
                 f108_QLGroup v_f = new f108_QLGroup();
                 v_f.ShowDialog();
+                this.Show();
             }
             catch (Exception v_e)
             {
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
-        }
-        #endregion
+        }        
 
         private void m_cmd_thong_ke_Click(object sender, EventArgs e)
         {
             try
             {
+                this.Hide();
                 f106_Phan_tich_group v_f = new f106_Phan_tich_group();
                 v_f.displayMyGroup();
+                this.Show();
             }
             catch (Exception v_e)
             {
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }            
+            }
         }
+        #endregion
     }
 }
