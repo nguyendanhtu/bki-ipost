@@ -46,15 +46,16 @@
             this.m_rdb_30 = new System.Windows.Forms.RadioButton();
             this.m_rdb_50 = new System.Windows.Forms.RadioButton();
             this.m_rdb_100 = new System.Windows.Forms.RadioButton();
+            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_groupbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_lb_groups
             // 
             this.m_lb_groups.FormattingEnabled = true;
-            this.m_lb_groups.Location = new System.Drawing.Point(12, 47);
+            this.m_lb_groups.Location = new System.Drawing.Point(12, 73);
             this.m_lb_groups.Name = "m_lb_groups";
-            this.m_lb_groups.Size = new System.Drawing.Size(203, 381);
+            this.m_lb_groups.Size = new System.Drawing.Size(203, 355);
             this.m_lb_groups.TabIndex = 0;
             // 
             // label1
@@ -225,22 +226,33 @@
             this.m_rdb_100.Text = "Vài tháng gần đây";
             this.m_rdb_100.UseVisualStyleBackColor = true;
             // 
+            // m_txt_search
+            // 
+            this.m_txt_search.Location = new System.Drawing.Point(12, 46);
+            this.m_txt_search.Name = "m_txt_search";
+            this.m_txt_search.Size = new System.Drawing.Size(203, 20);
+            this.m_txt_search.TabIndex = 21;
+            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
+            // 
             // f106_Phan_tich_group
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 442);
+            this.ClientSize = new System.Drawing.Size(794, 452);
+            this.Controls.Add(this.m_txt_search);
             this.Controls.Add(this.m_rdb_100);
             this.Controls.Add(this.m_rdb_50);
             this.Controls.Add(this.m_rdb_30);
             this.Controls.Add(this.m_groupbox);
             this.Controls.Add(this.m_cmd_phan_tich_group);
             this.Controls.Add(this.m_lb_groups);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 480);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(800, 480);
             this.Name = "f106_Phan_tich_group";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F106 Phân tích group";
             this.m_groupbox.ResumeLayout(false);
             this.m_groupbox.PerformLayout();
@@ -269,5 +281,6 @@
         private System.Windows.Forms.RadioButton m_rdb_30;
         private System.Windows.Forms.RadioButton m_rdb_50;
         private System.Windows.Forms.RadioButton m_rdb_100;
+        private System.Windows.Forms.TextBox m_txt_search;
     }
 }

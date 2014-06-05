@@ -70,8 +70,10 @@
             this.Controls.Add(this.link);
             this.Controls.Add(this.name);
             this.Controls.Add(this.m_pic_avatar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "f105_Info_Friend";
-            this.Text = "Thông tin bạn bè";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "F105 - Thông tin bạn bè";
             ((System.ComponentModel.ISupportInitialize)(this.m_pic_avatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
