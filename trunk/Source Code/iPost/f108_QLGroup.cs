@@ -64,6 +64,7 @@ namespace test
 
         private void m_lb_friend_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            m_chk_all_group.Checked = false;
             FacebookClient fb = new FacebookClient(access_token);
             var me_groups = new List<groups>();
             dynamic data = fb.Get("/me/groups");
