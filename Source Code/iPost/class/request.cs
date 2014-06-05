@@ -27,7 +27,9 @@ namespace test
             newStream.Close();
         }
 
-        private void cookie_init(CookieCollection ip_cookie) {
+        public CookieCollection cookie_init()
+        {
+            CookieCollection ip_cookie = new CookieCollection();
             read_cookie_from_hard_disk();
             Cookie locale = new Cookie("locale", "en-US");
             Cookie datr = new Cookie("datr", "");
@@ -94,19 +96,17 @@ namespace test
             ip_cookie.Add(fr);
             ip_cookie.Add(s);
             ip_cookie.Add(c_user);
+            return ip_cookie;
         }
 
         private void request_init(HttpWebRequest ip_request, string ip_method) {
-            CookieCollection v_cookies = new CookieCollection();
-            cookie_init(v_cookies);
             ip_request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.159 CoRom/33.0.1750.159 Safari/537.36";
             ip_request.ProtocolVersion = HttpVersion.Version11;
             ip_request.Method = ip_method;
             ip_request.AllowAutoRedirect = true;
             ip_request.ContentType = "application/x-www-form-urlencoded";
             ip_request.CookieContainer = new CookieContainer();
-            ip_request.CookieContainer.Add(v_cookies);
-            
+            ip_request.CookieContainer.Add(globalInfo.cookie_collection);            
         }
 
         private string dataPost() {

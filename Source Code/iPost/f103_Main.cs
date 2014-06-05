@@ -26,6 +26,8 @@ namespace test
             var v_name = ((JsonObject)data)["name"].ToString();
             globalInfo.name = v_name;
             this.Text = globalInfo.name + " đang sử dụng iPost";
+            request v_req = new request();
+            globalInfo.cookie_collection = v_req.cookie_init();
         }
 
         #endregion
