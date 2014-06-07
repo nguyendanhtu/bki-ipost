@@ -79,7 +79,7 @@ namespace test
 
                 response_type = "token",
 
-                scope = "user_groups,publish_actions" // Add other permissions as needed
+                scope = "user_groups,user_friends,friends_groups,publish_actions" // Add other permissions as needed
 
             });
             return loginUrl.AbsoluteUri;

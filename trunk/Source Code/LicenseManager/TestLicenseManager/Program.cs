@@ -45,9 +45,6 @@ namespace TestLicenseManager
             {
                 Console.WriteLine("Everything seems to be okay !");
             }
-
         }
-
-
     }
 }
