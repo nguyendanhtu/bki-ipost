@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.m_cmd_post = new System.Windows.Forms.Button();
-            this.m_cbl_group = new System.Windows.Forms.CheckedListBox();
+            //this.m_cbl_group = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.m_chk_all = new System.Windows.Forms.CheckBox();
@@ -80,15 +80,15 @@
             // 
             // m_cbl_group
             // 
-            this.m_cbl_group.CheckOnClick = true;
-            this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.m_cbl_group.FormattingEnabled = true;
-            this.m_cbl_group.Location = new System.Drawing.Point(0, 95);
-            this.m_cbl_group.Name = "m_cbl_group";
-            this.m_cbl_group.Size = new System.Drawing.Size(239, 349);
-            this.m_cbl_group.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
-                    "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
+            //this.m_cbl_group.CheckOnClick = true;
+            //this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
+            //this.m_cbl_group.FormattingEnabled = true;
+            //this.m_cbl_group.Location = new System.Drawing.Point(0, 95);
+            //this.m_cbl_group.Name = "m_cbl_group";
+            //this.m_cbl_group.Size = new System.Drawing.Size(239, 349);
+            //this.m_cbl_group.TabIndex = 2;
+            //this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
+            //        "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
             // 
             // panel1
             // 
@@ -96,7 +96,7 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.m_chk_all);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.m_cbl_group);
+            //this.panel1.Controls.Add(this.m_cbl_group);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
@@ -409,7 +409,7 @@
         #endregion
 
         private System.Windows.Forms.Button m_cmd_post;
-        private System.Windows.Forms.CheckedListBox m_cbl_group;
+        //private System.Windows.Forms.CheckedListBox m_cbl_group;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;

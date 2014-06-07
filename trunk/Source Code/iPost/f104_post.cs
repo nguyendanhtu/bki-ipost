@@ -41,9 +41,9 @@ namespace test
         string caption = "";
         string description = "";
         BackgroundWorker backgroundWorker1;
-
         List<groups> m_SortedList;
 
+        CustomCheckedListBox m_cbl_group = new CustomCheckedListBox();
         #endregion        
 
 
@@ -97,20 +97,20 @@ namespace test
                     groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
                     roles.Add(group);
                 }
-                m_SortedList = roles.OrderBy(o => o.Name).ToList(); ;
-                m_cbl_group.DataSource = m_SortedList;
-                m_cbl_group.DisplayMember = "Name";
-                m_cbl_group.ValueMember = "Id";
+                m_SortedList = roles.OrderBy(o => o.Name).ToList();
+                for (int i = 0; i < m_SortedList.Count; i++)
+                {
+                    m_cbl_group.Items.Add(m_SortedList[i].Name);
+                }
             }
             catch (Exception v_e) {
-
-
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
 
         }
 
-        internal void Updating(string p, string p_2, string p_3) {
+        public void Updating(string p, string p_2, string p_3)
+        {
             try {
                 link = p;
                 caption = p_2;
@@ -133,7 +133,14 @@ namespace test
                 int length = m_cbl_group.CheckedItems.Count;
                 progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
                 for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++) {
-                    post_2_facebook((groups)m_cbl_group.CheckedItems[i]);
+                    foreach (groups item in m_SortedList)
+                    {
+                        if (item.Name == m_cbl_group.CheckedItems[i].ToString())
+                        {
+                            post_2_facebook(item);
+                            break;
+                        }
+                    }
                     backgroundWorker1.ReportProgress((int)(i / length * 100));
                     if (i + 1 != m_cbl_group.CheckedItems.Count) {
                         int time = Convert.ToInt32(m_txt_time.Text) * 1000;
@@ -170,6 +177,11 @@ namespace test
 
             try {
                 m_cmd_post.Text = "Đăng bài";
+                foreach (var item in m_cbl_group.CheckedIndices)
+                {
+                    m_cbl_group.Completionlist.Add(int.Parse(item.ToString()));
+                }
+                m_cbl_group.Refresh();
             }
             catch (Exception v_e) {
 
@@ -177,8 +189,6 @@ namespace test
             }
           
         }
-
-        
 
         private void m_cmd_post_Click(object sender, EventArgs e)
         {
@@ -192,6 +202,7 @@ namespace test
                     m_cmd_post.Text = "Đăng bài";
                 }
                 else {
+                    m_cbl_group.Completionlist.Clear();
                     progressBar1.Value = progressBar1.Minimum;
                     m_cmd_post.Text = "Stop";
                     backgroundWorker1.RunWorkerAsync();
@@ -232,6 +243,17 @@ namespace test
         private void Form1_Load(object sender, EventArgs e)
         {
             try {
+                this.m_cbl_group.CheckOnClick = true;
+                this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
+                this.m_cbl_group.FormattingEnabled = true;
+                this.m_cbl_group.Location = new System.Drawing.Point(0, 95);
+                this.m_cbl_group.Name = "m_cbl_group";
+                this.m_cbl_group.Size = new System.Drawing.Size(239, 349);
+                this.m_cbl_group.TabIndex = 2;
+                this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
+                        "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
+                this.panel1.Controls.Add(this.m_cbl_group);
+                //--------------------------------------------------------------------------------------------------
                 m_access_token = globalInfo.access_token;
                 FacebookClient fb = new FacebookClient(m_access_token);
                 dynamic data = fb.Get("/me?fields=name");
@@ -259,7 +281,6 @@ namespace test
          
         }
 
-
         private void m_chk_all_CheckedChanged(object sender, EventArgs e)
         {
             try {
@@ -283,50 +304,74 @@ namespace test
 
         private void m_txt_search_TextChanged(object sender, EventArgs e) {
             try {
-               
+                List<string> v_list_checked = new List<string>();
+                List<string> v_list_search = new List<string>();
+                List<groups> v_list_result = new List<groups>();
 
-                List<groups> v_filterList = new List<groups>();
-                List<groups> v_checkedlist = new List<groups>();
-
-                //1. Lấy danh sách các group đã chọn
-                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++) {
-                    v_checkedlist.Add((groups)m_cbl_group.CheckedItems[i]);
-                    v_filterList.Add((groups)m_cbl_group.CheckedItems[i]);
+                //-- 1. Lấy danh sách những group đã chọn
+                foreach (var item in m_cbl_group.CheckedItems)
+                {
+                    v_list_checked.Add(item.ToString());
                 }
 
-              //2. Lấy danh sách các group thỏa mãn tìm kiếm
-                foreach (groups v_froup in m_SortedList) {
-                    if (v_froup.Name.ToLower().IndexOf(m_txt_search.Text.ToLower()) >= 0) {
-                        int index = v_filterList.FindIndex(item => item.Id == v_froup.Id);
-                        if (index < 0) {
-                            v_filterList.Add(v_froup);  
+                //-- 2. Lấy danh sách những group thỏa mãn từ khóa tìm kiếm
+                foreach (var item in m_SortedList)
+                {
+                    if (item.Name.ToString().ToLower().Contains(m_txt_search.Text.ToLower().Trim())) {
+                        bool v_b_check = v_list_checked.Select(x => x == item.Name.ToString()).FirstOrDefault();
+                        if (!v_b_check)
+                        {
+                            v_list_search.Add(item.Name.ToString());
                         }
-                        
-                    }
-                        
-                }
-                //3. Đưa danh sách lên LIST
-                if (m_txt_search.Text.Trim().Length == 0) {
-                    m_cbl_group.DataSource = m_SortedList;                  
-                }
-                else {
-
-                    m_cbl_group.DataSource = v_filterList;
-                }
-                m_cbl_group.DisplayMember = "Name";
-                m_cbl_group.ValueMember = "Id";
-                //4. Đánh dấu các Group đã chọn.
-                for (int i = 0; i < m_cbl_group.Items.Count; i++) {
-                    m_cbl_group.SetItemChecked(i, false);
-                }
-                for (int i = 0; i < m_cbl_group.Items.Count; i++) {
-                    groups v_group = (groups)m_cbl_group.Items[i];
-                    
-                    if (v_checkedlist.FindIndex(item => item.Id ==v_group.Id)>=0){
-                    m_cbl_group.SetItemChecked(i, true);
                     }
                 }
+                //-- 3. Tổng hợp kết quả
+                if (m_txt_search.Text.Trim() == "")
+                {
+                    v_list_result = m_SortedList;
+                }
+                else
+                {
+                    foreach (string name in v_list_checked)
+                    {
+                        foreach (groups group in m_SortedList)
+                        {
+                            if (name == group.Name)
+                            {
+                                v_list_result.Add(group);
+                                break;
+                            }
+                        }
+                    }
 
+                    foreach (string name in v_list_search)
+                    {
+                        foreach (groups group in m_SortedList)
+                        {
+                            if (name == group.Name)
+                            {
+                                v_list_result.Add(group);
+                                break;
+                            }
+                        }
+                    }
+                }
+                //-- 4. Đưa kết quả lên Control
+                bool check = false;
+                m_cbl_group.Items.Clear();
+                foreach (groups group in v_list_result)
+                {
+                    foreach (var name in v_list_checked)
+                    {
+                        if (name == group.Name)
+                        {
+                            check = true;
+                            break;
+                        }
+                    }
+                    m_cbl_group.Items.Add(group.Name, check);
+                    check = false;
+                }
             }
             catch (Exception v_e) {
 
