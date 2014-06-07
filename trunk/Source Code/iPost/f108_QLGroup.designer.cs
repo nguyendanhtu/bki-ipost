@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.m_tabpage_friend = new System.Windows.Forms.TabPage();
+            this.m_cmd_phan_tich = new System.Windows.Forms.Button();
             this.m_wb = new System.Windows.Forms.WebBrowser();
             this.m_lb_friend_list = new System.Windows.Forms.ListBox();
             this.m_cmd_get_info = new System.Windows.Forms.Button();
@@ -37,13 +38,14 @@
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.m_cmd_phan_tich = new System.Windows.Forms.Button();
+            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_tabpage_friend.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_tabpage_friend
             // 
+            this.m_tabpage_friend.Controls.Add(this.m_txt_search);
             this.m_tabpage_friend.Controls.Add(this.m_cmd_phan_tich);
             this.m_tabpage_friend.Controls.Add(this.m_wb);
             this.m_tabpage_friend.Controls.Add(this.m_lb_friend_list);
@@ -60,6 +62,16 @@
             this.m_tabpage_friend.Text = "Tìm kiếm Group theo bạn bè";
             this.m_tabpage_friend.UseVisualStyleBackColor = true;
             // 
+            // m_cmd_phan_tich
+            // 
+            this.m_cmd_phan_tich.Location = new System.Drawing.Point(352, 16);
+            this.m_cmd_phan_tich.Name = "m_cmd_phan_tich";
+            this.m_cmd_phan_tich.Size = new System.Drawing.Size(165, 23);
+            this.m_cmd_phan_tich.TabIndex = 27;
+            this.m_cmd_phan_tich.Text = "Phân tích group";
+            this.m_cmd_phan_tich.UseVisualStyleBackColor = true;
+            this.m_cmd_phan_tich.Click += new System.EventHandler(this.m_cmd_phan_tich_Click);
+            // 
             // m_wb
             // 
             this.m_wb.Location = new System.Drawing.Point(652, 47);
@@ -72,9 +84,9 @@
             // m_lb_friend_list
             // 
             this.m_lb_friend_list.FormattingEnabled = true;
-            this.m_lb_friend_list.Location = new System.Drawing.Point(24, 47);
+            this.m_lb_friend_list.Location = new System.Drawing.Point(24, 73);
             this.m_lb_friend_list.Name = "m_lb_friend_list";
-            this.m_lb_friend_list.Size = new System.Drawing.Size(165, 407);
+            this.m_lb_friend_list.Size = new System.Drawing.Size(165, 381);
             this.m_lb_friend_list.TabIndex = 25;
             this.m_lb_friend_list.SelectedIndexChanged += new System.EventHandler(this.m_lb_friend_list_SelectedIndexChanged);
             // 
@@ -136,15 +148,13 @@
             this.tabControl1.Size = new System.Drawing.Size(547, 568);
             this.tabControl1.TabIndex = 17;
             // 
-            // m_cmd_phan_tich
+            // m_txt_search
             // 
-            this.m_cmd_phan_tich.Location = new System.Drawing.Point(352, 16);
-            this.m_cmd_phan_tich.Name = "m_cmd_phan_tich";
-            this.m_cmd_phan_tich.Size = new System.Drawing.Size(165, 23);
-            this.m_cmd_phan_tich.TabIndex = 27;
-            this.m_cmd_phan_tich.Text = "Phân tích group";
-            this.m_cmd_phan_tich.UseVisualStyleBackColor = true;
-            this.m_cmd_phan_tich.Click += new System.EventHandler(this.m_cmd_phan_tich_Click);
+            this.m_txt_search.Location = new System.Drawing.Point(24, 48);
+            this.m_txt_search.Name = "m_txt_search";
+            this.m_txt_search.Size = new System.Drawing.Size(165, 20);
+            this.m_txt_search.TabIndex = 28;
+            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
             // 
             // f108_QLGroup
             // 
@@ -154,7 +164,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "f108_QLGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F108 - Bạn đang sử dụng tài khoản " + globalInfo.name;
+            this.Text = "F108 - Bạn đang sử dụng tài khoản ";
             this.Load += new System.EventHandler(this.f108_QLGroup_Load);
             this.m_tabpage_friend.ResumeLayout(false);
             this.m_tabpage_friend.PerformLayout();
@@ -175,6 +185,7 @@
         private System.Windows.Forms.CheckBox m_chk_all_group;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button m_cmd_phan_tich;
+        private System.Windows.Forms.TextBox m_txt_search;
 
     }
 }
