@@ -31,6 +31,8 @@ namespace test
         string access_token = "";
         string m_uid = "";
         string m_dtsg = "";
+        bool m_status_search = true;
+        List<groups> m_SortedList = new List<groups>();
 
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
@@ -48,50 +50,60 @@ namespace test
 
         private void load_friend_list() {
             FacebookClient fb = new FacebookClient(access_token);
-            var roles = new List<groups>();
+            
             dynamic data = fb.Get("/me/friends");
 
             foreach (var friend in (JsonArray)data["data"])
             {
                 groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                roles.Add(group);
+                m_SortedList.Add(group);
             }
-            roles = roles.OrderBy(o => o.Name).ToList();
-            m_lb_friend_list.DataSource = roles;
+            m_SortedList = m_SortedList.OrderBy(o => o.Name).ToList();
+            m_lb_friend_list.DataSource = m_SortedList;
             m_lb_friend_list.DisplayMember = "Name";
             m_lb_friend_list.ValueMember = "Id";
         }
 
         private void m_lb_friend_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            m_chk_all_group.Checked = false;
-            FacebookClient fb = new FacebookClient(access_token);
-            var me_groups = new List<groups>();
-            dynamic data = fb.Get("/me/groups");
-            foreach (var friend in (JsonArray)data["data"])
+            if (m_status_search)
             {
-                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                me_groups.Add(group);
+                load_group_list();
             }
+        }
 
-            var roles = new List<groups>();
-            string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
-            data = fb.Get("/" + pid + "/groups");
-            foreach (var friend in (JsonArray)data["data"])
+        private void load_group_list() {
+            if (m_lb_friend_list.Items.Count > 0)
             {
-                groups gr = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                var s = (from a in me_groups where a.Id == gr.Id select a).ToList();
-                if (s.Count == 0)
+                m_chk_all_group.Checked = false;
+                FacebookClient fb = new FacebookClient(access_token);
+                var me_groups = new List<groups>();
+                dynamic data = fb.Get("/me/groups");
+                foreach (var friend in (JsonArray)data["data"])
                 {
-                    roles.Add(gr);   
+                    groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                    me_groups.Add(group);
                 }
-            }
 
-            roles = roles.OrderBy(o => o.Name).ToList();
-            m_lb_group_list.DataSource = roles;
-            m_lb_group_list.DisplayMember = "Name";
-            m_lb_group_list.ValueMember = "Id";
-            m_chk_all_group.Text = "Tất cả "+m_lb_group_list.Items.Count.ToString()+" group";
+                var roles = new List<groups>();
+                string pid = ((groups)m_lb_friend_list.SelectedItem).Id;
+                data = fb.Get("/" + pid + "/groups");
+                foreach (var friend in (JsonArray)data["data"])
+                {
+                    groups gr = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                    var s = (from a in me_groups where a.Id == gr.Id select a).ToList();
+                    if (s.Count == 0)
+                    {
+                        roles.Add(gr);
+                    }
+                }
+
+                roles = roles.OrderBy(o => o.Name).ToList();
+                m_lb_group_list.DataSource = roles;
+                m_lb_group_list.DisplayMember = "Name";
+                m_lb_group_list.ValueMember = "Id";
+                m_chk_all_group.Text = "Tất cả " + m_lb_group_list.Items.Count.ToString() + " group";
+            }            
         }
 
         private void m_chk_all_group_CheckedChanged(object sender, EventArgs e)
@@ -236,6 +248,49 @@ namespace test
                 group_list.Add((groups)item);
             }
             v_f.display(group_list);
+        }
+
+        private void m_txt_search_TextChanged(object sender, EventArgs e) {
+            try {
+                m_status_search = false;
+                List<groups> v_filterList = new List<groups>();
+                List<groups> v_checkedlist = new List<groups>();
+              
+                //1. Lấy danh sách các group thỏa mãn tìm kiếm
+                foreach (groups v_friend in m_SortedList)
+                {
+                    //if (v_friend.Name.ToLower().IndexOf(m_txt_search.Text.ToLower()) >= 0) {
+                    //    int index = v_filterList.FindIndex(item => item.Id == v_friend.Id);
+                    //    if (index < 0) {
+                    //        v_filterList.Add(v_friend);
+                    //    }
+                    //}
+
+                    if (v_friend.Name.ToLower().Contains(m_txt_search.Text.ToLower()))
+                    {
+                        int index = v_filterList.FindIndex(item => item.Id == v_friend.Id);
+                        if (index < 0)
+                        {
+                            v_filterList.Add(v_friend);    
+                        }                        
+                    }
+                }
+
+                //2. Đưa danh sách lên LIST
+                if (m_txt_search.Text.Trim().Length == 0) {
+                    m_lb_friend_list.DataSource = m_SortedList;                  
+                }
+                else
+                {
+                    m_lb_friend_list.DataSource = v_filterList;
+                }
+                m_lb_friend_list.DisplayMember = "Name";
+                m_lb_friend_list.ValueMember = "Id";
+                m_status_search = true;
+            }
+            catch (Exception v_e) {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
         }
     }
 }
