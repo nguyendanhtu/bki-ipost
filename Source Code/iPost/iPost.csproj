@@ -63,6 +63,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TienX.License">
+      <HintPath>..\libs\TienX.License.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advance.cs">
@@ -193,12 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LicenseManager\com.tienx.licman\TienX.License.csproj">
-      <Project>{8CE97C47-96DC-4112-8651-93D3B3852A93}</Project>
-      <Name>TienX.License</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
