@@ -20,13 +20,14 @@ namespace test
             string v_path = Directory.GetCurrentDirectory();
             v_path = v_path + "\\iPostLicense.lic";
             if (File.Exists(v_path)) {
-                bool verify = license.verifyLicenseFile(v_path);
-                if (verify)
+                var verify = license.verifyErrorCode(v_path);
+                if (verify == TienX.License.ErrorCode.Success)
                 {
                     Application.Run(new LoginFacebook());
                 }
                 else
                 {
+                    MessageBox.Show("Hết hạn dùng thử");
                     Application.Run(new Login());
                 }
             }
