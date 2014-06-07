@@ -75,6 +75,9 @@
       <DependentUpon>Advance.cs</DependentUpon>
     </Compile>
     <Compile Include="class\cl_post.cs" />
+    <Compile Include="class\CustomCheckedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="f103_Main.cs">
       <SubType>Form</SubType>
     </Compile>

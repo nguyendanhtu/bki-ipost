@@ -80,6 +80,7 @@
             this.m_wb.Size = new System.Drawing.Size(250, 250);
             this.m_wb.TabIndex = 26;
             this.m_wb.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.m_wb_DocumentCompleted);
+            this.m_wb.ScriptErrorsSuppressed = true;
             // 
             // m_lb_friend_list
             // 
