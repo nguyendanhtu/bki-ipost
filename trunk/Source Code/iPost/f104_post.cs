@@ -42,6 +42,7 @@ namespace test
         string description = "";
         BackgroundWorker backgroundWorker1;
         List<groups> m_SortedList;
+        List<string> m_list_color = new List<string>();
 
         CustomCheckedListBox m_cbl_group = new CustomCheckedListBox();
         #endregion        
@@ -179,6 +180,7 @@ namespace test
                 foreach (var item in m_cbl_group.CheckedIndices)
                 {
                     m_cbl_group.Completionlist.Add(int.Parse(item.ToString()));
+                    m_list_color.Add(m_cbl_group.Items[int.Parse(item.ToString())].ToString());
                 }
                 m_cbl_group.Refresh();
             }
@@ -202,6 +204,8 @@ namespace test
                 }
                 else {
                     m_cbl_group.Completionlist.Clear();
+                    m_list_color.Clear();
+                    m_cbl_group.Refresh();
                     progressBar1.Value = progressBar1.Minimum;
                     m_cmd_post.Text = "Stop";
                     backgroundWorker1.RunWorkerAsync();
@@ -307,6 +311,9 @@ namespace test
                 List<string> v_list_search = new List<string>();
                 List<groups> v_list_result = new List<groups>();
 
+                //-- 0. Xóa màu các group
+                m_cbl_group.Completionlist.Clear();
+
                 //-- 1. Lấy danh sách những group đã chọn
                 foreach (var item in m_cbl_group.CheckedItems)
                 {
@@ -358,6 +365,7 @@ namespace test
                 //-- 4. Đưa kết quả lên Control
                 bool check = false;
                 m_cbl_group.Items.Clear();
+                int index = 0;
                 foreach (groups group in v_list_result)
                 {
                     foreach (var name in v_list_checked)
@@ -368,7 +376,14 @@ namespace test
                             break;
                         }
                     }
+                    
                     m_cbl_group.Items.Add(group.Name, check);
+                    var v_checked = m_list_color.Select(x => x == group.Name.ToString()).FirstOrDefault();
+                    if (v_checked)
+                    {
+                        m_cbl_group.Completionlist.Add(index);
+                    }
+                    index += 1;
                     check = false;
                 }
             }
