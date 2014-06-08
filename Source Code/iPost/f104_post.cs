@@ -82,8 +82,7 @@ namespace test
                 }
                 file.Close();
             }
-            catch (Exception v_e) {
-
+            catch (Exception ) {
             }
         }
 
