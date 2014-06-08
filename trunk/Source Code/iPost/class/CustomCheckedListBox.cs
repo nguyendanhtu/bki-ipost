@@ -29,7 +29,7 @@ namespace test
             if (Completionlist.Contains(i))
             {
                 myBrush = Brushes.Black;
-                e.Graphics.FillRectangle(Brushes.Red, rect);
+                e.Graphics.FillRectangle(Brushes.AntiqueWhite, rect);
             }
             else
             {
