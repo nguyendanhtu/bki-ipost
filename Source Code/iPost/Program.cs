@@ -26,9 +26,14 @@ namespace test
                 {
                     Application.Run(new LoginFacebook());
                 }
+                else if (verify == TienX.License.ErrorCode.Expired)
+                {
+                    MessageBox.Show("Hết hạn dùng thử. Hãy nhập key mới để tiếp tục sử dụng");
+                    Application.Run(new Login());
+                }
                 else
                 {
-                    MessageBox.Show("Hết hạn dùng thử");
+                    // License may be modified or invalid license
                     Application.Run(new Login());
                 }
             }
