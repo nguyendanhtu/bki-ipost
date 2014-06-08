@@ -156,7 +156,8 @@ namespace test
             }
             catch (Exception v_e)
             {
-                MessageBox.Show("Bạn chưa có bài đăng nào");                
+                MessageBox.Show("Bạn chưa có bài đăng nào");
+                this.Close();
             }
             
         }
