@@ -162,6 +162,7 @@
             this.Controls.Add(this.m_txt_link);
             this.Controls.Add(this.m_cmd_save);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Advance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Soạn thảo đường dẫn ảnh kèm bài đăng";

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f108_QLGroup));
             this.m_tabpage_friend = new System.Windows.Forms.TabPage();
+            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_cmd_phan_tich = new System.Windows.Forms.Button();
             this.m_wb = new System.Windows.Forms.WebBrowser();
             this.m_lb_friend_list = new System.Windows.Forms.ListBox();
@@ -38,7 +40,6 @@
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_tabpage_friend.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,14 @@
             this.m_tabpage_friend.Text = "Tìm kiếm Group theo bạn bè";
             this.m_tabpage_friend.UseVisualStyleBackColor = true;
             // 
+            // m_txt_search
+            // 
+            this.m_txt_search.Location = new System.Drawing.Point(24, 48);
+            this.m_txt_search.Name = "m_txt_search";
+            this.m_txt_search.Size = new System.Drawing.Size(165, 20);
+            this.m_txt_search.TabIndex = 28;
+            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
+            // 
             // m_cmd_phan_tich
             // 
             this.m_cmd_phan_tich.Location = new System.Drawing.Point(352, 16);
@@ -77,10 +86,10 @@
             this.m_wb.Location = new System.Drawing.Point(652, 47);
             this.m_wb.MinimumSize = new System.Drawing.Size(20, 20);
             this.m_wb.Name = "m_wb";
+            this.m_wb.ScriptErrorsSuppressed = true;
             this.m_wb.Size = new System.Drawing.Size(250, 250);
             this.m_wb.TabIndex = 26;
             this.m_wb.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.m_wb_DocumentCompleted);
-            this.m_wb.ScriptErrorsSuppressed = true;
             // 
             // m_lb_friend_list
             // 
@@ -149,20 +158,13 @@
             this.tabControl1.Size = new System.Drawing.Size(547, 568);
             this.tabControl1.TabIndex = 17;
             // 
-            // m_txt_search
-            // 
-            this.m_txt_search.Location = new System.Drawing.Point(24, 48);
-            this.m_txt_search.Name = "m_txt_search";
-            this.m_txt_search.Size = new System.Drawing.Size(165, 20);
-            this.m_txt_search.TabIndex = 28;
-            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
-            // 
             // f108_QLGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 568);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "f108_QLGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F108 - Bạn đang sử dụng tài khoản ";

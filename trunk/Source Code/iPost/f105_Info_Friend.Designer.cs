@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f105_Info_Friend));
             this.m_pic_avatar = new System.Windows.Forms.PictureBox();
             this.name = new System.Windows.Forms.Label();
             this.link = new System.Windows.Forms.LinkLabel();
@@ -71,6 +72,7 @@
             this.Controls.Add(this.name);
             this.Controls.Add(this.m_pic_avatar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "f105_Info_Friend";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F105 - Thông tin bạn bè";

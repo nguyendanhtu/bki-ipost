@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f104_post));
             this.m_cmd_post = new System.Windows.Forms.Button();
-            //this.m_cbl_group = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.m_chk_all = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.m_txt_search = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -78,30 +78,26 @@
             this.m_cmd_post.UseVisualStyleBackColor = false;
             this.m_cmd_post.Click += new System.EventHandler(this.m_cmd_post_Click);
             // 
-            // m_cbl_group
-            // 
-            //this.m_cbl_group.CheckOnClick = true;
-            //this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
-            //this.m_cbl_group.FormattingEnabled = true;
-            //this.m_cbl_group.Location = new System.Drawing.Point(0, 95);
-            //this.m_cbl_group.Name = "m_cbl_group";
-            //this.m_cbl_group.Size = new System.Drawing.Size(239, 349);
-            //this.m_cbl_group.TabIndex = 2;
-            //this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
-            //        "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.m_txt_search);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.m_chk_all);
             this.panel1.Controls.Add(this.label1);
-            //this.panel1.Controls.Add(this.m_cbl_group);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(239, 444);
             this.panel1.TabIndex = 4;
+            // 
+            // m_txt_search
+            // 
+            this.m_txt_search.Location = new System.Drawing.Point(8, 44);
+            this.m_txt_search.Name = "m_txt_search";
+            this.m_txt_search.Size = new System.Drawing.Size(221, 20);
+            this.m_txt_search.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.m_txt_search, "Gõ từ khóa để tìm kiếm các nhóm bạn muốn đăng bài");
+            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
             // 
             // label7
             // 
@@ -371,15 +367,6 @@
             this.label11.Text = "5 BƯỚC ĐƠN GIẢN ĐỂ SẢN PHẨM CỦA BẠN ĐƯỢC HÀNG NGHÌN NGƯỜI BIẾT ĐẾN";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // m_txt_search
-            // 
-            this.m_txt_search.Location = new System.Drawing.Point(8, 44);
-            this.m_txt_search.Name = "m_txt_search";
-            this.m_txt_search.Size = new System.Drawing.Size(221, 20);
-            this.m_txt_search.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.m_txt_search, "Gõ từ khóa để tìm kiếm các nhóm bạn muốn đăng bài");
-            this.m_txt_search.TextChanged += new System.EventHandler(this.m_txt_search_TextChanged);
-            // 
             // f104_post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,10 +377,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "f104_post";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F104 - Bạn đăng bài với tên " + globalInfo.name;
+            this.Text = "F104 - Bạn đăng bài với tên ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
