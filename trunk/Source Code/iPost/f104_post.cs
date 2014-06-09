@@ -187,22 +187,24 @@ namespace test
             catch (Exception v_e) {
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-          
+            }          
         }
 
         private void m_cmd_post_Click(object sender, EventArgs e)
         {
             try {
-                if ((m_txt_time.Text == "") || (Convert.ToInt32(m_txt_time.Text) < 10)) {
+                if ((m_txt_time.Text == "") || (Convert.ToInt32(m_txt_time.Text) < 10))
+                {
                     MessageBox.Show("Nhập lại thời gian");
                     return;
                 }
-                if (backgroundWorker1.IsBusy) {
+                if (backgroundWorker1.IsBusy)
+                {
                     backgroundWorker1.CancelAsync();
                     m_cmd_post.Text = "Đăng bài";
                 }
-                else {
+                else
+                {
                     m_cbl_group.Completionlist.Clear();
                     m_list_color.Clear();
                     m_cbl_group.Refresh();
@@ -214,9 +216,7 @@ namespace test
             catch (Exception v_e) {
                 
                   MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-
-            
+            }            
         }
 
         private void m_chk_has_image_CheckedChanged(object sender, EventArgs e)
@@ -378,8 +378,8 @@ namespace test
                     }
                     
                     m_cbl_group.Items.Add(group.Name, check);
-                    var v_checked = m_list_color.Select(x => x == group.Name.ToString()).FirstOrDefault();
-                    if (v_checked)
+                    var v_checked = m_list_color.Find(x => x == group.Name);
+                    if (v_checked != null)
                     {
                         m_cbl_group.Completionlist.Add(index);
                     }
