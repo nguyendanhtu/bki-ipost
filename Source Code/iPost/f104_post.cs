@@ -324,8 +324,9 @@ namespace test
                 foreach (var item in m_SortedList)
                 {
                     if (item.Name.ToString().ToLower().Contains(m_txt_search.Text.ToLower().Trim())) {
-                        bool v_b_check = v_list_checked.Select(x => x == item.Name.ToString()).FirstOrDefault();
-                        if (!v_b_check)
+                        //bool v_b_check = v_list_checked.Select(x => x == item.Name.ToString()).FirstOrDefault();
+                        var v_b_check = v_list_checked.Find(x => x == item.Name.ToString());
+                        if (v_b_check == null)
                         {
                             v_list_search.Add(item.Name.ToString());
                         }
