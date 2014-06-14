@@ -14,6 +14,16 @@ namespace test
 {
     public partial class f108_QLGroup : Form
     {
+        #region Member
+        BackgroundWorker v_bgw;
+        string access_token = "";
+        string m_uid = "";
+        string m_dtsg = "";
+        bool m_status_search = true;
+        List<groups> m_SortedList = new List<groups>();
+        #endregion
+
+        #region public Method
         public f108_QLGroup()
         {
             InitializeComponent();
@@ -28,12 +38,19 @@ namespace test
             v_bgw.RunWorkerCompleted += v_bgw_RunWorkerCompleted;
         }
 
-        BackgroundWorker v_bgw;
-        string access_token = "";
-        string m_uid = "";
-        string m_dtsg = "";
-        bool m_status_search = true;
-        List<groups> m_SortedList = new List<groups>();
+        public void m_cmd_phan_tich_Click(object sender, EventArgs e)
+        {
+            f106_Phan_tich_group v_f = new f106_Phan_tich_group();
+            List<groups> group_list = new List<groups>();
+            foreach (var item in m_lb_group_list.CheckedItems)
+            {
+                group_list.Add((groups)item);
+            }
+            v_f.display(group_list);
+        }
+        #endregion
+
+        #region private Method
 
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
@@ -49,9 +66,10 @@ namespace test
             load_friend_list();
         }
 
-        private void load_friend_list() {
+        private void load_friend_list()
+        {
             FacebookClient fb = new FacebookClient(access_token);
-            
+
             dynamic data = fb.Get("/me/friends");
 
             foreach (var friend in (JsonArray)data["data"])
@@ -73,7 +91,8 @@ namespace test
             }
         }
 
-        private void load_group_list() {
+        private void load_group_list()
+        {
             if (m_lb_friend_list.Items.Count > 0)
             {
                 m_chk_all_group.Checked = false;
@@ -104,7 +123,7 @@ namespace test
                 m_lb_group_list.DisplayMember = "Name";
                 m_lb_group_list.ValueMember = "Id";
                 m_chk_all_group.Text = "Tất cả " + m_lb_group_list.Items.Count.ToString() + " group";
-            }            
+            }
         }
 
         private void m_chk_all_group_CheckedChanged(object sender, EventArgs e)
@@ -151,7 +170,7 @@ namespace test
             catch (Exception)
             {
                 throw;
-            }            
+            }
         }
 
         private void m_cmd_join_group_Click(object sender, EventArgs e)
@@ -165,7 +184,7 @@ namespace test
             {
                 this.Controls.Remove(m_wb);
                 int second = m_lb_group_list.CheckedItems.Count / 3 * 90 + m_lb_group_list.CheckedItems.Count % 3 * 15;
-                string v_mess = "Thời gian ước tính hoàn thành khoảng "+ (second/60)+ " phút "+ (second % 60)+ " giây";
+                string v_mess = "Thời gian ước tính hoàn thành khoảng " + (second / 60) + " phút " + (second % 60) + " giây";
                 MessageBox.Show(v_mess);
                 if (v_bgw.IsBusy)
                 {
@@ -189,7 +208,7 @@ namespace test
                 if (v_e != null)
                 {
                     m_dtsg = v_e.GetAttribute("value").ToString();
-                }   
+                }
             }
         }
 
@@ -199,7 +218,7 @@ namespace test
             m_prb_friends.Invoke((Action)(() => m_prb_friends.Maximum = m_lb_group_list.CheckedItems.Count));
             for (int i = 0; i < length; i++)
             {
-                v_bgw.ReportProgress(i+1);
+                v_bgw.ReportProgress(i + 1);
                 try
                 {
                     request v_r = new request();
@@ -208,10 +227,10 @@ namespace test
                     v_r.user_id = m_uid;
                     v_r.dtsg = m_dtsg;
                     v_r.request_2_fb("https://www.facebook.com/ajax/groups/membership/r2j.php", "POST");
-                    if (i+1 < m_lb_group_list.CheckedItems.Count)
+                    if (i + 1 < m_lb_group_list.CheckedItems.Count)
                     {
-                        Thread.Sleep(20000);   
-                    }                    
+                        Thread.Sleep(20000);
+                    }
                 }
                 catch (Exception)
                 {
@@ -231,7 +250,7 @@ namespace test
                 else
                 {
                     m_prb_friends.Value = e.ProgressPercentage;
-                }                
+                }
             }
         }
 
@@ -240,23 +259,14 @@ namespace test
             m_cmd_join_group.Text = "Xin gia nhập";
         }
 
-        public void m_cmd_phan_tich_Click(object sender, EventArgs e)
+        private void m_txt_search_TextChanged(object sender, EventArgs e)
         {
-            f106_Phan_tich_group v_f = new f106_Phan_tich_group();
-            List<groups> group_list = new List<groups>();
-            foreach (var item in m_lb_group_list.CheckedItems)
+            try
             {
-                group_list.Add((groups)item);
-            }
-            v_f.display(group_list);
-        }
-
-        private void m_txt_search_TextChanged(object sender, EventArgs e) {
-            try {
                 m_status_search = false;
                 List<groups> v_filterList = new List<groups>();
                 List<groups> v_checkedlist = new List<groups>();
-              
+
                 //1. Lấy danh sách các group thỏa mãn tìm kiếm
                 foreach (groups v_friend in m_SortedList)
                 {
@@ -272,14 +282,15 @@ namespace test
                         int index = v_filterList.FindIndex(item => item.Id == v_friend.Id);
                         if (index < 0)
                         {
-                            v_filterList.Add(v_friend);    
-                        }                        
+                            v_filterList.Add(v_friend);
+                        }
                     }
                 }
 
                 //2. Đưa danh sách lên LIST
-                if (m_txt_search.Text.Trim().Length == 0) {
-                    m_lb_friend_list.DataSource = m_SortedList;                  
+                if (m_txt_search.Text.Trim().Length == 0)
+                {
+                    m_lb_friend_list.DataSource = m_SortedList;
                 }
                 else
                 {
@@ -289,7 +300,8 @@ namespace test
                 m_lb_friend_list.ValueMember = "Id";
                 m_status_search = true;
             }
-            catch (Exception v_e) {
+            catch (Exception v_e)
+            {
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
         }
@@ -322,7 +334,8 @@ namespace test
             m_lb_group_list.DataSource = v_list;
             m_lb_group_list.ValueMember = "Id";
             m_lb_group_list.DisplayMember = "Name";
-            m_chk_all_group.Text = "Tất cả "+ v_list.Count.ToString() + " group";
+            m_chk_all_group.Text = "Tất cả " + v_list.Count.ToString() + " group";
         }
+        #endregion
     }
 }

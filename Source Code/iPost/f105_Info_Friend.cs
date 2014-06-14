@@ -11,17 +11,18 @@ namespace test
 {
     public partial class f105_Info_Friend : Form
     {
-        public f105_Info_Friend()
-        {
-            InitializeComponent();
-        }
+        #region member
+        #endregion
 
+        #region private method
         private void link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             link.LinkVisited = true;
             System.Diagnostics.Process.Start(link.Text);
         }
+        #endregion
 
+        #region public method
         public void display(Facebook.JsonObject friend, Facebook.JsonObject pic)
         {
             name.Text = friend["name"].ToString();
@@ -30,5 +31,11 @@ namespace test
             m_pic_avatar.Load(data["url"].ToString());
             this.ShowDialog();
         }
+
+        public f105_Info_Friend()
+        {
+            InitializeComponent();
+        }
+        #endregion
     }
 }

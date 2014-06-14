@@ -11,28 +11,33 @@ namespace test
 {
     public partial class Advance : Form
     {
-        public Advance()
-        {
-            InitializeComponent();
-        }
-
+        #region member
         f104_post v_f = new f104_post();
+        #endregion
 
+        #region private method
         private void m_cmd_exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        private void m_cmd_save_Click(object sender, EventArgs e)
+        {
+            v_f.Updating(m_txt_link.Text, m_txt_caption.Text, m_txt_description.Text);
+            this.Close();
+        }
+        #endregion
+
+        #region public method
+        public Advance()
+        {
+            InitializeComponent();
+        }
         public void Display(f104_post form1)
         {
             v_f = form1;
             this.ShowDialog();
         }
-
-        private void m_cmd_save_Click(object sender, EventArgs e)
-        {
-            v_f.Updating(m_txt_link.Text,m_txt_caption.Text,m_txt_description.Text);
-            this.Close();
-        }
+        #endregion
     }
 }
