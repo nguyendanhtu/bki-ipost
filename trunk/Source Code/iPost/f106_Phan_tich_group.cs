@@ -12,42 +12,14 @@ namespace test
 {
     public partial class f106_Phan_tich_group : Form
     {
-        public f106_Phan_tich_group()
-        {
-            InitializeComponent();
-        }
-
         #region Members
         List<groups> m_SortedList = new List<groups>();
         #endregion
 
         #region Private Methods
-        public void display(List<groups> group_list) {
-            m_lb_groups.DisplayMember = "Name";
-            m_lb_groups.ValueMember = "Id";
-            m_lb_groups.DataSource = group_list;
-            this.Show();
-        }
-
         private bool checkExistParameter(JsonArray ip_arr, string ip_para) {
             return false;
-        }
-
-        public void displayMyGroup() {
-            FacebookClient fb = new FacebookClient(globalInfo.access_token);
-           
-            dynamic data = fb.Get("/me/groups");
-
-            foreach (var friend in (JsonArray)data["data"]) {
-                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
-                m_SortedList.Add(group);
-            }
-            m_SortedList = m_SortedList.OrderBy(o => o.Name).ToList(); ;
-            m_lb_groups.DataSource = m_SortedList;
-            m_lb_groups.DisplayMember = "Name";
-            m_lb_groups.ValueMember = "Id";
-            this.ShowDialog();
-        }
+        }        
 
         private string getCountThanhVien(string ip_gid) {
 
@@ -67,13 +39,11 @@ namespace test
         private void reset_lbl() {
             m_groupbox.Visible = false;
         }
-        #endregion
-
-        
 
         private void m_cmd_phan_tich_group_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 #region variable
                 decimal count_like = 0;
                 decimal count_date = 0;
@@ -91,13 +61,16 @@ namespace test
                 #endregion
                 reset_lbl();
 
-                if (m_rdb_30.Checked) {
+                if (m_rdb_30.Checked)
+                {
                     v_limit = "30";
                 }
-                else if (m_rdb_50.Checked) {
+                else if (m_rdb_50.Checked)
+                {
                     v_limit = "100";
                 }
-                else {
+                else
+                {
                     v_limit = "200";
                 }
 
@@ -107,28 +80,33 @@ namespace test
                 dynamic data = fb.Get("/" + gid + "?fields=feed.limit(" + v_limit + ").fields(id,created_time,likes.fields(id),comments.fields(id,created_time))");
                 var feed = (JsonObject)data["feed"];
                 List<cl_post> post_list = new List<cl_post>();
-                foreach (dynamic post in (JsonArray)feed["data"]) {
+                foreach (dynamic post in (JsonArray)feed["data"])
+                {
                     cl_post v_p = new cl_post();
                     v_p.fpid = (((JsonObject)post)["id"]).ToString();
                     v_p.create_time = (Facebook.DateTimeConvertor.FromIso8601FormattedDateTime((((JsonObject)post)["created_time"]).ToString()));
 
                     //----------------------------------------------------------
                     name_exist = checkNameExist(post, "likes");
-                    if (name_exist) {
+                    if (name_exist)
+                    {
                         var likes = (JsonObject)post["likes"];
                         var like = (JsonArray)likes["data"];
-                        foreach (var lk in like) {
+                        foreach (var lk in like)
+                        {
                             count_like += 1;
                         }
                     }
                     v_p.like_count = count_like;
                     //----------------------------------------------------------                
                     name_exist = checkNameExist(post, "comments");
-                    if (name_exist) {
+                    if (name_exist)
+                    {
                         var comments = (JsonObject)post["comments"];
                         var comment = (JsonArray)comments["data"];
 
-                        foreach (var lk in comment) {
+                        foreach (var lk in comment)
+                        {
                             DateTime create_time = Facebook.DateTimeConvertor.FromIso8601FormattedDateTime(((JsonObject)lk)["created_time"].ToString());
                             v_list_dat.Add(create_time);
                             count_comment += 1;
@@ -143,11 +121,13 @@ namespace test
                 //post per day
                 #region post per day
                 foreach (var line in post_list.GroupBy(info => info.create_time.Date)
-                            .Select(group => new {
+                            .Select(group => new
+                            {
                                 Metric = group.Key,
                                 Count = group.Count()
                             })
-                            .OrderBy(x => x.Metric)) {
+                            .OrderBy(x => x.Metric))
+                {
                     count_date += 1;
                     count_post += line.Count;
                 }
@@ -156,16 +136,20 @@ namespace test
                 //gold hour
                 #region gold hour
                 foreach (var line in post_list.GroupBy(info => info.create_time.Hour)
-                            .Select(group => new {
+                            .Select(group => new
+                            {
                                 Metric = group.Key,
                                 Count = group.Count()
                             })
-                            .OrderBy(x => x.Metric)) {
-                    if (line.Count > max_post) {
+                            .OrderBy(x => x.Metric))
+                {
+                    if (line.Count > max_post)
+                    {
                         max_post = line.Count;
                         gold_hour = (line.Metric + 7) % 24;
                     }
-                    if (line.Count < min_post) {
+                    if (line.Count < min_post)
+                    {
                         min_post = line.Count;
                         silver_hour = (line.Metric + 7) % 24;
                     }
@@ -175,13 +159,16 @@ namespace test
                 //gold hour for comment
                 #region gold hour
                 var list = v_list_dat.GroupBy(info => info.Hour)
-                            .Select(group => new {
+                            .Select(group => new
+                            {
                                 Metric = group.Key,
                                 Count = group.Count()
                             })
                             .OrderBy(x => x.Metric);
-                foreach (var line in list) {
-                    if (line.Count > max_comment) {
+                foreach (var line in list)
+                {
+                    if (line.Count > max_comment)
+                    {
                         max_comment = line.Count;
                         gold_hour_comment = (line.Metric + 7) % 24;
                     }
@@ -189,24 +176,30 @@ namespace test
                 #endregion
                 //------------------------------------------------------------------------
                 #region Print Result
-                if (count_post == 0) {
+                if (count_post == 0)
+                {
                     m_lbl_post_per_day.Text = "0";
                 }
-                else {
+                else
+                {
                     m_lbl_post_per_day.Text = string.Format("{0:0.00}", count_post / count_date);
                 }
 
-                if (count_like == 0) {
+                if (count_like == 0)
+                {
                     m_lbl_like_per_post.Text = "0";
                 }
-                else {
+                else
+                {
                     m_lbl_like_per_post.Text = string.Format("{0:0.00}", count_like / count_post);
                 }
 
-                if (count_comment == 0) {
+                if (count_comment == 0)
+                {
                     m_lbl_comment_per_post.Text = "0";
                 }
-                else {
+                else
+                {
                     m_lbl_comment_per_post.Text = string.Format("{0:0.00}", count_comment / count_post);
                 }
                 m_lbl_gold_hour.Text = "Từ " + gold_hour.ToString() + "h đến " + (gold_hour + 1).ToString() + "h";
@@ -215,46 +208,89 @@ namespace test
                 #endregion
                 m_groupbox.Visible = true;
             }
-            catch (Exception v_e) {
+            catch (Exception v_e)
+            {
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
-           
+
         }
 
-        private void m_txt_search_TextChanged(object sender, EventArgs e) {
-            try {
-                
+        private void m_txt_search_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
                 List<groups> v_filterList = new List<groups>();
                 List<groups> v_checkedlist = new List<groups>();
 
-              
-              //1. Lấy danh sách các group thỏa mãn tìm kiếm
-                foreach (groups v_froup in m_SortedList) {
-                    if (v_froup.Name.ToLower().IndexOf(m_txt_search.Text.ToLower()) >= 0) {
+
+                //1. Lấy danh sách các group thỏa mãn tìm kiếm
+                foreach (groups v_froup in m_SortedList)
+                {
+                    if (v_froup.Name.ToLower().IndexOf(m_txt_search.Text.ToLower()) >= 0)
+                    {
                         int index = v_filterList.FindIndex(item => item.Id == v_froup.Id);
-                        if (index < 0) {
-                            v_filterList.Add(v_froup);  
+                        if (index < 0)
+                        {
+                            v_filterList.Add(v_froup);
                         }
-                        
+
                     }
-                        
+
                 }
                 //2. Đưa danh sách lên LIST
-                if (m_txt_search.Text.Trim().Length == 0) {
-                    m_lb_groups.DataSource = m_SortedList;                  
+                if (m_txt_search.Text.Trim().Length == 0)
+                {
+                    m_lb_groups.DataSource = m_SortedList;
                 }
-                else {
+                else
+                {
 
                     m_lb_groups.DataSource = v_filterList;
                 }
                 m_lb_groups.DisplayMember = "Name";
                 m_lb_groups.ValueMember = "Id";
-              
+
             }
-            catch (Exception v_e) {
-                
-                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            catch (Exception v_e)
+            {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
         }    
+        #endregion
+
+        #region public method
+
+        public f106_Phan_tich_group()
+        {
+            InitializeComponent();
+        }
+        public void displayMyGroup()
+        {
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
+
+            dynamic data = fb.Get("/me/groups");
+
+            foreach (var friend in (JsonArray)data["data"])
+            {
+                groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                m_SortedList.Add(group);
+            }
+            m_SortedList = m_SortedList.OrderBy(o => o.Name).ToList(); ;
+            m_lb_groups.DataSource = m_SortedList;
+            m_lb_groups.DisplayMember = "Name";
+            m_lb_groups.ValueMember = "Id";
+            this.ShowDialog();
+        }
+
+        public void display(List<groups> group_list)
+        {
+            m_lb_groups.DisplayMember = "Name";
+            m_lb_groups.ValueMember = "Id";
+            m_lb_groups.DataSource = group_list;
+            this.Show();
+        }
+        #endregion
     }
 }
