@@ -40,12 +40,14 @@
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.m_cmd_from_list = new System.Windows.Forms.Button();
             this.m_tabpage_friend.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_tabpage_friend
             // 
+            this.m_tabpage_friend.Controls.Add(this.m_cmd_from_list);
             this.m_tabpage_friend.Controls.Add(this.m_txt_search);
             this.m_tabpage_friend.Controls.Add(this.m_cmd_phan_tich);
             this.m_tabpage_friend.Controls.Add(this.m_wb);
@@ -58,14 +60,14 @@
             this.m_tabpage_friend.Location = new System.Drawing.Point(4, 22);
             this.m_tabpage_friend.Name = "m_tabpage_friend";
             this.m_tabpage_friend.Padding = new System.Windows.Forms.Padding(3);
-            this.m_tabpage_friend.Size = new System.Drawing.Size(539, 542);
+            this.m_tabpage_friend.Size = new System.Drawing.Size(652, 542);
             this.m_tabpage_friend.TabIndex = 1;
             this.m_tabpage_friend.Text = "Tìm kiếm Group theo bạn bè";
             this.m_tabpage_friend.UseVisualStyleBackColor = true;
             // 
             // m_txt_search
             // 
-            this.m_txt_search.Location = new System.Drawing.Point(24, 48);
+            this.m_txt_search.Location = new System.Drawing.Point(24, 45);
             this.m_txt_search.Name = "m_txt_search";
             this.m_txt_search.Size = new System.Drawing.Size(165, 20);
             this.m_txt_search.TabIndex = 28;
@@ -73,9 +75,9 @@
             // 
             // m_cmd_phan_tich
             // 
-            this.m_cmd_phan_tich.Location = new System.Drawing.Point(352, 16);
+            this.m_cmd_phan_tich.Location = new System.Drawing.Point(529, 16);
             this.m_cmd_phan_tich.Name = "m_cmd_phan_tich";
-            this.m_cmd_phan_tich.Size = new System.Drawing.Size(165, 23);
+            this.m_cmd_phan_tich.Size = new System.Drawing.Size(97, 23);
             this.m_cmd_phan_tich.TabIndex = 27;
             this.m_cmd_phan_tich.Text = "Phân tích group";
             this.m_cmd_phan_tich.UseVisualStyleBackColor = true;
@@ -102,7 +104,7 @@
             // 
             // m_cmd_get_info
             // 
-            this.m_cmd_get_info.Location = new System.Drawing.Point(24, 20);
+            this.m_cmd_get_info.Location = new System.Drawing.Point(24, 16);
             this.m_cmd_get_info.Name = "m_cmd_get_info";
             this.m_cmd_get_info.Size = new System.Drawing.Size(165, 23);
             this.m_cmd_get_info.TabIndex = 23;
@@ -112,7 +114,7 @@
             // 
             // m_cmd_join_group
             // 
-            this.m_cmd_join_group.Location = new System.Drawing.Point(231, 509);
+            this.m_cmd_join_group.Location = new System.Drawing.Point(289, 509);
             this.m_cmd_join_group.Name = "m_cmd_join_group";
             this.m_cmd_join_group.Size = new System.Drawing.Size(75, 23);
             this.m_cmd_join_group.TabIndex = 22;
@@ -123,7 +125,7 @@
             // m_prb_friends
             // 
             this.m_prb_friends.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.m_prb_friends.Location = new System.Drawing.Point(43, 471);
+            this.m_prb_friends.Location = new System.Drawing.Point(99, 471);
             this.m_prb_friends.Name = "m_prb_friends";
             this.m_prb_friends.Size = new System.Drawing.Size(455, 23);
             this.m_prb_friends.TabIndex = 21;
@@ -134,7 +136,7 @@
             this.m_lb_group_list.FormattingEnabled = true;
             this.m_lb_group_list.Location = new System.Drawing.Point(225, 45);
             this.m_lb_group_list.Name = "m_lb_group_list";
-            this.m_lb_group_list.Size = new System.Drawing.Size(292, 409);
+            this.m_lb_group_list.Size = new System.Drawing.Size(401, 409);
             this.m_lb_group_list.TabIndex = 19;
             // 
             // m_chk_all_group
@@ -155,14 +157,24 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(547, 568);
+            this.tabControl1.Size = new System.Drawing.Size(660, 568);
             this.tabControl1.TabIndex = 17;
+            // 
+            // m_cmd_from_list
+            // 
+            this.m_cmd_from_list.Location = new System.Drawing.Point(385, 16);
+            this.m_cmd_from_list.Name = "m_cmd_from_list";
+            this.m_cmd_from_list.Size = new System.Drawing.Size(138, 23);
+            this.m_cmd_from_list.TabIndex = 29;
+            this.m_cmd_from_list.Text = "Chọn nhóm từ danh sách";
+            this.m_cmd_from_list.UseVisualStyleBackColor = true;
+            this.m_cmd_from_list.Click += new System.EventHandler(this.m_cmd_from_list_Click);
             // 
             // f108_QLGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 568);
+            this.ClientSize = new System.Drawing.Size(660, 568);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "f108_QLGroup";
@@ -189,6 +201,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button m_cmd_phan_tich;
         private System.Windows.Forms.TextBox m_txt_search;
+        private System.Windows.Forms.Button m_cmd_from_list;
 
     }
 }
