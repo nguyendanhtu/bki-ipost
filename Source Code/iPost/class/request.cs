@@ -204,5 +204,19 @@ namespace test
                 }
             }
         }
+
+        public string request_fb()
+        {
+            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create("https://facebook.com");
+            request_init(myRequest, "GET");
+            HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
     }
 }

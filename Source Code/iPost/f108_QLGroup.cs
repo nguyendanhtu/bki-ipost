@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Facebook;
 using System.Threading;
+using System.Data.OleDb;
 
 namespace test
 {
@@ -291,6 +292,37 @@ namespace test
             catch (Exception v_e) {
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
+        }
+
+        private void m_cmd_from_list_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fdlg = new OpenFileDialog();
+            fdlg.Title = "Select file";
+            fdlg.InitialDirectory = @"c:\";
+            fdlg.Filter = "Excel Sheet(*.xls)|*.xls|All Files(*.*)|*.*";
+            fdlg.FilterIndex = 1;
+            fdlg.RestoreDirectory = true;
+            if (fdlg.ShowDialog() == DialogResult.OK)
+            {
+                Application.DoEvents();
+            }
+            string pathConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fdlg.FileName + ";Extended Properties=\"Excel 8.0;HDR=Yes;\";";
+            OleDbConnection conn = new OleDbConnection(pathConn);
+            OleDbDataAdapter myDataAdapter = new OleDbDataAdapter("Select * from [" + "Sheet1" + "$]", conn);
+            DataTable dt = new DataTable();
+            myDataAdapter.Fill(dt);
+            List<groups> v_list = new List<groups>();
+            foreach (DataRow item in dt.Rows)
+            {
+                groups v_g = new groups();
+                v_g.Id = item["Id"].ToString();
+                v_g.Name = item["Name"].ToString();
+                v_list.Add(v_g);
+            }
+            m_lb_group_list.DataSource = v_list;
+            m_lb_group_list.ValueMember = "Id";
+            m_lb_group_list.DisplayMember = "Name";
+            m_chk_all_group.Text = "Tất cả "+ v_list.Count.ToString() + " group";
         }
     }
 }
