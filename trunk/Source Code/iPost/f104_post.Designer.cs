@@ -250,7 +250,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Mình đề xuất: 40s";
+            this.label4.Text = "Mình đề xuất: 20s";
             // 
             // m_cmd_advance
             // 
@@ -278,7 +278,7 @@
             this.m_txt_time.Name = "m_txt_time";
             this.m_txt_time.Size = new System.Drawing.Size(75, 20);
             this.m_txt_time.TabIndex = 2;
-            this.m_txt_time.Text = "30";
+            this.m_txt_time.Text = "20";
             this.toolTip1.SetToolTip(this.m_txt_time, "Nên để thời gian vừa phải để TRÁNH bị khóa tài khoản bạn ạ");
             // 
             // label2
