@@ -58,6 +58,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
+            this.m_cmd_test_tag = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -157,6 +158,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.m_cmd_test_tag);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label8);
@@ -367,6 +369,16 @@
             this.label11.Text = "5 BƯỚC ĐƠN GIẢN ĐỂ SẢN PHẨM CỦA BẠN ĐƯỢC HÀNG NGHÌN NGƯỜI BIẾT ĐẾN";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // m_cmd_test_tag
+            // 
+            this.m_cmd_test_tag.Location = new System.Drawing.Point(22, 134);
+            this.m_cmd_test_tag.Name = "m_cmd_test_tag";
+            this.m_cmd_test_tag.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_test_tag.TabIndex = 16;
+            this.m_cmd_test_tag.Text = "test tag";
+            this.m_cmd_test_tag.UseVisualStyleBackColor = true;
+            this.m_cmd_test_tag.Click += new System.EventHandler(this.m_cmd_test_tag_Click);
+            // 
             // f104_post
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -425,6 +437,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox m_txt_search;
+        private System.Windows.Forms.Button m_cmd_test_tag;
     }
 }
 

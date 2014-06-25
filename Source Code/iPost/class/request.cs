@@ -174,11 +174,11 @@ namespace test
             string pathWithEnv = "";
             System.OperatingSystem osInfo = System.Environment.OSVersion;
             string osVersion = osInfo.VersionString;
-            if (osVersion.Contains("6.1"))
+            if (osVersion.Contains("6.1") || (osVersion.Contains("6.2")))
             {
                 pathWithEnv = @"%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Cookies";
             }
-            else if ((osVersion.Contains("6.2")) || (osVersion.Contains("6.3")))
+            else if ((osVersion.Contains("6.3")))
             {
                 pathWithEnv = @"%USERPROFILE%\AppData\Local\Microsoft\Windows\INetCookies";
             }
