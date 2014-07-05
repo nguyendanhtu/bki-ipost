@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f108_QLGroup));
             this.m_tabpage_friend = new System.Windows.Forms.TabPage();
+            this.m_cmd_from_list = new System.Windows.Forms.Button();
             this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_cmd_phan_tich = new System.Windows.Forms.Button();
             this.m_wb = new System.Windows.Forms.WebBrowser();
@@ -39,9 +40,15 @@
             this.m_prb_friends = new System.Windows.Forms.ProgressBar();
             this.m_lb_group_list = new System.Windows.Forms.CheckedListBox();
             this.m_chk_all_group = new System.Windows.Forms.CheckBox();
+            this.m_tabpage_search = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.m_cmd_from_list = new System.Windows.Forms.Button();
+            this.m_cbl_group = new System.Windows.Forms.CheckedListBox();
+            this.m_pgb_group = new System.Windows.Forms.ProgressBar();
+            this.m_cmd_join = new System.Windows.Forms.Button();
+            this.m_txt_tim_kiem = new System.Windows.Forms.TextBox();
+            this.m_cmd_tim_kiem = new System.Windows.Forms.Button();
             this.m_tabpage_friend.SuspendLayout();
+            this.m_tabpage_search.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +71,16 @@
             this.m_tabpage_friend.TabIndex = 1;
             this.m_tabpage_friend.Text = "Tìm kiếm Group theo bạn bè";
             this.m_tabpage_friend.UseVisualStyleBackColor = true;
+            // 
+            // m_cmd_from_list
+            // 
+            this.m_cmd_from_list.Location = new System.Drawing.Point(385, 16);
+            this.m_cmd_from_list.Name = "m_cmd_from_list";
+            this.m_cmd_from_list.Size = new System.Drawing.Size(138, 23);
+            this.m_cmd_from_list.TabIndex = 29;
+            this.m_cmd_from_list.Text = "Chọn nhóm từ danh sách";
+            this.m_cmd_from_list.UseVisualStyleBackColor = true;
+            this.m_cmd_from_list.Click += new System.EventHandler(this.m_cmd_from_list_Click);
             // 
             // m_txt_search
             // 
@@ -150,9 +167,25 @@
             this.m_chk_all_group.UseVisualStyleBackColor = true;
             this.m_chk_all_group.CheckedChanged += new System.EventHandler(this.m_chk_all_group_CheckedChanged);
             // 
+            // m_tabpage_search
+            // 
+            this.m_tabpage_search.Controls.Add(this.m_cmd_tim_kiem);
+            this.m_tabpage_search.Controls.Add(this.m_txt_tim_kiem);
+            this.m_tabpage_search.Controls.Add(this.m_cmd_join);
+            this.m_tabpage_search.Controls.Add(this.m_pgb_group);
+            this.m_tabpage_search.Controls.Add(this.m_cbl_group);
+            this.m_tabpage_search.Location = new System.Drawing.Point(4, 22);
+            this.m_tabpage_search.Name = "m_tabpage_search";
+            this.m_tabpage_search.Padding = new System.Windows.Forms.Padding(3);
+            this.m_tabpage_search.Size = new System.Drawing.Size(652, 542);
+            this.m_tabpage_search.TabIndex = 1;
+            this.m_tabpage_search.Text = "Tìm kiếm Group theo tên";
+            this.m_tabpage_search.UseVisualStyleBackColor = true;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.m_tabpage_friend);
+            this.tabControl1.Controls.Add(this.m_tabpage_search);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -160,15 +193,47 @@
             this.tabControl1.Size = new System.Drawing.Size(660, 568);
             this.tabControl1.TabIndex = 17;
             // 
-            // m_cmd_from_list
+            // m_cbl_group
             // 
-            this.m_cmd_from_list.Location = new System.Drawing.Point(385, 16);
-            this.m_cmd_from_list.Name = "m_cmd_from_list";
-            this.m_cmd_from_list.Size = new System.Drawing.Size(138, 23);
-            this.m_cmd_from_list.TabIndex = 29;
-            this.m_cmd_from_list.Text = "Chọn nhóm từ danh sách";
-            this.m_cmd_from_list.UseVisualStyleBackColor = true;
-            this.m_cmd_from_list.Click += new System.EventHandler(this.m_cmd_from_list_Click);
+            this.m_cbl_group.FormattingEnabled = true;
+            this.m_cbl_group.Location = new System.Drawing.Point(93, 69);
+            this.m_cbl_group.Name = "m_cbl_group";
+            this.m_cbl_group.Size = new System.Drawing.Size(467, 349);
+            this.m_cbl_group.TabIndex = 0;
+            // 
+            // m_pgb_group
+            // 
+            this.m_pgb_group.Location = new System.Drawing.Point(93, 443);
+            this.m_pgb_group.Name = "m_pgb_group";
+            this.m_pgb_group.Size = new System.Drawing.Size(467, 23);
+            this.m_pgb_group.TabIndex = 1;
+            // 
+            // m_cmd_join
+            // 
+            this.m_cmd_join.Location = new System.Drawing.Point(289, 490);
+            this.m_cmd_join.Name = "m_cmd_join";
+            this.m_cmd_join.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_join.TabIndex = 2;
+            this.m_cmd_join.Text = "Xin gia nhập";
+            this.m_cmd_join.UseVisualStyleBackColor = true;
+            this.m_cmd_join.Click += new System.EventHandler(this.m_cmd_join_Click);
+            // 
+            // m_txt_tim_kiem
+            // 
+            this.m_txt_tim_kiem.Location = new System.Drawing.Point(156, 26);
+            this.m_txt_tim_kiem.Name = "m_txt_tim_kiem";
+            this.m_txt_tim_kiem.Size = new System.Drawing.Size(260, 20);
+            this.m_txt_tim_kiem.TabIndex = 3;
+            // 
+            // m_cmd_tim_kiem
+            // 
+            this.m_cmd_tim_kiem.Location = new System.Drawing.Point(422, 23);
+            this.m_cmd_tim_kiem.Name = "m_cmd_tim_kiem";
+            this.m_cmd_tim_kiem.Size = new System.Drawing.Size(75, 23);
+            this.m_cmd_tim_kiem.TabIndex = 4;
+            this.m_cmd_tim_kiem.Text = "Tìm kiếm";
+            this.m_cmd_tim_kiem.UseVisualStyleBackColor = true;
+            this.m_cmd_tim_kiem.Click += new System.EventHandler(this.m_cmd_tim_kiem_Click);
             // 
             // f108_QLGroup
             // 
@@ -183,6 +248,8 @@
             this.Load += new System.EventHandler(this.f108_QLGroup_Load);
             this.m_tabpage_friend.ResumeLayout(false);
             this.m_tabpage_friend.PerformLayout();
+            this.m_tabpage_search.ResumeLayout(false);
+            this.m_tabpage_search.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -191,6 +258,7 @@
         #endregion
 
         private System.Windows.Forms.TabPage m_tabpage_friend;
+        private System.Windows.Forms.TabPage m_tabpage_search;
         private System.Windows.Forms.WebBrowser m_wb;
         private System.Windows.Forms.ListBox m_lb_friend_list;
         private System.Windows.Forms.Button m_cmd_get_info;
@@ -202,6 +270,11 @@
         private System.Windows.Forms.Button m_cmd_phan_tich;
         private System.Windows.Forms.TextBox m_txt_search;
         private System.Windows.Forms.Button m_cmd_from_list;
+        private System.Windows.Forms.CheckedListBox m_cbl_group;
+        private System.Windows.Forms.Button m_cmd_tim_kiem;
+        private System.Windows.Forms.TextBox m_txt_tim_kiem;
+        private System.Windows.Forms.Button m_cmd_join;
+        private System.Windows.Forms.ProgressBar m_pgb_group;
 
     }
 }

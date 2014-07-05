@@ -174,17 +174,23 @@ namespace test
             string pathWithEnv = "";
             System.OperatingSystem osInfo = System.Environment.OSVersion;
             string osVersion = osInfo.VersionString;
-            if (osVersion.Contains("6.1") || (osVersion.Contains("6.2")))
-            {
-                pathWithEnv = @"%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Cookies";
-            }
-            else if ((osVersion.Contains("6.3")))
+            var filePath = "";
+            string[] filePaths;
+            try
             {
                 pathWithEnv = @"%USERPROFILE%\AppData\Local\Microsoft\Windows\INetCookies";
+                //pathWithEnv = @"%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Cookies";
+                filePath = Environment.ExpandEnvironmentVariables(pathWithEnv);
+                filePaths = Directory.GetFiles(filePath, "*.txt", SearchOption.AllDirectories);
             }
+            catch (Exception)
+            {
+                //pathWithEnv = @"%USERPROFILE%\AppData\Local\Microsoft\Windows\INetCookies";
+                pathWithEnv = @"%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Cookies";
+                filePath = Environment.ExpandEnvironmentVariables(pathWithEnv);
+                filePaths = Directory.GetFiles(filePath, "*.txt", SearchOption.AllDirectories);
+            }           
 
-            var filePath = Environment.ExpandEnvironmentVariables(pathWithEnv);
-            string[] filePaths = Directory.GetFiles(filePath, "*.txt", SearchOption.AllDirectories);
             bool v_status = false;
 
             foreach (var item in filePaths)
