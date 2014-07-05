@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPost", "iPost\iPost.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TienX.License", "LicenseManager\com.tienx.licman\TienX.License.csproj", "{8CE97C47-96DC-4112-8651-93D3B3852A93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLicenseManager", "LicenseManager\TestLicenseManager\TestLicenseManager.csproj", "{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,16 +35,6 @@ Global
 		{8CE97C47-96DC-4112-8651-93D3B3852A93}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8CE97C47-96DC-4112-8651-93D3B3852A93}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8CE97C47-96DC-4112-8651-93D3B3852A93}.Release|x86.ActiveCfg = Release|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{4D7EF8DB-90F9-4835-8078-2E3D7BAE8C79}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
