@@ -16,6 +16,7 @@ namespace test
     {
         #region Member
         BackgroundWorker v_bgw;
+        BackgroundWorker m_bgw;
         string access_token = "";
         string m_uid = "";
         string m_dtsg = "";
@@ -33,9 +34,17 @@ namespace test
             v_bgw.WorkerReportsProgress = true;
             v_bgw.WorkerSupportsCancellation = true;
 
+            m_bgw = new BackgroundWorker();
+            m_bgw.WorkerReportsProgress = true;
+            m_bgw.WorkerSupportsCancellation = true;
+
             v_bgw.DoWork += v_bgw_DoWork;
             v_bgw.ProgressChanged += v_bgw_ProgressChanged;
             v_bgw.RunWorkerCompleted += v_bgw_RunWorkerCompleted;
+
+            m_bgw.DoWork += m_bgw_DoWork;
+            m_bgw.ProgressChanged += m_bgw_ProgressChanged;
+            m_bgw.RunWorkerCompleted += m_bgw_RunWorkerCompleted;
         }
 
         public void m_cmd_phan_tich_Click(object sender, EventArgs e)
@@ -259,6 +268,53 @@ namespace test
             m_cmd_join_group.Text = "Xin gia nhập";
         }
 
+        private void m_bgw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            float length = m_cbl_group.CheckedItems.Count;
+            m_pgb_group.Invoke((Action)(() => m_pgb_group.Maximum = m_cbl_group.CheckedItems.Count));
+            for (int i = 0; i < length; i++)
+            {
+                m_bgw.ReportProgress(i + 1);
+                try
+                {
+                    request v_r = new request();
+                    groups v_g = (groups)m_cbl_group.CheckedItems[i];
+                    v_r.group_id = v_g.Id;
+                    v_r.user_id = m_uid;
+                    v_r.dtsg = m_dtsg;
+                    v_r.request_2_fb("https://www.facebook.com/ajax/groups/membership/r2j.php", "POST");
+                    if (i + 1 < m_cbl_group.CheckedItems.Count)
+                    {
+                        Thread.Sleep(20000);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+            m_bgw.ReportProgress(100);
+        }
+
+        private void m_bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (!m_bgw.CancellationPending)
+            {
+                if (e.ProgressPercentage == 100)
+                {
+                    m_pgb_group.PerformStep();
+                }
+                else
+                {
+                    m_pgb_group.Value = e.ProgressPercentage;
+                }
+            }
+        }
+
+        private void m_bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            m_cmd_join.Text = "Xin gia nhập";
+        }
+
         private void m_txt_search_TextChanged(object sender, EventArgs e)
         {
             try
@@ -337,5 +393,53 @@ namespace test
             m_chk_all_group.Text = "Tất cả " + v_list.Count.ToString() + " group";
         }
         #endregion
+
+        private void m_cmd_tim_kiem_Click(object sender, EventArgs e)
+        {
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
+            List<groups> v_list_group = new List<groups>();
+            if (m_txt_tim_kiem.Text.Trim().Length > 0)
+            {
+                dynamic result = fb.Get("search?q="+m_txt_tim_kiem.Text.Trim()+"&type=group");
+                foreach (var g in (JsonArray)result["data"])
+                {
+                    groups group = new groups() { Id = (string)(((JsonObject)g)["id"]), Name = (string)(((JsonObject)g)["name"]) };
+                    v_list_group.Add(group);
+                }
+                m_cbl_group.DataSource = v_list_group;
+                m_cbl_group.DisplayMember = "Name";
+                m_cbl_group.ValueMember = "Id";
+            }
+            else
+            {
+                MessageBox.Show("Bạn phải nhập từ khóa tìm kiếm");
+            }
+        }
+
+        private void m_cmd_join_Click(object sender, EventArgs e)
+        {
+            if (m_dtsg == "")
+            {
+                MessageBox.Show("Quá trình chuẩn bị chưa hoàn thành");
+                m_wb.Navigate("https://facebook.com");
+            }
+            else
+            {
+                this.Controls.Remove(m_wb);
+                int second = m_cbl_group.CheckedItems.Count / 3 * 90 + m_cbl_group.CheckedItems.Count % 3 * 15;
+                string v_mess = "Thời gian ước tính hoàn thành khoảng " + (second / 60) + " phút " + (second % 60) + " giây";
+                MessageBox.Show(v_mess);
+                if (m_bgw.IsBusy)
+                {
+                    m_bgw.CancelAsync();
+                }
+                else
+                {
+                    m_pgb_group.Value = 0;
+                    m_cmd_join.Text = "Stop";
+                    m_bgw.RunWorkerAsync();
+                }
+            }
+        }
     }
 }

@@ -427,12 +427,12 @@ namespace test
         }
         #endregion        
 
-        private void m_cmd_test_tag_Click(object sender, EventArgs e)
-        {
-            FacebookClient fb = new FacebookClient(globalInfo.access_token);
-            dynamic parameters = new ExpandoObject();
-            parameters.message = "@[100004685250081:1:Thái Phạm]";
-            var result = fb.Post("me/feed", parameters);
-        }
+        //private void m_cmd_test_tag_Click(object sender, EventArgs e)
+        //{
+        //    FacebookClient fb = new FacebookClient(globalInfo.access_token);
+        //    dynamic parameters = new ExpandoObject();
+        //    parameters.message = "@[100004685250081:1:Thái Phạm]";
+        //    var result = fb.Post("me/feed", parameters);
+        //}
     }
 }
