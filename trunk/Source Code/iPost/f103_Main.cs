@@ -107,5 +107,21 @@ namespace test
             }
         }
         #endregion
+
+        private void m_cmd_page_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Hide();
+                f101_post_2_page v_f = new f101_post_2_page();
+                v_f.ShowDialog();
+                this.Show();
+            }
+            catch (Exception v_e)
+            {
+
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
     }
 }

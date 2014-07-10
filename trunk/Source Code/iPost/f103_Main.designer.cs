@@ -37,6 +37,7 @@
             this.m_lbl_message = new System.Windows.Forms.Label();
             this.m_cmd_thong_ke = new System.Windows.Forms.Button();
             this.m_cmd_ql_group = new System.Windows.Forms.Button();
+            this.m_cmd_page = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // m_cmd_post
@@ -48,7 +49,7 @@
             this.m_cmd_post.Name = "m_cmd_post";
             this.m_cmd_post.Size = new System.Drawing.Size(233, 37);
             this.m_cmd_post.TabIndex = 0;
-            this.m_cmd_post.Text = "Đăng bài";
+            this.m_cmd_post.Text = "Đăng bài vào Group";
             this.m_cmd_post.UseVisualStyleBackColor = true;
             this.m_cmd_post.Click += new System.EventHandler(this.m_cmd_post_Click);
             // 
@@ -84,7 +85,7 @@
             this.m_cmd_exit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_cmd_exit.ImageIndex = 12;
             this.m_cmd_exit.ImageList = this.ImageList;
-            this.m_cmd_exit.Location = new System.Drawing.Point(16, 169);
+            this.m_cmd_exit.Location = new System.Drawing.Point(16, 209);
             this.m_cmd_exit.Name = "m_cmd_exit";
             this.m_cmd_exit.Size = new System.Drawing.Size(232, 37);
             this.m_cmd_exit.TabIndex = 1;
@@ -97,7 +98,7 @@
             this.m_cmd_follow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_cmd_follow.ImageIndex = 18;
             this.m_cmd_follow.ImageList = this.ImageList;
-            this.m_cmd_follow.Location = new System.Drawing.Point(15, 51);
+            this.m_cmd_follow.Location = new System.Drawing.Point(15, 89);
             this.m_cmd_follow.Name = "m_cmd_follow";
             this.m_cmd_follow.Size = new System.Drawing.Size(233, 37);
             this.m_cmd_follow.TabIndex = 2;
@@ -119,7 +120,7 @@
             this.m_cmd_thong_ke.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_cmd_thong_ke.ImageIndex = 19;
             this.m_cmd_thong_ke.ImageList = this.ImageList;
-            this.m_cmd_thong_ke.Location = new System.Drawing.Point(16, 130);
+            this.m_cmd_thong_ke.Location = new System.Drawing.Point(16, 169);
             this.m_cmd_thong_ke.Name = "m_cmd_thong_ke";
             this.m_cmd_thong_ke.Size = new System.Drawing.Size(232, 37);
             this.m_cmd_thong_ke.TabIndex = 5;
@@ -132,7 +133,7 @@
             this.m_cmd_ql_group.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.m_cmd_ql_group.ImageIndex = 21;
             this.m_cmd_ql_group.ImageList = this.ImageList;
-            this.m_cmd_ql_group.Location = new System.Drawing.Point(15, 91);
+            this.m_cmd_ql_group.Location = new System.Drawing.Point(15, 129);
             this.m_cmd_ql_group.Name = "m_cmd_ql_group";
             this.m_cmd_ql_group.Size = new System.Drawing.Size(233, 37);
             this.m_cmd_ql_group.TabIndex = 6;
@@ -140,12 +141,26 @@
             this.m_cmd_ql_group.UseVisualStyleBackColor = true;
             this.m_cmd_ql_group.Click += new System.EventHandler(this.m_cmd_ql_group_Click);
             // 
+            // m_cmd_page
+            // 
+            this.m_cmd_page.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_cmd_page.ImageIndex = 3;
+            this.m_cmd_page.ImageList = this.ImageList;
+            this.m_cmd_page.Location = new System.Drawing.Point(15, 49);
+            this.m_cmd_page.Name = "m_cmd_page";
+            this.m_cmd_page.Size = new System.Drawing.Size(233, 37);
+            this.m_cmd_page.TabIndex = 7;
+            this.m_cmd_page.Text = "Đăng bài vào Page";
+            this.m_cmd_page.UseVisualStyleBackColor = true;
+            this.m_cmd_page.Click += new System.EventHandler(this.m_cmd_page_Click);
+            // 
             // f103_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
-            this.ClientSize = new System.Drawing.Size(263, 213);
+            this.ClientSize = new System.Drawing.Size(263, 262);
+            this.Controls.Add(this.m_cmd_page);
             this.Controls.Add(this.m_cmd_ql_group);
             this.Controls.Add(this.m_cmd_thong_ke);
             this.Controls.Add(this.m_lbl_message);
@@ -154,9 +169,9 @@
             this.Controls.Add(this.m_cmd_post);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(279, 251);
+            this.MaximumSize = new System.Drawing.Size(279, 300);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(279, 251);
+            this.MinimumSize = new System.Drawing.Size(279, 300);
             this.Name = "f103_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F103 - Danh sách tính năng iPost";
@@ -174,5 +189,6 @@
         private System.Windows.Forms.Button m_cmd_thong_ke;
         private System.Windows.Forms.Button m_cmd_ql_group;
         internal System.Windows.Forms.ImageList ImageList;
+        private System.Windows.Forms.Button m_cmd_page;
     }
 }
