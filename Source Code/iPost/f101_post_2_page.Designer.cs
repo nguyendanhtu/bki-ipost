@@ -1,6 +1,6 @@
 ﻿namespace test
 {
-    partial class f104_post
+    partial class f101_post_2_page
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f104_post));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(f101_post_2_page));
             this.m_cmd_post = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.m_txt_search = new System.Windows.Forms.TextBox();
             this.m_chk_all = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.m_cmd_comment = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,8 +58,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,12 +67,12 @@
             // m_cmd_post
             // 
             this.m_cmd_post.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
-            this.m_cmd_post.Dock = System.Windows.Forms.DockStyle.Left;
+            this.m_cmd_post.Dock = System.Windows.Forms.DockStyle.Fill;
             this.m_cmd_post.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_cmd_post.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.m_cmd_post.Location = new System.Drawing.Point(0, 0);
             this.m_cmd_post.Name = "m_cmd_post";
-            this.m_cmd_post.Size = new System.Drawing.Size(297, 45);
+            this.m_cmd_post.Size = new System.Drawing.Size(609, 45);
             this.m_cmd_post.TabIndex = 0;
             this.m_cmd_post.Text = "Đăng bài";
             this.m_cmd_post.UseVisualStyleBackColor = false;
@@ -91,6 +90,27 @@
             this.panel1.Size = new System.Drawing.Size(239, 444);
             this.panel1.TabIndex = 4;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
+            this.label7.Location = new System.Drawing.Point(30, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(154, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Chọn các trang muốn đăng bài";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 24);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "1";
+            // 
             // m_txt_search
             // 
             this.m_txt_search.Location = new System.Drawing.Point(8, 44);
@@ -106,15 +126,14 @@
             this.m_chk_all.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
             this.m_chk_all.Location = new System.Drawing.Point(3, 78);
             this.m_chk_all.Name = "m_chk_all";
-            this.m_chk_all.Size = new System.Drawing.Size(207, 17);
+            this.m_chk_all.Size = new System.Drawing.Size(205, 17);
             this.m_chk_all.TabIndex = 1;
-            this.m_chk_all.Text = "Đánh dấu để chọn tất cả nhóm ở dưới";
+            this.m_chk_all.Text = "Đánh dấu để chọn tất cả trang ở dưới";
             this.m_chk_all.UseVisualStyleBackColor = true;
             this.m_chk_all.CheckedChanged += new System.EventHandler(this.m_chk_all_CheckedChanged);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.m_cmd_comment);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.m_cmd_post);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -122,20 +141,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(609, 45);
             this.panel2.TabIndex = 5;
-            // 
-            // m_cmd_comment
-            // 
-            this.m_cmd_comment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
-            this.m_cmd_comment.Dock = System.Windows.Forms.DockStyle.Right;
-            this.m_cmd_comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_cmd_comment.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.m_cmd_comment.Location = new System.Drawing.Point(312, 0);
-            this.m_cmd_comment.Name = "m_cmd_comment";
-            this.m_cmd_comment.Size = new System.Drawing.Size(297, 45);
-            this.m_cmd_comment.TabIndex = 2;
-            this.m_cmd_comment.Text = "Comment";
-            this.m_cmd_comment.UseVisualStyleBackColor = false;
-            this.m_cmd_comment.Click += new System.EventHandler(this.m_cmd_comment_Click);
             // 
             // label9
             // 
@@ -360,28 +365,7 @@
             this.label11.Text = "5 BƯỚC ĐƠN GIẢN ĐỂ SẢN PHẨM CỦA BẠN ĐƯỢC HÀNG NGHÌN NGƯỜI BIẾT ĐẾN";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 24);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "1";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(93)))), ((int)(((byte)(155)))));
-            this.label7.Location = new System.Drawing.Point(30, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(157, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Chọn các group muốn đăng bài";
-            // 
-            // f104_post
+            // f101_post_2_page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -393,7 +377,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "f104_post";
+            this.Name = "f101_post_2_page";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "F104 - Bạn đăng bài với tên ";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -437,7 +421,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox m_txt_search;
         private System.Windows.Forms.CheckBox m_chk_has_image;
-        private System.Windows.Forms.Button m_cmd_comment;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
     }

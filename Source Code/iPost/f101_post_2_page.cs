@@ -14,7 +14,7 @@ using System.Net;
 
 namespace test
 {
-    public partial class f104_post : Form
+    public partial class f101_post_2_page : Form
     {
         #region Members
         class groups {
@@ -91,7 +91,7 @@ namespace test
                 progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
                 if (m_b_has_image)
                 {
-                    Upload(m_txt_url_image.Text);
+                    Upload(m_txt_url_image.Text);    
                 }
                 for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++)
                 {
@@ -151,74 +151,6 @@ namespace test
                     m_list_color.Add(m_cbl_group.Items[int.Parse(item.ToString())].ToString());
                 }
                 m_cbl_group.Refresh();
-            }
-            catch (Exception v_e)
-            {
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-        }
-
-        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-            try
-            {
-                int length = m_cbl_group.CheckedItems.Count;
-                progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
-                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++)
-                {
-                    foreach (groups item in m_SortedList)
-                    {
-                        if (item.Name == m_cbl_group.CheckedItems[i].ToString())
-                        {
-                            comment2Top5(item);
-                            break;
-                        }
-                    }
-                    backgroundWorker2.ReportProgress((int)(i / length * 100));
-                }
-                backgroundWorker2.ReportProgress(100);
-            }
-            catch (Exception v_e)
-            {
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-
-        }
-
-        private void backgroundWorker2_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
-            try
-            {
-                //Thay đổi trạng thái làm việc
-                if (!backgroundWorker2.CancellationPending)
-                {
-                    progressBar1.PerformStep();
-                }
-            }
-            catch (Exception v_e)
-            {
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-
-        }
-
-        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-
-            try
-            {
-                m_cmd_comment.Text = "Comment";
-                //foreach (var item in m_cbl_group.CheckedIndices)
-                //{
-                //    m_cbl_group.Completionlist.Add(int.Parse(item.ToString()));
-                //    m_list_color.Add(m_cbl_group.Items[int.Parse(item.ToString())].ToString());
-                //}
-                //m_cbl_group.Refresh();
             }
             catch (Exception v_e)
             {
@@ -511,32 +443,6 @@ namespace test
                 var v_result = fb.Post("/" + item + "/comments", parameters);
             }
         }
-
-        private void m_cmd_comment_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (backgroundWorker2.IsBusy)
-                {
-                    backgroundWorker2.CancelAsync();
-                    m_cmd_comment.Text = "Comment";
-                }
-                else
-                {
-                    m_cbl_group.Completionlist.Clear();
-                    m_list_color.Clear();
-                    m_cbl_group.Refresh();
-                    progressBar1.Value = progressBar1.Minimum;
-                    m_cmd_comment.Text = "Stop";
-                    backgroundWorker2.RunWorkerAsync();
-                }
-            }
-            catch (Exception v_e)
-            {
-
-                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
-            }
-        }
         #endregion
 
         #region public method
@@ -546,7 +452,7 @@ namespace test
             {
                 FacebookClient fb = new FacebookClient(globalInfo.access_token);
                 var roles = new List<groups>();
-                dynamic data = fb.Get("/me/groups");
+                dynamic data = fb.Get("/me/likes?fields=id,name&limit=500");
 
                 foreach (var v_g in (JsonArray)data["data"])
                 {
@@ -583,7 +489,7 @@ namespace test
 
         }
 
-        public f104_post()
+        public f101_post_2_page()
         {
             InitializeComponent();
             this.CenterToScreen();
@@ -594,14 +500,6 @@ namespace test
             backgroundWorker1.DoWork += backgroundWorker1_DoWork;
             backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-
-            backgroundWorker2 = new BackgroundWorker();
-            backgroundWorker2.WorkerReportsProgress = true;
-            backgroundWorker2.WorkerSupportsCancellation = true;
-
-            backgroundWorker2.DoWork += backgroundWorker2_DoWork;
-            backgroundWorker2.ProgressChanged += backgroundWorker2_ProgressChanged;
-            backgroundWorker2.RunWorkerCompleted += backgroundWorker2_RunWorkerCompleted;
         }
         #endregion
 
