@@ -26,10 +26,7 @@ namespace test
 
         #region Members
         string access_token = "";
-        string dtsg = "";
-        int trang_thai = 0;
-        bool get_access_token = false;
-        int i = 0;
+        string v_key = "";
         #endregion                
 
         #region Private Method
@@ -99,6 +96,6 @@ namespace test
                 this.Close();
             }
         }
-        #endregion      
+        #endregion
     }
 }

@@ -80,6 +80,7 @@
     <Compile Include="class\CustomCheckedListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="class\upload.cs" />
     <Compile Include="f101_post_2_page.cs">
       <SubType>Form</SubType>
     </Compile>
