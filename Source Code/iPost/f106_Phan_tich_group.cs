@@ -77,7 +77,7 @@ namespace test
                 FacebookClient fb = new FacebookClient(globalInfo.access_token);
                 string gid = ((groups)m_lb_groups.SelectedItem).Id;
 
-                dynamic data = fb.Get("/" + gid + "?fields=feed.limit(" + v_limit + ").fields(id,created_time,likes.fields(id),comments.fields(id,created_time))");
+                dynamic data = fb.Get("/" + gid + "?fields=feed.limit(" + v_limit + ").fields(id,created_time,likes.fields(id),comments.fields(id,created_time,from))");
                 var feed = (JsonObject)data["feed"];
                 List<cl_post> post_list = new List<cl_post>();
                 foreach (dynamic post in (JsonArray)feed["data"])
