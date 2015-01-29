@@ -17,7 +17,9 @@ namespace test
     public partial class f104_post : Form
     {
         #region Members
-        class groups {
+        int m_count_items_checked = 0;
+        class groups
+        {
             public string Id { get; set; }
             public string Name { get; set; }
         }
@@ -31,15 +33,16 @@ namespace test
         BackgroundWorker backgroundWorker2;
         List<groups> m_SortedList;
         List<string> m_list_color = new List<string>();
-        CustomCheckedListBox m_cbl_group = new CustomCheckedListBox();
-        #endregion        
+        #endregion
 
         #region Private Method
-        private void post_2_facebook(groups item) {
+        private void post_2_facebook(groups item)
+        {
             dynamic result;
             string v_path = Directory.GetCurrentDirectory();
             string v_url_image = "";
-            try {
+            try
+            {
                 if (m_b_upload)
                 {
                     v_url_image = "http://anhthay.com.vn/Upload/" + Path.GetFileName(m_txt_url_image.Text);
@@ -49,14 +52,16 @@ namespace test
                 {
                     v_url_image = m_txt_url_image.Text;
                 }
-                if (m_b_has_image) {
+                if (m_b_has_image)
+                {
                     FacebookClient fb = new FacebookClient(globalInfo.access_token);
                     dynamic parameters = new ExpandoObject();
                     parameters.url = v_url_image;
                     parameters.message = m_txt_message.Text;
                     result = fb.Post(item.Id + "/photos", parameters);
                 }
-                else {
+                else
+                {
                     FacebookClient fb = new FacebookClient(globalInfo.access_token);
                     dynamic parameters = new ExpandoObject();
                     parameters.message = m_txt_message.Text;
@@ -67,18 +72,21 @@ namespace test
                     result = fb.Post(item.Id + "/feed", parameters);
                 }
                 string p_id = result["id"];
-                System.IO.StreamWriter file = new System.IO.StreamWriter(v_path +"\\postId.txt", true);
+                System.IO.StreamWriter file = new System.IO.StreamWriter(v_path + "\\postId.txt", true);
                 file.WriteLine(m_uid + "_" + p_id);
                 file.WriteLine(item.Name);
-                if (m_txt_message.Text.Length > 30) {
+                if (m_txt_message.Text.Length > 30)
+                {
                     file.WriteLine(m_txt_message.Text.Substring(0, 30));
                 }
-                else {
+                else
+                {
                     file.WriteLine(m_txt_message.Text.Trim());
                 }
                 file.Close();
             }
-            catch (Exception ) {
+            catch (Exception)
+            {
             }
         }
 
@@ -87,25 +95,21 @@ namespace test
 
             try
             {
-                int length = m_cbl_group.CheckedItems.Count;
+                int length = m_cbl_list_group.CheckedItems.Count;
                 progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
                 if (m_b_has_image)
                 {
                     upload v_up = new upload();
                     v_up.Upload(m_txt_url_image.Text);
                 }
-                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++)
+                for (int i = 0; i < m_cbl_list_group.CheckedItems.Count; i++)
                 {
-                    foreach (groups item in m_SortedList)
+                    foreach (groups item in m_cbl_list_group.CheckedItems)
                     {
-                        if (item.Name == m_cbl_group.CheckedItems[i].ToString())
-                        {
                             post_2_facebook(item);
-                            break;
-                        }
                     }
                     backgroundWorker1.ReportProgress((int)(i / length * 100));
-                    if (i + 1 != m_cbl_group.CheckedItems.Count)
+                    if (i + 1 != m_cbl_list_group.CheckedItems.Count)
                     {
                         int time = Convert.ToInt32(m_txt_time.Text) * 1000;
                         Thread.Sleep(time);
@@ -146,12 +150,6 @@ namespace test
             try
             {
                 m_cmd_post.Text = "Đăng bài";
-                foreach (var item in m_cbl_group.CheckedIndices)
-                {
-                    m_cbl_group.Completionlist.Add(int.Parse(item.ToString()));
-                    m_list_color.Add(m_cbl_group.Items[int.Parse(item.ToString())].ToString());
-                }
-                m_cbl_group.Refresh();
             }
             catch (Exception v_e)
             {
@@ -165,13 +163,13 @@ namespace test
 
             try
             {
-                int length = m_cbl_group.CheckedItems.Count;
+                int length = m_cbl_list_group.CheckedItems.Count;
                 progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
-                for (int i = 0; i < m_cbl_group.CheckedItems.Count; i++)
+                for (int i = 0; i < m_cbl_list_group.CheckedItems.Count; i++)
                 {
                     foreach (groups item in m_SortedList)
                     {
-                        if (item.Name == m_cbl_group.CheckedItems[i].ToString())
+                        if (item.Name == m_cbl_list_group.CheckedItems[i].ToString())
                         {
                             comment2Top5(item);
                             break;
@@ -214,12 +212,12 @@ namespace test
             try
             {
                 m_cmd_comment.Text = "Comment";
-                //foreach (var item in m_cbl_group.CheckedIndices)
+                //foreach (var item in m_cbl_list_group.CheckedIndices)
                 //{
-                //    m_cbl_group.Completionlist.Add(int.Parse(item.ToString()));
-                //    m_list_color.Add(m_cbl_group.Items[int.Parse(item.ToString())].ToString());
+                //    m_cbl_list_group.Completionlist.Add(int.Parse(item.ToString()));
+                //    m_list_color.Add(m_cbl_list_group.Items[int.Parse(item.ToString())].ToString());
                 //}
-                //m_cbl_group.Refresh();
+                //m_cbl_list_group.Refresh();
             }
             catch (Exception v_e)
             {
@@ -244,9 +242,6 @@ namespace test
                 }
                 else
                 {
-                    m_cbl_group.Completionlist.Clear();
-                    m_list_color.Clear();
-                    m_cbl_group.Refresh();
                     progressBar1.Value = progressBar1.Minimum;
                     m_cmd_post.Text = "Stop";
                     backgroundWorker1.RunWorkerAsync();
@@ -289,22 +284,9 @@ namespace test
         private void Form1_Load(object sender, EventArgs e)
         {
             try
-            {
-                this.m_cbl_group.CheckOnClick = true;
-                this.m_cbl_group.Dock = System.Windows.Forms.DockStyle.Bottom;
-                this.m_cbl_group.FormattingEnabled = true;
-                this.m_cbl_group.Location = new System.Drawing.Point(0, 95);
-                this.m_cbl_group.Name = "m_cbl_group";
-                this.m_cbl_group.Size = new System.Drawing.Size(239, 349);
-                this.m_cbl_group.TabIndex = 2;
-                this.toolTip1.SetToolTip(this.m_cbl_group, "1. Check vào nhóm bạn muốn đăng bài nhé\r\n2. Buôn có bạn, bán có phường. Tham gia " +
-                        "vào nhiều nhóm đông người, cũng bán sản phẩm của bạn nữa.");
-                this.panel1.Controls.Add(this.m_cbl_group);
-                //--------------------------------------------------------------------------------------------------
-                FacebookClient fb = new FacebookClient(globalInfo.access_token);
-                dynamic data = fb.Get("/me?fields=name");
-                m_uid = data["id"];
+            {                
                 Display_post();
+                load_nhom();
             }
             catch (Exception v_e)
             {
@@ -354,17 +336,17 @@ namespace test
             {
                 if (m_chk_all.Checked)
                 {
-                    for (int i = 0; i < m_cbl_group.Items.Count; i++)
+                    for (int i = 0; i < m_cbl_list_group.Items.Count; i++)
                     {
-                        m_cbl_group.SetItemChecked(i, true);
+                        m_cbl_list_group.SetItemChecked(i, true);
                     }
                     m_chk_all.Text = "Bỏ đánh dấu để hủy chọn tất cả nhóm ở dưới";
                 }
                 else
                 {
-                    for (int i = 0; i < m_cbl_group.Items.Count; i++)
+                    for (int i = 0; i < m_cbl_list_group.Items.Count; i++)
                     {
-                        m_cbl_group.SetItemChecked(i, false);
+                        m_cbl_list_group.SetItemChecked(i, false);
                     }
                     m_chk_all.Text = "Đánh dấu để chọn tất cả nhóm ở dưới";
                 }
@@ -379,17 +361,15 @@ namespace test
         {
             try
             {
+                m_cbl_list_group.DataSource = m_SortedList;
                 List<string> v_list_checked = new List<string>();
                 List<string> v_list_search = new List<string>();
                 List<groups> v_list_result = new List<groups>();
 
-                //-- 0. Xóa màu các group
-                m_cbl_group.Completionlist.Clear();
-
                 //-- 1. Lấy danh sách những group đã chọn
-                foreach (var item in m_cbl_group.CheckedItems)
+                foreach (var item in m_cbl_list_group.CheckedItems)
                 {
-                    v_list_checked.Add(item.ToString());
+                    v_list_checked.Add(((groups)item).Id);
                 }
 
                 //-- 2. Lấy danh sách những group thỏa mãn từ khóa tìm kiếm
@@ -426,6 +406,7 @@ namespace test
 
                     foreach (string name in v_list_search)
                     {
+                        
                         foreach (groups group in m_SortedList)
                         {
                             if (name == group.Name)
@@ -438,27 +419,22 @@ namespace test
                 }
                 //-- 4. Đưa kết quả lên Control
                 bool check = false;
-                m_cbl_group.Items.Clear();
+                m_cbl_list_group.DataSource = null;
                 int index = 0;
-                foreach (groups group in v_list_result)
+               m_cbl_list_group.DataSource = v_list_result;
+                m_cbl_list_group.DisplayMember = "Name";
+                m_cbl_list_group.ValueMember = "Id";
+                for (int i=0; i < m_cbl_list_group.Items.Count;i++ )
                 {
                     foreach (var name in v_list_checked)
                     {
-                        if (name == group.Name)
+                        if (name == ((groups)m_cbl_list_group.Items[i]).Id)
                         {
-                            check = true;
-                            break;
+                            m_check_bang_tay = false;
+                            m_cbl_list_group.SetItemChecked(i, true);
+                            m_check_bang_tay = true;
                         }
                     }
-
-                    m_cbl_group.Items.Add(group.Name, check);
-                    var v_checked = m_list_color.Find(x => x == group.Name);
-                    if (v_checked != null)
-                    {
-                        m_cbl_group.Completionlist.Add(index);
-                    }
-                    index += 1;
-                    check = false;
                 }
             }
             catch (Exception v_e)
@@ -468,7 +444,7 @@ namespace test
             }
         }
 
-        
+
 
         private void comment2Top5(groups ip_group)
         {
@@ -499,9 +475,6 @@ namespace test
                 }
                 else
                 {
-                    m_cbl_group.Completionlist.Clear();
-                    m_list_color.Clear();
-                    m_cbl_group.Refresh();
                     progressBar1.Value = progressBar1.Minimum;
                     m_cmd_comment.Text = "Stop";
                     backgroundWorker2.RunWorkerAsync();
@@ -512,6 +485,57 @@ namespace test
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
+        }
+        private void m_but_create_Click(object sender, EventArgs e)
+        {
+            CsvRow row = new CsvRow();
+            if (m_txt_name_nhom.Text == "")
+            {
+                MessageBox.Show("Chưa nhập tên nhóm mới");
+                return;
+            }
+            if (m_cbl_list_group.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Chưa chọn group");
+                return;
+            }
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
+            dynamic data = fb.Get("/me?fields=id");
+            var v_id = ((JsonObject)data)["id"].ToString();
+            row.Add(v_id);
+            row.Add(m_txt_name_nhom.Text.Trim());
+            foreach (groups item in m_cbl_list_group.CheckedItems)
+            {
+                row.Add(item.Id);
+            }
+            CsvFile writer = new CsvFile();
+            writer.WriteRow(row, "Group.csv");
+            MessageBox.Show("Tạo nhóm group thành công !");
+            load_nhom();
+        }
+
+        private void load_nhom()
+        {
+            List<string> list_nhom = new List<string>(); ;
+            CsvFile reader = new CsvFile();
+            List<CsvRow> rows = reader.ReadRow("Group.csv");
+            CsvRow row = new CsvRow();
+            FacebookClient fb = new FacebookClient(globalInfo.access_token);
+            dynamic data = fb.Get("/me?fields=id");
+            var v_id = ((JsonObject)data)["id"].ToString();
+            globalInfo.id = v_id;
+            foreach (CsvRow r in rows)
+            {
+                if (r.Count == 0) continue;
+;
+                if (v_id==r[0].ToString())
+                {
+                    list_nhom.Add(r[1].ToString());
+                }  
+               
+            }
+            
+            m_box_list_nhom.DataSource = list_nhom;
         }
         #endregion
 
@@ -532,7 +556,9 @@ namespace test
                 m_SortedList = roles.OrderBy(o => o.Name).ToList();
                 for (int i = 0; i < m_SortedList.Count; i++)
                 {
-                    m_cbl_group.Items.Add(m_SortedList[i].Name);
+                    m_cbl_list_group.DisplayMember = "Name";
+                    m_cbl_list_group.ValueMember = "Id";
+                    m_cbl_list_group.DataSource = m_SortedList;
                 }
             }
             catch (Exception v_e)
@@ -552,7 +578,6 @@ namespace test
             }
             catch (Exception v_e)
             {
-
 
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
@@ -581,6 +606,112 @@ namespace test
         }
         #endregion
 
+        List<string> m_lst_group_chon_bang_tay = new List<string>();
+        List<string> m_lst_group_chon_bang_danh_sach = new List<string>();
+        bool m_check_bang_tay = true;
+        private void m_box_list_nhom_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            try
+            {
+                m_lst_group_chon_bang_danh_sach.Clear();
+                for (int i = 0; i < m_cbl_list_group.Items.Count; i++)
+                {
+                    if (m_lst_group_chon_bang_tay.Exists(x => x == ((groups)m_cbl_list_group.Items[i]).Id))
+                    {
+                        continue;
+                    }
+                    m_cbl_list_group.SetItemChecked(i, false);
+                }
+                //var z = sender.ToString();
+                List<string> list_nhom = new List<string>(); ;
+                CsvFile reader = new CsvFile();
+                List<CsvRow> rows = reader.ReadRow("Group.csv");
+                foreach (CsvRow row in rows) 
+                {
+                    if (row.Count == 0) continue;
+                    foreach (var item in m_box_list_nhom.CheckedItems)
+                    {
+                        if (item.ToString() == m_box_list_nhom.Items[e.Index].ToString())
+                        {
+                            continue;
+                        }
+                        if (row[0].ToString() == item.ToString())
+                        {
+                            foreach (string s in row)
+                            {
+                                m_lst_group_chon_bang_danh_sach.Add(s);
+                            }
+                        }
+                    }
+                    if (e.NewValue == CheckState.Checked)
+                    {
+                        if (row[1].ToString() == m_box_list_nhom.Items[e.Index].ToString())
+                        {
+                            foreach (string s in row)
+                            {
+                                m_lst_group_chon_bang_danh_sach.Add(s);
+                            }
+                        }
+                    }                    
+                }
+
+                foreach (string item in m_lst_group_chon_bang_tay)
+                {
+                        for (int i = 0; i < m_cbl_list_group.Items.Count; i++)
+                    {
+                        if (item == ((groups)m_cbl_list_group.Items[i]).Id)
+                        {
+                            m_cbl_list_group.SetItemChecked(i, true);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < m_cbl_list_group.Items.Count; i++)
+                {
+                    foreach (string item in m_lst_group_chon_bang_danh_sach)
+                    {
+                        if (item == ((groups)m_cbl_list_group.Items[i]).Id)
+                        {
+                            m_check_bang_tay = false;
+                            m_cbl_list_group.SetItemChecked(i, true);
+                            m_check_bang_tay = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void m_cbl_list_group_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!m_check_bang_tay)
+            {
+                return;
+            }
+            if (e.NewValue == CheckState.Checked)
+            {
+                groups v_g = new groups();
+                v_g = (groups)m_cbl_list_group.Items[e.Index];
+                m_lst_group_chon_bang_tay.Add(v_g.Id);
+            }
+            else
+            {
+                m_lst_group_chon_bang_tay.Remove(m_lst_group_chon_bang_tay.Find(x => x == ((groups)m_cbl_list_group.Items[e.Index]).Id));
+            }
+        }
+
+        
+
+        ////private void m_box_list_nhom_ItemCheck(object sender, EventArgs e)
+        //{
+
+        //}
+
+
+
         //private void m_cmd_test_tag_Click(object sender, EventArgs e)
         //{
         //    FacebookClient fb = new FacebookClient(globalInfo.access_token);
@@ -588,6 +719,6 @@ namespace test
         //    parameters.message = "@[100004685250081:1:Thái Phạm]";
         //    var result = fb.Post("me/feed", parameters);
         //}
-    
+
     }
 }

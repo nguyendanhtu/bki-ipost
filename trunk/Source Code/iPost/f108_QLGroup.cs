@@ -22,6 +22,7 @@ namespace test
         string m_dtsg = "";
         bool m_status_search = true;
         List<groups> m_SortedList = new List<groups>();
+        List<groups> me_groups = new List<groups>();
         #endregion
 
         #region public Method
@@ -106,7 +107,7 @@ namespace test
             {
                 m_chk_all_group.Checked = false;
                 FacebookClient fb = new FacebookClient(access_token);
-                var me_groups = new List<groups>();
+
                 dynamic data = fb.Get("/me/groups");
                 foreach (var friend in (JsonArray)data["data"])
                 {
@@ -132,6 +133,10 @@ namespace test
                 m_lb_group_list.DisplayMember = "Name";
                 m_lb_group_list.ValueMember = "Id";
                 m_chk_all_group.Text = "Tất cả " + m_lb_group_list.Items.Count.ToString() + " group";
+                // load group của tài khoản lên form tạo nhóm group.
+                m_lb_me_list_group.DataSource = me_groups;
+                m_lb_me_list_group.DisplayMember = "Name";
+                m_lb_me_list_group.ValueMember = "ID";
             }
         }
 
@@ -394,6 +399,8 @@ namespace test
         }
         #endregion
 
+       
+
         private void m_cmd_tim_kiem_Click(object sender, EventArgs e)
         {
             FacebookClient fb = new FacebookClient(globalInfo.access_token);
@@ -441,5 +448,116 @@ namespace test
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CsvRow row = new CsvRow();
+                if (m_name_new_group.Text == "")
+                {
+                    MessageBox.Show("Chưa nhập tên nhóm mới");
+                    return;
+                }
+                if (m_lb_me_list_group.CheckedItems.Count <= 0)
+                {
+                    MessageBox.Show("Chưa chọn group");
+                    return;
+                }
+                row.Add(m_name_new_group.Text.Trim());
+                for (int i = 0; i < m_lb_me_list_group.CheckedItems.Count; i++)
+                {
+                    groups v_g = (groups)m_lb_me_list_group.CheckedItems[i];
+                    row.Add(v_g.Id);
+                }
+                CsvFile writer = new CsvFile();
+                writer.WriteRow(row, "Group.csv");
+                MessageBox.Show("Tạo nhóm group thành công !");
+                //load_nhom();
+                       
+            }
+            catch (Exception v_e)
+            {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
+       
+        
+        private void m_text_search_group_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                m_status_search = false;
+                List<groups> v_filterList = new List<groups>();
+                List<groups> v_checkedlist = new List<groups>();
+
+                //1. Lấy danh sách các group thỏa mãn tìm kiếm
+                FacebookClient fb = new FacebookClient(access_token);
+                var me_groups = new List<groups>();
+                dynamic data = fb.Get("/me/groups");
+                foreach (var friend in (JsonArray)data["data"])
+                {
+                    groups group = new groups() { Id = (string)(((JsonObject)friend)["id"]), Name = (string)(((JsonObject)friend)["name"]) };
+                    me_groups.Add(group);
+                }
+                foreach (groups v_group in me_groups)
+                {
+                   
+                    if (v_group.Name.ToLower().Contains(m_text_search_group.Text.ToLower()))
+                    {
+                        int index = v_filterList.FindIndex(item => item.Id == v_group.Id);
+                        if (index < 0)
+                        {
+                            v_filterList.Add(v_group);
+                        }
+                    }
+                }
+
+                //2. Đưa danh sách lên LIST
+                if (m_text_search_group.Text.Trim().Length == 0)
+                {
+                    m_lb_me_list_group.DataSource = me_groups;
+                }
+                else
+                {
+                    m_lb_me_list_group.DataSource = v_filterList;
+                }
+                m_lb_me_list_group.DisplayMember = "Name";
+                m_lb_me_list_group.ValueMember = "Id";
+                m_status_search = true;
+            }
+            catch (Exception v_e)
+            {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
+
+        private void m_chk_all_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_chk_all.Checked)
+                {
+                    for (int i = 0; i < m_lb_me_list_group.Items.Count; i++)
+                    {
+                        m_lb_me_list_group.SetItemChecked(i, true);
+                    }
+                    m_chk_all.Text = "Bỏ đánh dấu để hủy chọn tất cả nhóm ở dưới";
+                }
+                else
+                {
+                    for (int i = 0; i < m_lb_me_list_group.Items.Count; i++)
+                    {
+                        m_lb_me_list_group.SetItemChecked(i, false);
+                    }
+                    m_chk_all.Text = "Đánh dấu để chọn tất cả nhóm ở dưới";
+                }
+            }
+            catch (Exception v_e)
+            {
+                MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
+            }
+        }
+        
     }
 }

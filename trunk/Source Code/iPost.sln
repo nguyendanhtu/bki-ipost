@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPost", "iPost\iPost.csproj", "{F867B2D9-FBF8-49C3-A7AF-888860ACA75E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TienX.License", "LicenseManager\com.tienx.licman\TienX.License.csproj", "{8CE97C47-96DC-4112-8651-93D3B3852A93}"
