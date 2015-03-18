@@ -34,8 +34,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.m_cbl_list_group = new System.Windows.Forms.CheckedListBox();
             this.m_box_list_nhom = new System.Windows.Forms.CheckedListBox();
-            this.m_but_create = new System.Windows.Forms.Button();
-            this.m_txt_name_nhom = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.m_txt_search = new System.Windows.Forms.TextBox();
@@ -87,8 +85,6 @@
             // 
             this.panel1.Controls.Add(this.m_cbl_list_group);
             this.panel1.Controls.Add(this.m_box_list_nhom);
-            this.panel1.Controls.Add(this.m_but_create);
-            this.panel1.Controls.Add(this.m_txt_name_nhom);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_txt_search);
@@ -102,9 +98,9 @@
             // m_cbl_list_group
             // 
             this.m_cbl_list_group.FormattingEnabled = true;
-            this.m_cbl_list_group.Location = new System.Drawing.Point(7, 152);
+            this.m_cbl_list_group.Location = new System.Drawing.Point(7, 122);
             this.m_cbl_list_group.Name = "m_cbl_list_group";
-            this.m_cbl_list_group.Size = new System.Drawing.Size(216, 319);
+            this.m_cbl_list_group.Size = new System.Drawing.Size(216, 349);
             this.m_cbl_list_group.TabIndex = 21;
             this.m_cbl_list_group.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.m_cbl_list_group_ItemCheck);
             // 
@@ -117,23 +113,6 @@
             this.m_box_list_nhom.Size = new System.Drawing.Size(216, 49);
             this.m_box_list_nhom.TabIndex = 20;
             this.m_box_list_nhom.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.m_box_list_nhom_ItemCheck);
-            // 
-            // m_but_create
-            // 
-            this.m_but_create.Location = new System.Drawing.Point(158, 126);
-            this.m_but_create.Name = "m_but_create";
-            this.m_but_create.Size = new System.Drawing.Size(65, 20);
-            this.m_but_create.TabIndex = 19;
-            this.m_but_create.Text = "Tạo nhóm";
-            this.m_but_create.UseVisualStyleBackColor = true;
-            this.m_but_create.Click += new System.EventHandler(this.m_but_create_Click);
-            // 
-            // m_txt_name_nhom
-            // 
-            this.m_txt_name_nhom.Location = new System.Drawing.Point(3, 126);
-            this.m_txt_name_nhom.Name = "m_txt_name_nhom";
-            this.m_txt_name_nhom.Size = new System.Drawing.Size(149, 20);
-            this.m_txt_name_nhom.TabIndex = 18;
             // 
             // label7
             // 
@@ -484,8 +463,6 @@
         private System.Windows.Forms.Button m_cmd_comment;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button m_but_create;
-        private System.Windows.Forms.TextBox m_txt_name_nhom;
         private System.Windows.Forms.CheckedListBox m_box_list_nhom;
         private CustomCheckedListBox customCheckedListBox1;
         private System.Windows.Forms.CheckedListBox m_cbl_list_group;
