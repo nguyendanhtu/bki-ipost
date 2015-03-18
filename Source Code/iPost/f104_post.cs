@@ -102,12 +102,14 @@ namespace test
                     upload v_up = new upload();
                     v_up.Upload(m_txt_url_image.Text);
                 }
-                for (int i = 0; i < m_cbl_list_group.CheckedItems.Count; i++)
-                {
+                //for (int i = 0; i < m_cbl_list_group.CheckedItems.Count; i++)
+                //{
+                int i = 0;
                     foreach (groups item in m_cbl_list_group.CheckedItems)
                     {
-                            post_2_facebook(item);
-                    }
+                        i++;
+                        post_2_facebook(item);
+                    
                     backgroundWorker1.ReportProgress((int)(i / length * 100));
                     if (i + 1 != m_cbl_list_group.CheckedItems.Count)
                     {
@@ -486,33 +488,33 @@ namespace test
                 MessageBox.Show("Có tý tẹo vấn đề. Bạn chụp ảnh và gửi để chúng tôi hỗ trợ nhé!" + v_e.ToString());
             }
         }
-        private void m_but_create_Click(object sender, EventArgs e)
-        {
-            CsvRow row = new CsvRow();
-            if (m_txt_name_nhom.Text == "")
-            {
-                MessageBox.Show("Chưa nhập tên nhóm mới");
-                return;
-            }
-            if (m_cbl_list_group.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Chưa chọn group");
-                return;
-            }
-            FacebookClient fb = new FacebookClient(globalInfo.access_token);
-            dynamic data = fb.Get("/me?fields=id");
-            var v_id = ((JsonObject)data)["id"].ToString();
-            row.Add(v_id);
-            row.Add(m_txt_name_nhom.Text.Trim());
-            foreach (groups item in m_cbl_list_group.CheckedItems)
-            {
-                row.Add(item.Id);
-            }
-            CsvFile writer = new CsvFile();
-            writer.WriteRow(row, "Group.csv");
-            MessageBox.Show("Tạo nhóm group thành công !");
-            load_nhom();
-        }
+        //private void m_but_create_Click(object sender, EventArgs e)
+        //{
+        //    CsvRow row = new CsvRow();
+        //    if (m_txt_name_nhom.Text == "")
+        //    {
+        //        MessageBox.Show("Chưa nhập tên nhóm mới");
+        //        return;
+        //    }
+        //    if (m_cbl_list_group.CheckedItems.Count == 0)
+        //    {
+        //        MessageBox.Show("Chưa chọn group");
+        //        return;
+        //    }
+        //    FacebookClient fb = new FacebookClient(globalInfo.access_token);
+        //    dynamic data = fb.Get("/me?fields=id");
+        //    var v_id = ((JsonObject)data)["id"].ToString();
+        //    row.Add(v_id);
+        //    row.Add(m_txt_name_nhom.Text.Trim());
+        //    foreach (groups item in m_cbl_list_group.CheckedItems)
+        //    {
+        //        row.Add(item.Id);
+        //    }
+        //    CsvFile writer = new CsvFile();
+        //    writer.WriteRow(row, "Group.csv");
+        //    MessageBox.Show("Tạo nhóm group thành công !");
+        //    load_nhom();
+        //}
 
         private void load_nhom()
         {
@@ -546,7 +548,7 @@ namespace test
             {
                 FacebookClient fb = new FacebookClient(globalInfo.access_token);
                 var roles = new List<groups>();
-                dynamic data = fb.Get("/me/groups");
+                dynamic data = fb.Get("/me/groups?limit=390");
 
                 foreach (var v_g in (JsonArray)data["data"])
                 {
