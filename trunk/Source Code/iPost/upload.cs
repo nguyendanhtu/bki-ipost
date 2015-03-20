@@ -14,9 +14,9 @@ namespace test
             try
             {
                 FileInfo toUpload = new FileInfo(fileToUpload);
-                FtpWebRequest req = (FtpWebRequest)WebRequest.Create("ftp://123.30.182.81/httpdocs/Upload/" + toUpload.Name);
+                FtpWebRequest req = (FtpWebRequest)WebRequest.Create("ftp://31.170.160.110/public_html/" + toUpload.Name);
                 req.Method = WebRequestMethods.Ftp.UploadFile;
-                req.Credentials = new NetworkCredential("englishat", "OYzkjZSwpj4");
+                req.Credentials = new NetworkCredential("a3281424", "thai14101992");
                 Stream ftpStream = req.GetRequestStream();
                 FileStream file = File.OpenRead(fileToUpload);
                 int length = 1024;
