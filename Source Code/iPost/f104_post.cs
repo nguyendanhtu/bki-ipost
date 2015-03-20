@@ -97,7 +97,7 @@ namespace test
             {
                 int length = m_cbl_list_group.CheckedItems.Count;
                 progressBar1.Invoke((Action)(() => progressBar1.Maximum = length));
-                if (m_b_has_image)
+                if (m_b_has_image && m_b_upload)
                 {
                     upload v_up = new upload();
                     v_up.Upload(m_txt_url_image.Text);
