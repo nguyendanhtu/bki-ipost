@@ -45,7 +45,7 @@ namespace test
             {
                 if (m_b_upload)
                 {
-                    v_url_image = "http://anhthay.com.vn/Upload/" + Path.GetFileName(m_txt_url_image.Text);
+                    v_url_image = "http://bkindex.uphero.com/" + Path.GetFileName(m_txt_url_image.Text);
                     m_b_upload = false;
                 }
                 else
