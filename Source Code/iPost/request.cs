@@ -166,7 +166,7 @@ namespace test
 
         private string dataPost() {
             string postData = "";
-            postData = "ref=group_jump_header&group_id=" + group_id + "&__user=" + user_id + "&__a=1&__dyn=7n8ahyj35zoSt2u6aOGeEwlyp9EbEyGgSmEVF4WpUpBxCEG&__req=8&fb_dtsg=" + dtsg + "&ttstamp=2658169110901201171079710310681&__rev=1232856";
+            postData = "ref=group_jump_header&group_id=" + group_id + "&__user=" + user_id + "&__a=1&__dyn=aJioznEyl2lm98eDgDDzbGyki8Amm74HyUgByVblkFp4Femt9LFGFolBxiLGjAKGy98iyqDApuqQhdyd7yWCGu4udUSrwzxbyUzyaJ2aBgOGy9KVaK&__req=fh&fb_dtsg=" + dtsg + "&ttstamp=265817072875349501154982119&__rev=1694181";
             return postData;
         }
 
