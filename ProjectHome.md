@@ -1,0 +1,1 @@
+Phần mềm iPost hỗ trợ đăng bài tự động lên các group facebook.
